@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="drsform.css" rel="stylesheet" >
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lato&amp;display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="drsjs.js"></script>
+    </head>
+    <body>
+        <!--Start of DRS Form -->
+
+    <div id="form-holder">
+    <p style="font-size: 460%; z-index: 99999999;" class="dynamic-text"><strong>Dance Ready Score</strong></p>
+    <form id="DRSForm">
+    <label for="email">Please enter your email address</label><br>
+    <input type="email" id="email" name="email" onchange="validateEmail()"><br><br>
+    <label for="FName">Please enter your first name</label><br>
+    <input type="text" id="firstName" name="FName" onchange="validateFirstName()"><br><br>
+    <label for="LName">Please enter your last name</label><br>
+    <input type="text" id="lastName" name="LName" onchange="validateLastName()"><br><br>
+    <label for="ethnicity"> Please select your ethnicity </label><br>
+    <select name="ethnicity" id="ethnicity" onchange="ethnicityOther()">
+        <option value="White"> White </option>
+        <option value="Black or African American"> Black or African American </option>
+        <option value="American Indian and Alaska Native"> American Indian and Alaska Native </option>
+        <option value="Asian"> Asian </option>
+        <option value="Hispanic"> Hispanic</option>
+        <option value="Other">Other</option>
+    </select>
+    <br><br><input type="text" id="ethnicityOtherText" style="display: none">
+    <br><br>
+    <label for="sex"> Please select your assigned sex at birth</label><br>
+    <select name="sex" id="sex">
+        <option value="Male"> Male </option>
+        <option value="Female"> Female </option>
+    </select><br><br>
+    <label for="company"> Please enter your Organization / Company / Affiliation</label><br>
+    <input type="text" id="company" name="company"><br><br>
+     <label for="RSingleLegReleves"> Enter Right Single Leg Releves</label><br>
+    <input type="number" id="rightSingleLegReleves" name="RsingleLegReleves"><br><br>
+    <label for="LSingleLegReleves"> Enter Left Single Leg Releves</label><br>
+    <input type="number" id="leftSingleLegReleves" name="LsingleLegReleves"><br><br>
+    <label for="plank"> Enter plank time (s)</label><br>
+    <input type="number" id="plank" name="plank"><br><br>
+    <label for="RSidePlank"> Enter Right Side Plank with Abduction (s)</label><br>
+    <input type="number" id="rightSidePlank" name="RSidePlank"><br><br>
+    <label for="LSidePlank"> Enter Left Side Plank with Abduction (s)</label><br>
+    <input type="number" id="leftSidePlank" name="LSidePlank"><br><br>
+    <label for="RSingleLegBridges"> Enter Right Single Leg Bridges </label><br>
+    <input type="number" id="rightSingleLegBridges" name="RSingleLegBridges"><br><br>
+    <label for="LSingleLegBridges"> Enter Left Single Leg Bridges </label><br>
+    <input type="number" id="leftSingleLegBridges" name="LSingleLegBridges"><br><br>
+    <label for="RHopTest1"> Enter Right Side Hop Test Trial 1 (cm)</label><br>
+    <input type="number" id="rightHopTest1" name="RHopTest1"><br><br>
+    <label for="LHopTest1"> Enter Left Side Hop Test Trial 1 (cm)</label><br>
+    <input type="number" id="leftHopTest1" name="LHopTest1"><br><br>
+    <label for="RHopTest2"> Enter Right Side Hop Test Trial 2 (cm)</label><br>
+    <input type="number" id="rightHopTest2" name="RHopTest2"><br><br>
+    <label for="LHopTest2"> Enter Left Side Hop Test Trial 2 (cm)</label><br>
+    <input type="number" id="leftHopTest2" name="LHopTest2"><br><br>
+    <label for="RPasseReleveBalance"> Enter Right Passe Releve Balance time (s)</label><br>
+    <input type="number" id="rightPasseReleveBalance" name="RPasseReleveBalance"><br><br>
+    <label for="LPasseReleveBalance"> Enter Left Passe Relevé Balance time (s)</label><br>
+    <input type="number" id="leftPasseReleveBalance" name="LPasseReleveBalance"><br><br>
+    <label for="RPasseFlatFootBalance"> Enter Right Passe Flat Foot Balance time with eyes closed (s)</label><br>
+    <input type="number" id="rightPasseFlatFootBalance" name="RPasseFlatFootBalance"><br><br>
+    <label for="LPasseFlatFootBalance"> Enter Left Passe Flat Foot Balance time with eyes closed (s)</label><br>
+    <input type="number" id="leftPasseFlatFootBalance" name="LPasseFlatFootBalance"><br><br>
+    <label for="ckcuest">Enter CKCUEST</label><br>
+    <input type="number" id="ckcuest"><br><br> 
+    <label for="bolt"> Enter your BOLT test score </label><br>
+    <input type="number" id="bolt" name="bolt"><br><br>
+    <label for="workingLeg">Please select your preferred "working" leg</label><br>
+    
+    <select name="workingLeg" id="workingLeg">
+        <option value="right"> Right </option>
+        <option value="left"> Left </option>
+    </select><br><br>
+    <label for="standingLeg">Please select your preferred "standing" leg</label><br>
+    <select name="standingLeg" id="standingLeg">
+        <option value="right"> Right </option>
+        <option value="left"> Left </option>
+    </select><br><br>
+    <label for="threeMonthInjury">Within the last 3 months have you ever had an injury to your hip, knee, foot or ankle,<br> that caused you to stop dancing for more than 1 week? If so, which side?</label><br><br>
+    <select name="threeMonthInjury" id="threeMonthInjury">
+        <option value="N/A"> N/A </option>
+        <option value="right"> Right </option>
+        <option value="left"> Left </option>
+    </select><br><br>
+    <label for="fiveYearInjury">Within the last 5 years have you had an injury to your hip, knee, foot or ankle that caused <br>you to stop dancing for more than 1 week (do not include injuries within the last 3 months)? If so, which side? </label><br><br>
+     <select name="fiveYearInjury" id="fiveYearInjury">
+        <option value="N/A"> N/A </option>
+        <option value="right"> Right </option>
+        <option value="left"> Left </option>
+    </select><br><br>
+    <label for="consent"><input type="checkbox" id="consent" name="consent">Please check the box if you consent to your data being used anonymously for research and teaching purposes</label><br><br>
+    <a href="javascript:alert('learn more');">Learn More</a><br>
+    <br>
+    <button type="button" onclick="validateForm()"> Submit </button>
+    </form>    
+    </div>    
+    <!--End of form-->
+        <!--Start of results display-->
+    <div id="results">
+    <img src="https://s3.us-east-1.amazonaws.com/contents.newzenler.com/9238/library/omepage-banner60777a0cb0184_lg.png" >
+    <p style="font-size:250%;" class="dynamic-text"><b><span id="fullName"></span>'s Dance Ready Score Results</b></p>
+    <p style="font-size: 150%;" class="dynamic-text">Prepared by Dr Sheyi Ojofeitimi &amp; Dr. Danelle Dickson</p>
+    <br>
+    <p style="font-size:250%;" class="dynamic-text"><b>Dance Ready Score Total: <span id="DRSTotal"></span>%</b></p>
+    <p style="font-size:200%;" class="dynamic-text"><b>Left: <span id="DRSLeft"></span>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right: <span id="DRSRight"></span>%</b></p>
+    <br>
+    <!--Results table-->
+    <table id="resultsTable">
+        <tbody><tr>
+            <th>Test</th>
+            <th>Measure</th>
+            <th>Score</th>
+            <th>Accommodations</th>
+            <th>Comments</th>
+        </tr>
+        <tr>
+            <td>Plank</td>
+            <td>Core Strength</td>
+            <td><span id="plankScore"></span></td>
+            <td rowspan="3"><span id="plankAccommodations"></span></td>
+            <td rowspan="3"><span id="plankComments"></span></td>
+        </tr>
+        <tr>
+            <td>Side Plank with Abduction(Right)</td>
+            <td rowspan="2">Hip &amp; Core Strength</td>
+            <td><span id="rightSidePlankScore"></span></td>
+        </tr>
+        <tr>
+            <td>Side Plank with Abduction(Left)</td>
+            <td><span id="leftSidePlankScore"></span></td>
+        </tr>
+        <tr>
+            <td>Single Leg Releves(Right)</td>
+            <td rowspan="2">Calf Strength</td>
+            <td><span id="rightSingleLegRelevesScore"></span></td>
+            <td rowspan="6"><span id="rightSingleLegRelevesAccommodations"></span></td>
+            <td rowspan="6"><span id="rightSingleLegRelevesComments"></span></td>
+        </tr>
+        <tr>
+            <td>Single Leg Releves(Left)</td>
+            <td><span id="leftSingleLegRelevesScore"></span></td>
+        </tr>
+        <tr>
+            <td>Single Leg Bridges(Right)</td>
+            <td rowspan="2">Hamstring &amp; Gluteal Strength</td>
+            <td><span id="rightSingleLegBridgesScore"></span></td>
+        <tr>
+            <td>Single Leg Bridges(Left)</td>
+            <td><span id="leftSingleLegBridgesScore"></span></td>
+        </tr>
+        <tr>
+            <td>Hop Test(Right)</td>
+            <td rowspan="2">Quadriceps &amp; Gluteal Function</td>
+            <td><span id="rightHopTestScore"></span></td>
+        </tr>
+        <tr>
+            <td>Hop Test(Left)</td>
+            <td><span id="leftHopTestScore"></span></td>
+        </tr>
+        <tr>
+            <td>Passe Releve Balance(Right)</td>
+            <td rowspan="4">Balance &amp; Priopriception</td>
+            <td><span id="rightPasseReleveBalanceScore"></span></td>
+            <td rowspan="4"><span id="rightPasseReleveBalanceAccommodations"></span></td>
+            <td rowspan="4"><span id="rightPasseReleveBalanceComments"></span></td>
+        </tr>
+        <tr>
+            <td>Passe Releve Balance(Left)</td>
+            <td><span id="leftPasseReleveBalanceScore"></span></td>
+        </tr>
+        <tr>
+            <td>Passe Flat Foot Balance - Eyes Closed (Right)</td>
+            <td><span id="rightFlatFootBalanceScore"></span></td>
+        </tr>
+        <tr>
+            <td>Passe Flat Foot Balance - Eyes Closed (Left)</td>
+            <td><span id="leftFlatFootBalanceScore"></span></td>
+        </tr>
+        <tr>
+            <td>CKCUEST</td>
+            <td>Shoulder Strength and Stability</td>
+            <td><span id="ckcuestScore"></span></td>
+            <td><span id="ckcuestAccommodations"></span></td>
+            <td><span id="ckcuestComments"></span></td>
+        </tr>
+        <tr>
+            <td>BOLT Test</td>
+            <td>Cardiovascular Fitness</td>
+            <td><span id="boltScore"></span></td>
+            <td><span id="boltAccommodations"></span></td>
+            <td><span id="boltComments"></span></td>
+        </tr>
+
+    </tbody></table>  
+    <h3 style="color:red" class="dynamic-heading" >Please Print or Screenshot this document to not lose this information</h3>
+    </div> 
+      </body>
+      <html>
