@@ -80,23 +80,27 @@
     <select name="workingLeg" id="workingLeg">
         <option value="right"> Right </option>
         <option value="left"> Left </option>
+        <option value="Both"> Both </option>
     </select><br><br>
     <label for="standingLeg">Please select your preferred "standing" leg</label><br>
     <select name="standingLeg" id="standingLeg">
         <option value="right"> Right </option>
         <option value="left"> Left </option>
+        <option value="Both"> Both </option>
     </select><br><br>
     <label for="threeMonthInjury">Within the last 3 months have you ever had an injury to your hip, knee, foot or ankle,<br> that caused you to stop dancing for more than 1 week? If so, which side?</label><br><br>
     <select name="threeMonthInjury" id="threeMonthInjury">
         <option value="N/A"> N/A </option>
         <option value="right"> Right </option>
         <option value="left"> Left </option>
+        <option value="Both"> Both </option>
     </select><br><br>
     <label for="fiveYearInjury">Within the last 5 years have you had an injury to your hip, knee, foot or ankle that caused <br>you to stop dancing for more than 1 week (do not include injuries within the last 3 months)? If so, which side? </label><br><br>
      <select name="fiveYearInjury" id="fiveYearInjury">
         <option value="N/A"> N/A </option>
         <option value="right"> Right </option>
         <option value="left"> Left </option>
+        <option value="Both"> Both </option>
     </select><br><br>
     <label for="consent"><input type="checkbox" id="consent" name="consent">Please check the box if you consent to your data being used anonymously for research and teaching purposes</label><br><br>
     <a href="javascript:alert('learn more');">Learn More</a><br>
@@ -107,6 +111,7 @@
     <!--End of form-->
         <!--Start of results display-->
     <div id="results">
+    <button onclick="printFunction()">Print Results</button>
     <img src="https://s3.us-east-1.amazonaws.com/contents.newzenler.com/9238/library/omepage-banner60777a0cb0184_lg.png" >
     <p style="font-size:250%;" class="dynamic-text"><b><span id="fullName"></span>'s Dance Ready Score Results</b></p>
     <p style="font-size: 150%;" class="dynamic-text">Prepared by Dr Sheyi Ojofeitimi &amp; Dr. Danelle Dickson</p>
