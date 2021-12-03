@@ -209,6 +209,11 @@
        * 
        * @returns        {Boolean} true if the forms is valid otherwise false
        */
+      
+      function printFunction() {
+        window.print();
+      }
+   
       function validateForm(){
           if(!validateEmail()){
               return false;
@@ -341,27 +346,27 @@
           if(amount>=45){
               plank = {
               score: 100,
-              comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently."};
+              comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."};
           }
           else if(amount>=30 && amount<=44){
               plank = {
               score: 75,
-              comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently."};
+              comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."};
           }
           else if(amount>=21 && amount<=29){
               plank = {
               score: 50,
-              comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently."};
+              comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."};
           }
           else if(amount>=10 && amount<=20){
               plank = {
               score: 25,
-              comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently."};
+              comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."};
           } 
           else{
               plank = {
               score: 0,
-              comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently."};
+              comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."};
           }
           return plank;
       }
@@ -413,7 +418,7 @@
           else if(amount>=16 && amount<=24){
               singleLegReleves = {
               score: 60,
-              Comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."};
+              comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."};
           }
           else if(amount>=11 && amount<=15){
               singleLegReleves = {
