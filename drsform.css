@@ -82,9 +82,31 @@ button{
 #resultsTable, th, td {
     color: #344055;
     padding: 10px;
-    border: 1px solid #000;
+    border: 1px solid #000 !important;
 } 
+/*added this for printing */
+@media print
 
+ {
+
+    @page  { margin: 0; }
+    body { margin: 1.6cm; }
+
+  #resultsTable { page-break-inside:auto
+                  page-break-after:always
+                }
+  th, td {
+    color: #344055;
+    padding: 10px;
+    border: 1px solid #000;}
+  tr { page-break-inside:avoid; page-break-after:auto }
+  td { page-break-inside:avoid; page-break-after:auto }
+  div   { page-break-inside:avoid; } /* This is the key */
+  thead { display:table-header-group;}
+  tfoot { display:table-footer-group }
+
+}
+/*Ends Here */
 button{
     
     background: #123288;
