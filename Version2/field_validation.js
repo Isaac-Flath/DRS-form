@@ -152,6 +152,5 @@
         alert("Bolt score must be filled out");
         return false;
     };
-    document.getElementById("results").style.visibility = "visible";
 
 }

@@ -11,10 +11,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="drsjs.js"></script>
         <script src="field_validation.js"></script>
-        <script src='pdfmake.js'></script>
-        <script src='vfs_fonts.js'></script>
         <script src="pdf.js"></script>
-        
+        <script src="pdfmake.js"></script>
+        <script src="vfs_fonts.js"></script>
     </head>
     <body>
         <!--Start of DRS Form -->
@@ -37,7 +36,7 @@
         <option value="Hispanic"> Hispanic</option>
         <option value="Other">Other</option>
     </select>
-    <br><br><input type="text" id="ethnicityOtherText">
+    <br><br><input type="text" id="ethnicityOtherText" style="display: none">
     <br><br>
     <label for="sex"> Please select your assigned sex at birth</label><br>
     <select name="sex" id="sex">
@@ -110,111 +109,8 @@
     <label for="consent"><input type="checkbox" id="consent" name="consent">Please check the box if you consent to your data being used anonymously for research and teaching purposes</label><br><br>
     <a href="javascript:alert('learn more');">Learn More</a><br>
     <br>
-    <button type="button" onclick="validateForm()"> Submit </button>
-    <button onclick="create_pdf()">Print Results</button>
-
+    <button type="button" onclick="pdfMake.createPdf(create_pdf()).print();">Submit</button>
     </form>    
     </div>    
-    <!--End of form-->
-        <!--Start of results display-->
-    <!--
-        <div id="results">
-        <button onclick="create_pdf()">Print Results</button>
-         <img src="https://s3.us-east-1.amazonaws.com/contents.newzenler.com/9238/library/omepage-banner60777a0cb0184_lg.png" >
-    <p style="font-size:250%;" class="dynamic-text"><b><span id="fullName"></span>'s Dance Ready Score Results</b></p>
-    <p style="font-size: 150%;" class="dynamic-text">Prepared by Dr Sheyi Ojofeitimi &amp; Dr. Danelle Dickson</p>
-    <br>
-    <p style="font-size:250%;" class="dynamic-text"><b>Dance Ready Score Total: <span id="DRSTotal"></span>%</b></p>
-    <p style="font-size:200%;" class="dynamic-text"><b>Left: <span id="DRSLeft"></span>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right: <span id="DRSRight"></span>%</b></p>
-    <br>
-    <table id="resultsTable">
-        <tbody><tr>
-            <th>Test</th>
-            <th>Measure</th>
-            <th>Score</th>
-            <th>Accommodations</th>
-            <th>Comments</th>
-        </tr>
-        <tr>
-            <td>Plank</td>
-            <td>Core Strength</td>
-            <td><span id="plankScore"></span></td>
-            <td rowspan="3"><span id="plankAccommodations"></span></td>
-            <td rowspan="3"><span id="plankComments"></span></td>
-        </tr>
-        <tr>
-            <td>Side Plank with Abduction(Right)</td>
-            <td rowspan="2">Hip &amp; Core Strength</td>
-            <td><span id="rightSidePlankScore"></span></td>
-        </tr>
-        <tr>
-            <td>Side Plank with Abduction(Left)</td>
-            <td><span id="leftSidePlankScore"></span></td>
-        </tr>
-        <tr>
-            <td>Single Leg Releves(Right)</td>
-            <td rowspan="2">Calf Strength</td>
-            <td><span id="rightSingleLegRelevesScore"></span></td>
-            <td rowspan="6"><span id="rightSingleLegRelevesAccommodations"></span></td>
-            <td rowspan="6"><span id="rightSingleLegRelevesComments"></span></td>
-        </tr>
-        <tr>
-            <td>Single Leg Releves(Left)</td>
-            <td><span id="leftSingleLegRelevesScore"></span></td>
-        </tr>
-        <tr>
-            <td>Single Leg Bridges(Right)</td>
-            <td rowspan="2">Hamstring &amp; Gluteal Strength</td>
-            <td><span id="rightSingleLegBridgesScore"></span></td>
-        <tr>
-            <td>Single Leg Bridges(Left)</td>
-            <td><span id="leftSingleLegBridgesScore"></span></td>
-        </tr>
-        <tr>
-            <td>Hop Test(Right)</td>
-            <td rowspan="2">Quadriceps &amp; Gluteal Function</td>
-            <td><span id="rightHopTestScore"></span></td>
-        </tr>
-        <tr>
-            <td>Hop Test(Left)</td>
-            <td><span id="leftHopTestScore"></span></td>
-        </tr>
-        <tr>
-            <td>Passe Releve Balance(Right)</td>
-            <td rowspan="4">Balance &amp; Priopriception</td>
-            <td><span id="rightPasseReleveBalanceScore"></span></td>
-            <td rowspan="4"><span id="rightPasseReleveBalanceAccommodations"></span></td>
-            <td rowspan="4"><span id="rightPasseReleveBalanceComments"></span></td>
-        </tr>
-        <tr>
-            <td>Passe Releve Balance(Left)</td>
-            <td><span id="leftPasseReleveBalanceScore"></span></td>
-        </tr>
-        <tr>
-            <td>Passe Flat Foot Balance - Eyes Closed (Right)</td>
-            <td><span id="rightFlatFootBalanceScore"></span></td>
-        </tr>
-        <tr>
-            <td>Passe Flat Foot Balance - Eyes Closed (Left)</td>
-            <td><span id="leftFlatFootBalanceScore"></span></td>
-        </tr>
-        <tr>
-            <td>CKCUEST</td>
-            <td>Shoulder Strength and Stability</td>
-            <td><span id="ckcuestScore"></span></td>
-            <td><span id="ckcuestAccommodations"></span></td>
-            <td><span id="ckcuestComments"></span></td>
-        </tr>
-        <tr>
-            <td>BOLT Test</td>
-            <td>Cardiovascular Fitness</td>
-            <td><span id="boltScore"></span></td>
-            <td><span id="boltAccommodations"></span></td>
-            <td><span id="boltComments"></span></td>
-        </tr>
-
-    </tbody></table> 
-    <h3 style="color:red" class="dynamic-heading" >Please Print or Screenshot this document to not lose this information</h3>
-    </div> -->
       </body>
-      <html>
+      </html>

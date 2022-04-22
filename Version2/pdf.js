@@ -27,13 +27,13 @@ function create_pdf(){
     },
     content: [		
         {
-			style: 'tableExample',
+			style: 'headerTable',
 			table: {
                 widths: [150,150],
 				body: [
-					[{color:'grey',text:d.firstName + ' ' + d.lastName}, {color:'grey',text:d.email}],
-					[{color:'grey',text:'Standing Leg: ' + d.standingLeg}, {color:'grey',text:'Working Leg: ' + d.workingLeg}],
-                    [{color:'grey',text:'Sex: '+d.sex}, {color:'grey',text:'Ethnicity: '+d.ethnicity}]
+					[{text:d.firstName + ' ' + d.lastName}, {text:d.email}],
+					[{text:'Standing Leg: ' + d.standingLeg}, {text:'Working Leg: ' + d.workingLeg}],
+                    [{text:'Sex: '+d.sex}, {text:'Ethnicity: '+d.ethnicity}],
 				]
 			},
 			layout: 'noBorders'
@@ -56,31 +56,61 @@ function create_pdf(){
         d.ckcuestVar.accommodations,
         d.bolt.accommodations],pageBreak: 'after'
     
-    }
-    ,{ text: '\n\nTest Results\n\n', style: 'header',alignment:'left' },
+    }               
+
+    ,{ text: 'Test Results:\n\n',style:'header', alignment:'center'}
+    ,{ style: 'headerTable',
+        color:'blue',
+        fontSize:12,
+		table: {
+                alignment:'center',
+                widths: [175,175,175],
+				body: [
+					['Dance Ready Score = '+d.DRSTotal,'Left Side Score = '+d.DRSLeft,'Right Side Score = '+d.DRSRight]
+				]
+			},
+			layout: 'noBorders'
+		}  ,  
+    
             {
-                style: 'tableExample',
+                style: 'resultTable',
                 table: {
+                    alignment: 'center',
                     headerRows: 1,
                     // dontBreakRows: true,
                     // keepWithHeaderRows: 1,
                     body: [
                         [{ text: 'Test', style: 'tableHeader',bold:true, decoration: 'underline'}, { text: 'Measure', style: 'tableHeader',bold:true, decoration: 'underline'}, { text: 'Score', style: 'tableHeader',bold:true, decoration: 'underline'}, { text: 'Comments', style: 'tableHeader',bold:true, decoration: 'underline'}],
-                        [{fontSize: 10, text: "Plank"},{fontSize:10, text:"Core Strength"},d.plank.score,{rowSpan: 3, text: d.rightSingleLegBridges.comments,fontSize:10}],
-                        [{fontSize: 10, text: "Side Plank with Abduction(Right)"},{fontSize:10, text:"Hip & Core Strength"},d.leftSidePlank.score],
-                        [{fontSize: 10, text: "Side Plank with Abduction(Right)"},{fontSize:10, text:"Hip & Core Strength"},d.rightSidePlank.score],
-                        [{fontSize: 10, text: "Single Leg Releves(Right)"},{fontSize:10, text:"Calf Strength	"},d.rightSingleLegReleves.score,{rowSpan: 6, text: d.rightSingleLegBridges.comments,fontSize:10}],
-                        [{fontSize: 10, text: "Single Leg Releves(Left)"},{fontSize:10, text:"Calf Strength	"},d.leftSingleLegReleves.score],
-                        [{fontSize: 10, text: "Single Leg Bridges(Right)"},{fontSize:10, text:"Hamstring & Gluteal Strength	"},d.rightSingleLegBridges.score],
-                        [{fontSize: 10, text: "Single Leg Bridges(Left)"},{fontSize:10, text:"Hamstring & Gluteal Strength	"},d.leftSingleLegBridges.score],
-                        [{fontSize: 10, text: "Hop Test(Right)"},{fontSize:10, text:"Quadriceps & Gluteal Function	"},d.rightHopTest.score],
-                        [{fontSize: 10, text: "Hop Test(Left)"},{fontSize:10, text:"Quadriceps & Gluteal Function	"},d.leftHopTest.score],
-                        [{fontSize: 10, text: "Passe Releve Balance(Right)"},{fontSize:10, text:"Balance & Priopriception	"},d.rightPasseReleveBalance.score,{rowSpan: 4, text: d.rightSingleLegBridges.comments,fontSize:10}],
-                        [{fontSize: 10, text: "Passe Releve Balance(Left)"},{fontSize:10, text:"Balance & Priopriception	"},d.leftPasseReleveBalance.score],
-                        [{fontSize: 10, text: "Passe Flat Foot Balance - Eyes Closed (Right)"},{fontSize:10, text:"Balance & Priopriception	"},d.leftPasseFlatFootBalance.score],
-                        [{fontSize: 10, text: "Passe Flat Foot Balance - Eyes Closed (Left)"},{fontSize:10, text:"Balance & Priopriception	"},d.leftPasseFlatFootBalance.score],
-                        [{fontSize: 10, text: "CKCUEST"},{fontSize:10, text:"Shoulder Strength and Stability	"},d.ckcuestVar.score,{text:d.ckcuestVar.comments,fontSize:10}],
-                        [{fontSize: 10, text: "BOLT Test"},{fontSize:10, text:"Cardiovascular Fitness	"},d.bolt.score,{text:d.bolt.comments,fontSize:10}],                              
+                        [{text: "Plank"},{text:"Core Strength"},d.plank.score,{rowSpan: 2, text: d.rightSingleLegBridges.comments}],
+                        [{text: "Side Plank with Abduction"},{text:"Hip & Core Strength"},{style: 'headerTable',color:'black',layout: 'noBorders',table:{body:[['L','R'],[d.leftSidePlank.score,d.rightSidePlank.score]]}}],
+                        
+                        [{text: "Single Leg Releves"},{text:"Calf Strength	"},
+                        {style: 'headerTable',color:'black',layout: 'noBorders',table:{body:[['L','R'],[d.leftSingleLegReleves.score,d.rightSingleLegReleves.score]]}} ,                       
+                        {rowSpan: 3, text: d.rightSingleLegBridges.comments}],
+
+
+
+                        [{text: "Single Leg Bridges"},{text:"Hamstring & Gluteal Strength	"},
+                        {style: 'headerTable',color:'black',layout: 'noBorders',table:{body:[['L','R'],[d.leftSingleLegBridges.score,d.rightSingleLegBridges.score]]}}] ,                       
+
+
+                        [{text: "Hop Test"},{text:"Quadriceps & Gluteal Function	"},
+                        {style: 'headerTable',color:'black',layout: 'noBorders',table:{body:[['L','R'],[d.leftHopTest.score,d.rightHopTest.score]]}}] ,                       
+
+            
+
+                        [{text: "Passe Releve Balance"},{text:"Balance & Priopriception	"},
+                        {style: 'headerTable',color:'black',layout: 'noBorders',table:{body:[['L','R'],[d.leftPasseReleveBalance.score,d.rightPasseReleveBalance.score]]}} ,                       
+                        {rowSpan: 2, text: d.rightSingleLegBridges.comments}],
+
+
+                        [{text: "Passe Flat Foot Balance - Eyes Closed"},{text:"Balance & Priopriception	"},
+                        {style: 'headerTable',color:'black',layout: 'noBorders',table:{body:[['L','R'],[d.leftPasseFlatFootBalance.score,d.rightPasseFlatFootBalance.score]]}}] ,                       
+
+
+
+                        [{text: "CKCUEST"},{text:"Shoulder Strength and Stability	"},d.ckcuestVar.score,{text:d.ckcuestVar.comments}],
+                        [{text: "BOLT Test"},{text:"Cardiovascular Fitness	"},d.bolt.score,{text:d.bolt.comments}],                              
                         ]
                     
                 }
@@ -90,6 +120,15 @@ function create_pdf(){
     ,
     ],
     styles: {
+        resultTable: {
+			margin: [0, 5, 0, 15],
+			fontSize:10
+		},headerTable: {
+			margin: [0, 5, 0, 15],
+			fontSize:10,
+            color:'grey',
+            
+		},
     header: {
     bold: true,
     fontSize: 15,
@@ -105,5 +144,8 @@ function create_pdf(){
     
     }
 }
-    pdfMake.createPdf(dd).open();
+return dd
+    // pdfMake.createPdf(d).print();
+
     }
+    // pdfMake.createPdf(dd).open();

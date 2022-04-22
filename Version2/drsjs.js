@@ -77,7 +77,6 @@
                 firstName:firstName,
                 lastName:lastName,
                 ethnicity:ethnicity,
-                sex:sex,
                 company:company,
                 workingLeg:workingLeg,
                 standingLeg:standingLeg,
@@ -94,7 +93,7 @@
       
       function value_ranges(amount,groups){
         for(g in groups){
-            if(amount >= groups[g]['min'] && amount <= groups[g]['max']){
+            if((amount >= groups[g]['min']) && (amount <= groups[g]['max'])){
                 var out = groups[g]
                 out['amount'] = amount
             }
@@ -106,8 +105,8 @@
             var definition = {g1:{min:45,max:Infinity,score:100,comments:"Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."},
             g2:{min:30,max:44,score:75,comments:"Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."},
             g3:{min:21,max:29,score:50,comments:"Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."},
-            g3:{min:10,max:20,score:25,comments:"Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."},
-            g3:{min:0,max:9,score:0,comments:"Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."},
+            g4:{min:10,max:20,score:25,comments:"Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."},
+            g5:{min:0,max:9,score:0,comments:"Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently."},
             }
             return value_ranges(amount,definition)
         }
