@@ -7,13 +7,14 @@ function create_pdf(){
     footer: function(currentPage, pageCount) { 
     return {text: 'Page ' + currentPage.toString() + ' of ' + pageCount, 
     italics:true, color:'grey',fontSize:10,margin: [15,10],alignment:'right'}},
+
     header: function(currentPage, pageCount, pageSize) {
     // you can apply any logic and return any valid pdfmake element
 
-    return [
-    { image:'logo', alignment:'right',width:100},
-    ]
-    },
+ 
+    
+    return { image:'logo', alignment:'right',width:100}},
+ 
     background: function (currentPage, pageSize) {
     return {
     table: {
@@ -32,7 +33,7 @@ function create_pdf(){
 				body: [
 					[{color:'grey',text:d.firstName + ' ' + d.lastName}, {color:'grey',text:d.email}],
 					[{color:'grey',text:'Standing Leg: ' + d.standingLeg}, {color:'grey',text:'Working Leg: ' + d.workingLeg}],
-                    [{color:'grey',text:d.sex}, {color:'grey',text:d.ethnicity}]
+                    [{color:'grey',text:'Sex: '+d.sex}, {color:'grey',text:'Ethnicity: '+d.ethnicity}]
 				]
 			},
 			layout: 'noBorders'
