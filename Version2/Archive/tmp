@@ -1,0 +1,1436 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link href="drsform.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato&amp;display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<style>
+  :root {
+    --bg-table-stripe: #f6f6f5;
+    --b-table: #e3e3e2;
+    --caption: #242423;
+  }
+
+  table {
+    background-color: transparent;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif
+  }
+
+  th {
+    text-align: left
+  }
+
+  .dcf-txt-center {
+    text-align: center !important
+  }
+
+  .dcf-txt-left {
+    text-align: left !important
+  }
+
+  .dcf-txt-right {
+    text-align: right !important
+  }
+
+  .dcf-table caption {
+    color: var(--caption);
+    font-size: 1.13em;
+    font-weight: 700;
+    padding-bottom: .56rem
+  }
+
+  .dcf-table thead {
+    font-size: .84em
+  }
+
+  .dcf-table tbody {
+    border-bottom: 1px solid var(--b-table);
+    border-top: 1px solid var(--b-table);
+    font-size: .84em
+  }
+
+  .dcf-table tfoot {
+    font-size: .84em
+  }
+
+  .dcf-table td,
+  .dcf-table th {
+    padding-right: 1.78em
+  }
+
+  .dcf-table-bordered,
+  .dcf-table-bordered td,
+  .dcf-table-bordered th {
+    border: 1px solid var(--b-table)
+  }
+
+  .dcf-table-bordered td,
+  .dcf-table-bordered th,
+  .dcf-table-striped td,
+  .dcf-table-striped th {
+    padding-left: 1em;
+    padding-right: 1em
+  }
+
+  .dcf-table-bordered tr:not(:last-child),
+  .dcf-table-striped tr:not(:last-child) {
+    border-bottom: 1px solid var(--b-table)
+  }
+
+  .dcf-table-striped tbody tr:nth-of-type(2n) {
+    background-color: var(--bg-table-stripe)
+  }
+
+  .dcf-table thead td,
+  .dcf-table thead th {
+    padding-bottom: .75em;
+    vertical-align: bottom
+  }
+
+  .dcf-table tbody td,
+  .dcf-table tbody th,
+  .dcf-table tfoot td,
+  .dcf-table tfoot th {
+    padding-top: .75em;
+    vertical-align: top
+  }
+
+  .dcf-table tbody td,
+  .dcf-table tbody th {
+    padding-bottom: .75em
+  }
+
+  .dcf-table-bordered thead th {
+    padding-top: 1.33em
+  }
+
+  .dcf-wrapper-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    left: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding-bottom: 1em;
+    position: relative;
+    right: 50%;
+    width: 100vw
+  }
+
+  @media only screen and (max-width:42.09em) {
+    .dcf-table-responsive thead {
+      clip: rect(0 0 0 0);
+      -webkit-clip-path: inset(50%);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      width: 1px;
+      white-space: nowrap
+    }
+
+    .dcf-table-responsive tr {
+      display: block
+    }
+
+    .dcf-table-responsive td {
+      -webkit-column-gap: 3.16vw;
+      -moz-column-gap: 3.16vw;
+      column-gap: 3.16vw;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      text-align: left !important
+    }
+
+    .dcf-table-responsive.dcf-table-bordered,
+    .dcf-table-responsive.dcf-table-bordered thead th {
+      border-width: 0
+    }
+
+    .dcf-table-responsive.dcf-table-bordered tbody td {
+      border-top-width: 0
+    }
+
+    .dcf-table-responsive:not(.dcf-table-bordered) tbody tr {
+      padding-bottom: .75em
+    }
+
+    .dcf-table-responsive:not(.dcf-table-bordered) tbody td {
+      padding-bottom: 0
+    }
+
+    .dcf-table-responsive:not(.dcf-table-bordered):not(.dcf-table-striped) tbody td {
+      padding-right: 0
+    }
+
+    .dcf-table-responsive.dcf-table-bordered tbody tr:last-child td:last-child {
+      border-bottom-width: 0
+    }
+
+    .dcf-table-responsive tbody td:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: 700;
+      padding-right: 1.78em
+    }
+  }
+
+  .dcf-overflow-x-auto {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch
+  }
+</style>
+
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #form-holder {
+    font-family: 'Lato', sans-serif;
+    color: #344055;
+    background-color: #fbfafb;
+    padding: 20px;
+    border: 15px solid #344055;
+    width: 1100px !important;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    visibility: visible;
+  }
+
+  form {
+    font-family: 'Lato', sans-serif;
+    font-size: 125%;
+    margin: auto;
+    width: 95%;
+  }
+
+  input {
+    left: 85px;
+    color: black;
+
+  }
+
+  input[type=checkbox] {
+
+    left: -15px;
+
+  }
+
+  select {
+
+    left: 85px;
+    color: black;
+    background-color: #fbfafb;
+  }
+
+  label[for=consent] {
+    left: 100px;
+    font-size: 96%;
+    text-align: left;
+  }
+
+  label[for=fiveYearInjury] {
+    font-size: 96%;
+  }
+
+  label {
+    float: left;
+    text-align: justify;
+  }
+
+  button {
+    color: black;
+  }
+
+  #results {
+    font-family: 'Lato', sans-serif;
+    color: #344055;
+    border-radius: 15px;
+    padding: 20px;
+    position: absolute;
+    width: 1000px;
+    border: 25px solid #344055;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    top: 5%;
+
+  }
+
+  #results img {
+    width: 95%;
+  }
+
+  #resultsTable {
+    border-collapse: collapse;
+    background-color: #aaa;
+  }
+
+  #resultsTable,
+  th,
+  td {
+    color: #344055;
+    padding: 10px;
+    border: 1px solid #000;
+  }
+
+  /*  Trying Table Print to look good */
+  /*
+/
+/
+/
+*/
+  @media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    /* Force table to not be like tables anymore */
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+
+
+
+
+
+
+    / / / / */ @media print {
+
+      table {
+        page-break-after: auto;
+        page-break-before: avoid;
+      }
+
+      /*div   { page-break-inside:avoid; } /* This is the key */
+      thead {
+        display: table-header-group;
+      }
+
+      tfoot {
+        display: table-footer-group;
+      }
+
+    }
+
+    /* I hope that this works 🦾*/
+    button {
+
+      background: #123288;
+      width: 155px;
+      height: 40px;
+      color: antiquewhite;
+      font-size: medium;
+      border-radius: 15px;
+      border: none;
+
+    }
+
+    table,
+    tr,
+    th,
+    td {
+      border: none;
+    }
+
+    table {
+      font-family: 'Lato', sans-serif;
+      font-size: 125%;
+    }
+</style>
+
+
+<!--Start of DRS Form -->
+
+<div id="form-holder" style="position: relative;">
+
+  <form id="DRSForm" data-uniqid="1639939807948" class=""
+    style="margin-left: 50px; margin-right: 50px; margin-top: -250px;" data-dashlane-rid="6d40f238c4516296"
+    data-selector="form">
+    <br><br><input type="text" id="ethnicityOtherText" style="display: none"><br><br><br><br><br><br><br>
+    <div style="overflow-x:auto;">
+
+      <table class="dcf-table dcf-table-responsive dcf-table-bordered dcf-table-striped dcf-w-100%">
+        <tbody>
+          <tr>
+            <th colspan="2"><span>
+                <p style="font-size: 40px; z-index: 99999999; background-color: rgba(0, 0, 0, 0); background-image: none; text-align: center; margin-top: 0px;"
+                  class="dynamic-text" data-uniqid="1639939807943" data-selector="h1,h2,h3,h4,h5,h6,p"><strong>Dance
+                    Ready Score</strong></p>
+              </span></th>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span><label for="email">Please enter your email address</label></span></td>
+            <td><span> <input type="email" id="email" name="email" onchange="validateEmail()"
+                  data-dashlane-rid="bba104215d7cd361"
+                  style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;"><br></span>
+            </td>
+          </tr>
+          <tr>
+            <td><span><label for="FName">Please enter your first name</label><br></span></td>
+            <td><span><input type="text" id="firstName" name="FName" onchange="validateFirstName()"
+                  data-dashlane-rid="b2378fda3c5fc082"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="LName">Please enter your last name</label><br></span></td>
+            <td><span><input type="text" id="lastName" name="LName" onchange="validateLastName()"
+                  data-dashlane-rid="da877ef1cdf29023" data-form-type="name,last"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="ethnicity"> Please select your ethnicity </label><br></span></td>
+            <td><span><select name="ethnicity" id="ethnicity" onchange="ethnicityOther()"
+                  data-dashlane-rid="3d23beaff73a1cd8" data-form-type="other">
+                  <option value="White"> White </option>
+                  <option value="Black or African American"> Black or African American </option>
+                  <option value="American Indian and Alaska Native"> American Indian and Alaska Native </option>
+                  <option value="Asian"> Asian </option>
+                  <option value="Hispanic"> Hispanic</option>
+                  <option value="Other">Other</option>
+                </select><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="sex"> Please select your assigned sex at birth</label><br></span></td>
+            <td><span><select name="sex" id="sex" data-dashlane-rid="10a401c5915ab5fe" data-form-type="other">
+                  <option value="Male"> Male </option>
+                  <option value="Female"> Female </option>
+                </select><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="company"> Please enter your Organization / Company / Affiliation</label><br></span>
+            </td>
+            <td><span><input type="text" id="company" name="company" data-dashlane-rid="c271654b062f639e"
+                  data-form-type="company,company_name"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="RSingleLegReleves"> Enter Right Single Leg Releves</label><br></span></td>
+            <td><span><input type="number" id="rightSingleLegReleves" name="RsingleLegReleves"
+                  data-dashlane-rid="ed8cba7455b55f98" data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="LSingleLegReleves"> Enter Left Single Leg Releves</label><br></span></td>
+            <td><span><input type="number" id="leftSingleLegReleves" name="LsingleLegReleves"
+                  data-dashlane-rid="397232b9ac1b8de4" data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="plank"> Enter plank time (s)</label><br></span></td>
+            <td><span><input type="number" id="plank" name="plank" data-dashlane-rid="f02c6b17ec35aa9a"
+                  data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="RSidePlank"> Enter Right Side Plank with Abduction (s)</label><br></span></td>
+            <td><span><input type="number" id="rightSidePlank" name="RSidePlank" data-dashlane-rid="7b5764ebb8f5aa2c"
+                  data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="LSidePlank"> Enter Left Side Plank with Abduction (s)</label><br></span></td>
+            <td><span><input type="number" id="leftSidePlank" name="LSidePlank" data-dashlane-rid="e8f455283b9ef1d3"
+                  data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="RSingleLegBridges"> Enter Right Single Leg Bridges </label><br></span></td>
+            <td><span><input type="number" id="rightSingleLegBridges" name="RSingleLegBridges"
+                  data-dashlane-rid="0ab12eea2d5c6f1b" data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="LSingleLegBridges"> Enter Left Single Leg Bridges </label><br></span></td>
+            <td><span><input type="number" id="leftSingleLegBridges" name="LSingleLegBridges"
+                  data-dashlane-rid="8cb37fddd8035f71" data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="RHopTest1"> Enter Right Side Hop Test Trial 1 (cm)</label><br></span></td>
+            <td><span><input type="number" id="rightHopTest1" name="RHopTest1" data-dashlane-rid="c5f49b0559246359"
+                  data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="LHopTest1"> Enter Left Side Hop Test Trial 1 (cm)</label><br></span></td>
+            <td><span><input type="number" id="leftHopTest1" name="LHopTest1" data-dashlane-rid="e5d3873b7224058e"
+                  data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="RHopTest2"> Enter Right Side Hop Test Trial 2 (cm)</label><br></span></td>
+            <td><span><input type="number" id="rightHopTest2" name="RHopTest2" data-dashlane-rid="77ff403ab265325f"
+                  data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="LHopTest2"> Enter Left Side Hop Test Trial 2 (cm)</label><br></span></td>
+            <td><span><input type="number" id="leftHopTest2" name="LHopTest2" data-dashlane-rid="8e580f673e2c80d2"
+                  data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="RPasseReleveBalance"> Enter Right Passe Releve Balance time (s)</label><br></span>
+            </td>
+            <td><span><input type="number" id="rightPasseReleveBalance" name="RPasseReleveBalance"
+                  data-dashlane-rid="373ddc6d5ce30bfd" data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="LPasseReleveBalance"> Enter Left Passe Relevé Balance time (s)</label><br></span></td>
+            <td><span><input type="number" id="leftPasseReleveBalance" name="LPasseReleveBalance"
+                  data-dashlane-rid="9f5e42f4b4cbd120" data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="RPasseFlatFootBalance"> Enter Right Passe Flat Foot Balance time with eyes closed
+                  (s)</label><br></span></td>
+            <td><span><input type="number" id="rightPasseFlatFootBalance" name="RPasseFlatFootBalance"
+                  data-dashlane-rid="8985b0e12007a972" data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="LPasseFlatFootBalance"> Enter Left Passe Flat Foot Balance time with eyes closed
+                  (s)</label><br></span></td>
+            <td><span><input type="number" id="leftPasseFlatFootBalance" name="LPasseFlatFootBalance"
+                  data-dashlane-rid="458c8f90ebcedc45" data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="ckcuest">Enter CKCUEST</label><br></span></td>
+            <td><span><input type="number" id="ckcuest" data-dashlane-rid="412ad6c945abbd7e"
+                  data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="bolt"> Enter your BOLT test score </label><br></span></td>
+            <td><span><input type="number" id="bolt" name="bolt" data-dashlane-rid="fbe1afae52085d8f"
+                  data-form-type="other"><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="workingLeg">Please select your preferred "working" leg</label><br></span></td>
+            <td><span><select name="workingLeg" id="workingLeg" data-dashlane-rid="a15053bc90dfbc4a"
+                  data-form-type="other">
+                  <option value="right"> Right </option>
+                  <option value="left"> Left </option>
+                  <option value="Both"> Both </option>
+                </select><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="standingLeg">Please select your preferred "standing" leg</label><br></span></td>
+            <td><span><select name="standingLeg" id="standingLeg" data-dashlane-rid="50eaac3143d88c5d"
+                  data-form-type="other">
+                  <option value="right"> Right </option>
+                  <option value="left"> Left </option>
+                  <option value="Both"> Both </option>
+                </select><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="threeMonthInjury">Within the last 3 months have you ever had an injury to your hip,
+                  knee, foot or ankle,<br data-children-count="0"> that caused you to stop dancing for more than 1 week?
+                  If so, which side?</label><br><br></span></td>
+            <td><span><select name="threeMonthInjury" id="threeMonthInjury" data-dashlane-rid="d850952692dc8c51"
+                  data-form-type="date,month">
+                  <option value="N/A"> N/A </option>
+                  <option value="right"> Right </option>
+                  <option value="left"> Left </option>
+                  <option value="Both"> Both </option>
+                </select><br><br></span></td>
+          </tr>
+          <tr>
+            <td><span><label for="fiveYearInjury">Within the last 5 years have you had an injury to your hip, knee, foot
+                  or ankle that caused <br data-children-count="0">you to stop dancing for more than 1 week (do not
+                  include injuries within the last 3 months)? If so, which side? </label><br><br></span></td>
+            <td><span><select name="fiveYearInjury" id="fiveYearInjury" data-dashlane-rid="5cc4efcc7769e6fc"
+                  data-form-type="date,year">
+                  <option value="N/A"> N/A </option>
+                  <option value="right"> Right </option>
+                  <option value="left"> Left </option>
+                  <option value="Both"> Both </option>
+                </select><br><br></span></td>
+          </tr>
+          <tr>
+            <td colspan="2"><span><label for="consent" data-children-count="1"><input type="checkbox" id="consent"
+                    name="consent" data-dashlane-rid="678e6e8faf02c0e9" data-form-type="consent,newsletter,terms">Please
+                  check the box if you consent to your data being used anonymously for research and teaching
+                  purpose.</label><a
+                  href="javascript:alert('The Dance Ready Project is dedicated to furthering the Health and Wellness of Dancers via education, tools and research. Please check the box if you consent to your data being used anonymously for research and teaching purposes. For more info on us , please visit www.danceready.org');">Learn
+                  More...</a><br></span></td>
+
+          </tr>
+          <tr>
+            <td colspan="2" align="center"><span><button type="button" onclick="validateForm()"> Submit </button></span>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+
+<!--End of form-->
+
+<!--Start of results display-->
+
+<div id="results">
+  <!--print to pdf button here -->
+
+  <button onclick="printFunction()">Print Results</button>​
+
+  <script type="text/javascript">
+    function printFunction() {
+      window.print();
+    }
+  </script>
+
+  <!-- End of print to pdf -->
+
+  <img src="https://s3.us-east-1.amazonaws.com/contents.newzenler.com/9238/library/omepage-banner60777a0cb0184_lg.png"
+    data-uniqid="1636826419502" data-selector="img">
+  <p style="font-size:250%;" class="dynamic-text" data-uniqid="1636826419512" data-selector="h1,h2,h3,h4,h5,h6,p">
+    <b><span id="fullName"></span> 's Dance Ready Score Results</b></p>
+  <p style="font-size: 150%;" class="dynamic-text" data-uniqid="1636826419513" data-selector="h1,h2,h3,h4,h5,h6,p">
+    Prepared by Dr Sheyi Ojofeitimi &amp; Dr. Danelle Dickson</p>
+  <br>
+  <p style="font-size:250%;" class="dynamic-text" data-uniqid="1636826419514" data-selector="h1,h2,h3,h4,h5,h6,p">
+    <b>Dance Ready Score Total: <span id="DRSTotal"></span>%</b></p>
+  <p style="font-size:200%;" class="dynamic-text" data-uniqid="1636826419515" data-selector="h1,h2,h3,h4,h5,h6,p">
+    <b>Left: <span id="DRSLeft"></span>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right: <span
+        id="DRSRight"></span>%</b></p>
+  <br>
+
+  <script type="text/javascript">
+    /**
+* Validates the email address follows the proper format for an email address. Prints an alert if not correct
+* 
+* @returns                                                                                                                                                                                                                                                                {Boolean} True if valid email else false
+*/
+    function validateEmail() {
+      if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(DRSForm.email.value)) {
+        return (true);
+      }
+      alert("You have entered an invalid email address!");
+      return (false);
+    }
+    /**
+     * Checks the entered name only contains alphabetical characters. Prints an alert if not allowed character is entered.
+     * 
+     * @returns                                                                                                                                                                                                                                                                {Boolean} True if only alphabetical characters else false
+     */
+    function validateFirstName() {
+      if (/^[A-Za-z\s]+$/.test(DRSForm.firstName.value)) {
+        return (true);
+      }
+
+      alert("Invalid Character, Please enter only letters!");
+      return (false);
+    }
+    /**
+     * Checks the entered name only contains alphabetical characters. Prints an alert if not allowed character is entered.
+     * 
+     * @returns                                                                                                                                                                                                                                                                {Boolean} True if only alphabetical characters else false
+     */
+    function validateLastName() {
+      if (/^[A-Za-z\s]+$/.test(DRSForm.lastName.value)) {
+        return (true);
+      }
+
+      alert("Invalid Character, Please enter only letters!");
+      return (false);
+    }
+    /**
+     * Combines the user's entered first and last name into one string. 
+     * Then uses that string to display the full name on the results page.
+     *  
+     * @param                                                                                                                                                                                                                                                                string firstName User's first name
+     * @param                                                                                                                                                                                                                                                                string lastName Usser's last name
+     */
+    function combineName(firstName, lastName) {
+      var fullName = firstName + " " + lastName;
+      document.getElementById("fullName").innerHTML = fullName;
+    }
+
+    function ethnicityOther() {
+      if (document.getElementById("ethnicity").value == "Other")
+        document.getElementById("ethnicityOtherText").style.display = "block";
+      else document.getElementById("ethnicityOtherText").style.display = "none";
+    }
+
+    /**
+         * Creates a variable for each excersice from the form. For each variable 
+         * takes the score, accommodations, and comments and stores them in the 
+         * corresponding html element for the results table. Also calculates the 
+         * DRS score for the right side, left side, and total then stores them 
+         * in the corresponding html element for the results table.
+         */
+    function getData() {
+      var plank = planks(DRSForm.plank.value);
+      var rightSidePlank = planks(DRSForm.rightSidePlank.value);
+      var leftSidePlank = planks(DRSForm.leftSidePlank.value);
+      var plankExtra = plankAvg(plank.score, rightSidePlank.score, leftSidePlank);
+      document.getElementById("plankScore").innerHTML = plank.score;
+      document.getElementById("plankAccommodations").innerHTML = plankExtra.accommodations;
+      document.getElementById("plankComments").innerHTML = plank.comments;
+      document.getElementById("rightSidePlankScore").innerHTML = rightSidePlank.score;
+      //document.getElementById("rightSidePlankAccommodations").innerHTML = plankExtra.accommodations;
+      //document.getElementById("rightSidePlankComments").innerHTML = rightSidePlank.comments;
+      document.getElementById("leftSidePlankScore").innerHTML = leftSidePlank.score;
+      //document.getElementById("leftSidePlankAccommodations").innerHTML = plankExtra.accommodations;
+      //document.getElementById("leftSidePlankComments").innerHTML = leftSidePlank.comments;
+
+      var rightSingleLegReleves = singleLegReleves(DRSForm.rightSingleLegReleves.value);
+      var leftSingleLegReleves = singleLegReleves(DRSForm.leftSingleLegReleves.value);
+      var rightSingleLegBridges = singleLegBridges(DRSForm.rightSingleLegBridges.value);
+      var leftSingleLegBridges = singleLegBridges(DRSForm.leftSingleLegBridges.value);
+      var rightHopTest = hopTest(DRSForm.rightHopTest1.value, DRSForm.rightHopTest2.value, DRSForm.sex.value);
+      var leftHopTest = hopTest(DRSForm.leftHopTest1.value, DRSForm.leftHopTest2.value, DRSForm.sex.value);
+      var legExtras = legAvg(rightSingleLegReleves.score, leftSingleLegReleves.score, rightSingleLegBridges.score, leftSingleLegBridges.score, rightHopTest.score, leftHopTest.score);
+      document.getElementById("rightSingleLegRelevesScore").innerHTML = rightSingleLegReleves.score;
+      document.getElementById("rightSingleLegRelevesAccommodations").innerHTML = legExtras.accommodations;
+      document.getElementById("rightSingleLegRelevesComments").innerHTML = rightSingleLegReleves.comments;
+      document.getElementById("leftSingleLegRelevesScore").innerHTML = leftSingleLegReleves.score;
+      //document.getElementById("leftSingleLegRelevesAccommodations").innerHTML = legExtras.accommodations;
+      //document.getElementById("leftSingleLegRelevesComments").innerHTML = leftSingleLegReleves.comments;
+      document.getElementById("rightSingleLegBridgesScore").innerHTML = rightSingleLegBridges.score;
+      //document.getElementById("rightSingleLegBridgesAccommodations").innerHTML = legExtras.accommodations;
+      //document.getElementById("rightSingleLegBridgesComments").innerHTML = rightSingleLegBridges.comments;
+      document.getElementById("leftSingleLegBridgesScore").innerHTML = leftSingleLegBridges.score;
+      //document.getElementById("leftSingleLegBridgesAccommodations").innerHTML = legExtras.accommodations;
+      //document.getElementById("leftSingleLegBridgesComments").innerHTML = leftSingleLegBridges.comments;
+      document.getElementById("rightHopTestScore").innerHTML = rightHopTest.score;
+      //document.getElementById("rightHopTestAccommodations").innerHTML = legExtras.accommodations;
+      //document.getElementById("rightHopTestComments").innerHTML = rightHopTest.comments;
+      document.getElementById("leftHopTestScore").innerHTML = leftHopTest.score;
+      //document.getElementById("leftHopTestAccommodations").innerHTML = legExtras.accommodations;
+      //document.getElementById("leftHopTestComments").innerHTML = leftHopTest.comments;
+
+      var rightPasseReleveBalance = passeReleveBalance(DRSForm.rightPasseReleveBalance.value);
+      var leftPasseReleveBalance = passeReleveBalance(DRSForm.leftPasseReleveBalance.value);
+      var rightPasseFlatFootBalance = passeFlatFootBalance(DRSForm.rightPasseFlatFootBalance.value);
+      var leftPasseFlatFootBalance = passeFlatFootBalance(DRSForm.leftPasseFlatFootBalance.value);
+      var passeExtra = passeAvg(rightPasseReleveBalance.score, leftPasseReleveBalance.score, rightPasseFlatFootBalance.score, leftPasseFlatFootBalance.score);
+      document.getElementById("rightPasseReleveBalanceScore").innerHTML = rightPasseReleveBalance.score;
+      document.getElementById("rightPasseReleveBalanceAccommodations").innerHTML = passeExtra.accommodations;
+      document.getElementById("rightPasseReleveBalanceComments").innerHTML = rightPasseReleveBalance.comments;
+      document.getElementById("leftPasseReleveBalanceScore").innerHTML = leftPasseReleveBalance.score;
+      //document.getElementById("leftPasseReleveBalanceAccommodations").innerHTML = passeExtra.accommodations;
+      //document.getElementById("leftPasseReleveBalanceComments").innerHTML = leftPasseReleveBalance.comments;
+      document.getElementById("rightFlatFootBalanceScore").innerHTML = rightPasseFlatFootBalance.score;
+      //document.getElementById("rightFlatFootBalanceAccommodations").innerHTML = passeExtra.accommodations;
+      //document.getElementById("rightFlatFootBalanceComments").innerHTML = rightPasseFlatFootBalance.comments; 
+      document.getElementById("leftFlatFootBalanceScore").innerHTML = leftPasseFlatFootBalance.score;
+      //document.getElementById("leftFlatFootBalanceAccommodations").innerHTML = passeExtra.accommodations;
+      //document.getElementById("leftFlatFootBalanceComments").innerHTML = leftPasseFlatFootBalance.comments;
+
+      var ckcuestVar = ckcuestFunc(DRSForm.ckcuest.value);
+      document.getElementById("ckcuestScore").innerHTML = ckcuestVar.score;
+      document.getElementById("ckcuestAccommodations").innerHTML = ckcuestVar.accommodations;
+      document.getElementById("ckcuestComments").innerHTML = ckcuestVar.comments;
+
+      var bolt = bolts(DRSForm.bolt.value);
+      document.getElementById("boltScore").innerHTML = bolt.score;
+      document.getElementById("boltAccommodations").innerHTML = bolt.accommodations;
+      document.getElementById("boltComments").innerHTML = bolt.comments;
+      var DRSRight = (Number(rightSingleLegReleves.score) + Number(rightSidePlank.score) + Number(rightSingleLegBridges.score) + Number(rightHopTest.score) + Number(rightPasseReleveBalance.score) + Number(rightPasseFlatFootBalance.score)) / 6;
+      DRSRight = DRSRight.toFixed(2);
+      document.getElementById("DRSRight").innerHTML = DRSRight;
+      var DRSLeft = (Number(leftSingleLegReleves.score) + Number(leftSidePlank.score + leftSingleLegBridges.score) + Number(leftHopTest.score) + Number(leftPasseReleveBalance.score) + Number(leftPasseFlatFootBalance.score)) / 6;
+      DRSLeft = DRSLeft.toFixed(2);
+      document.getElementById("DRSLeft").innerHTML = DRSLeft;
+      var DRSTotal = (Number(DRSLeft) + Number(DRSRight) + Number(plank.score) + Number(bolt.score)) / 4;
+      DRSTotal = DRSTotal.toFixed(2);
+      document.getElementById("DRSTotal").innerHTML = DRSTotal;
+
+      var email = document.getElementById("email").value;
+      var firstName = document.getElementById("firstName").value;
+      var lastName = document.getElementById("lastName").value;
+      var ethnicity = document.getElementById("ethnicity").value;
+      var sex = document.getElementById("sex").value;
+      var company = document.getElementById("company").value;
+      var rightSingleLegRelevesAmount = document.getElementById("rightSingleLegReleves").value;
+      var leftSingleLegRelevesAmount = document.getElementById("leftSingleLegReleves").value;
+      var plankAmount = document.getElementById("plank").value;
+      var rightSidePlankAmount = document.getElementById("rightSidePlank").value;
+      var leftSidePlankAmount = document.getElementById("leftSidePlank").value;
+      var rightSingleLegBridgesAmount = document.getElementById("rightSingleLegBridges").value;
+      var leftSingleLegBridgesAmount = document.getElementById("leftSingleLegBridges").value;
+      var rightHopTestAmount = rightHopTest.amount;
+      var leftHopTestAmount = leftHopTest.amount;
+      var rightPasseReleveBalanceAmount = document.getElementById("rightPasseReleveBalance").value;
+      var leftPasseReleveBalanceAmount = document.getElementById("leftPasseReleveBalance").value;
+      var rightPasseFlatFootBalanceAmount = document.getElementById("rightPasseFlatFootBalance").value;
+      var leftPasseFlatFootBalanceAmount = document.getElementById("leftPasseFlatFootBalance").value;
+      var boltAmount = document.getElementById("bolt").value;
+      var workingLeg = document.getElementById("workingLeg").value;
+      var standingLeg = document.getElementById("standingLeg").value;
+      var threeMonthInjury = document.getElementById("threeMonthInjury").value;
+      var fiveYearInjury = document.getElementById("fiveYearInjury").value;
+      var consent = document.getElementById("consent").checked;
+      var ckcuestAmount = document.getElementById("ckcuest").value;
+
+      var obj = {
+        email: email, firstName: firstName, lastName: lastName, race: ethnicity, sex: sex, company: company,
+        rightSingleLegReleves: Number(rightSingleLegRelevesAmount), rightSingleLegRelevesScore: rightSingleLegReleves.score,
+        leftSingleLegReleves: Number(leftSingleLegRelevesAmount), leftSingleLegRelevesScore: leftSingleLegReleves.score,
+        plank: Number(plankAmount), plankScore: plank.score, rightSidePlank: Number(rightSidePlankAmount),
+        rightSidePlankScore: rightSidePlank.score, leftSidePlank: Number(leftSidePlankAmount),
+        leftSidePlankScore: leftSidePlank.score, rightSingleLegBridges: Number(rightSingleLegBridgesAmount),
+        rightSingleLegBridgesScore: rightSingleLegBridges.score, leftSingleLegBridges: Number(leftSingleLegBridgesAmount),
+        leftSingleLegBridgesScore: leftSingleLegBridges.score, rightHopTest: Number(rightHopTestAmount),
+        rightHopTestScore: rightHopTest.score, leftHopTest: Number(leftHopTestAmount),
+        leftHopTestScore: leftHopTest.score, rightPasseReleveBalance: Number(rightPasseReleveBalanceAmount),
+        rightPasseReleveBalanceScore: rightPasseReleveBalance.score, leftPasseReleveBalance: Number(leftPasseReleveBalanceAmount),
+        leftPasseReleveBalanceScore: leftPasseReleveBalance.score, rightPasseFlatFootBalance: Number(rightPasseFlatFootBalanceAmount),
+        rightPasseFlatFootBalanceScore: rightPasseFlatFootBalance.score, leftPasseFlatFootBalance: Number(leftPasseFlatFootBalanceAmount),
+        leftPasseFlatFootBalanceScore: leftPasseFlatFootBalance.score, ckcuest: Number(ckcuestAmount), ckcuestScore: ckcuestVar.score, bolt: Number(boltAmount), boltScore: bolt.score,
+        workingLeg: workingLeg, standingLeg: standingLeg, threeMonthInjury: threeMonthInjury, fiveYearInjury: fiveYearInjury, consent: consent
+      };
+
+      var jsonData = JSON.stringify(obj);
+      console.log(typeof obj);
+      const formURL = 'https://v0x94mgm28.execute-api.us-east-2.amazonaws.com/Prod/submitForm';
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('options', formURL, true);
+      // xhr.setRequestHeader('x-api-key', '7JGBaaB8fA99g4YDF1CTe5PFiPdlh2HE3oD8sYR4');
+
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+      xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+      console.log(typeof jsonData);
+      // Send the collected data as JSON
+      xhr.send(JSON.stringify(jsonData));
+      console.log(JSON.stringify(jsonData));
+      console.log(JSON.parse(JSON.stringify(jsonData)));
+    }
+    /**
+     * Checks if each field is valid. Checks all fields are not empty and if so 
+     * prints an alert of which field needs to be filled out. Also checks the that the 
+     * first name, last name, and email are properly formatted. If any of those 
+     * fail an alert is printed. Then calls combineName(), and getData(). Lastly
+     * hides the form and unhides the results. 
+     * 
+     * @returns                                                                                                                                                                                                                                                                {Boolean} true if the forms is valid otherwise false
+     */
+    function validateForm() {
+      if (!validateEmail()) {
+        return false;
+      }
+      var email = document.getElementById("email").value;
+      if (email === "") {
+        alert("Email must be filled out");
+        return false;
+      };
+      var firstName = document.getElementById("firstName").value;
+      if (firstName === "") {
+        alert("First name must be filled out");
+        return false;
+      };
+      if (!validateFirstName()) {
+        return false;
+      }
+      var lastName = document.getElementById("lastName").value;
+      if (lastName === "") {
+        alert("Last name must be filled out");
+        return false;
+      };
+      if (!validateLastName()) {
+        return false;
+      }
+      var company = document.getElementById("company").value;
+      if (company === "") {
+        alert("Company must be filled out");
+        return false;
+      };
+      var rightSingleLegReleves = document.getElementById("rightSingleLegReleves").value;
+      if (rightSingleLegReleves === "") {
+        alert("Right single leg releves must be filled out");
+        return false;
+      };
+      var leftSingleLegReleves = document.getElementById("leftSingleLegReleves").value;
+      if (leftSingleLegReleves === "") {
+        alert("Left single leg releves must be filled out");
+        return false;
+      };
+      var plank = document.getElementById("plank").value;
+      if (plank === "") {
+        alert("Plank must be filled out");
+        return false;
+      };
+      var rightSidePlank = document.getElementById("rightSidePlank").value;
+      if (rightSidePlank === "") {
+        alert("Right side plank must be filled out");
+        return false;
+      };
+      var leftSidePlank = document.getElementById("leftSidePlank").value;
+      if (leftSidePlank === "") {
+        alert("Left side plank must be filled out");
+        return false;
+      };
+      var rightSingleLegBridges = document.getElementById("rightSingleLegBridges").value;
+      if (rightSingleLegBridges === "") {
+        alert("Right single leg bridges must be filled out");
+        return false;
+      };
+      var leftSingleLegBridges = document.getElementById("leftSingleLegBridges").value;
+      if (leftSingleLegBridges === "") {
+        alert("Left single leg bridges must be filled out");
+        return false;
+      };
+      var rightHopTest1 = document.getElementById("rightHopTest1").value;
+      if (rightHopTest1 === "") {
+        alert("Right hop test 1 must be filled out");
+        return false;
+      };
+      var leftHopTest1 = document.getElementById("leftHopTest1").value;
+      if (leftHopTest1 === "") {
+        alert("Left hop test 1 must be filled out");
+        return false;
+      };
+      var rightHopTest2 = document.getElementById("rightHopTest2").value;
+      if (rightHopTest2 === "") {
+        alert("Right hop test 2 must be filled out");
+        return false;
+      };
+      var leftHopTest2 = document.getElementById("leftHopTest2").value;
+      if (leftHopTest2 === "") {
+        alert("Left hop test 2 must be filled out");
+        return false;
+      };
+      var rightPasseReleveBalance = document.getElementById("rightPasseReleveBalance").value;
+      if (rightPasseReleveBalance === "") {
+        alert("Right passe releve balance must be filled out");
+        return false;
+      };
+      var leftPasseReleveBalance = document.getElementById("leftPasseReleveBalance").value;
+      if (leftPasseReleveBalance === "") {
+        alert("Left passe releve balance must be filled out");
+        return false;
+      };
+      var rightPasseFlatFootBalance = document.getElementById("rightPasseFlatFootBalance").value;
+      if (rightPasseFlatFootBalance === "") {
+        alert("Right passe flat foot balance must be filled out");
+        return false;
+      };
+      var leftPasseFlatFootBalance = document.getElementById("leftPasseFlatFootBalance").value;
+      if (leftPasseFlatFootBalance === "") {
+        alert("Left passe flat foot balance must be filled out");
+        return false;
+      };
+      var ckcuest = document.getElementById("ckcuest").value;
+      if (ckcuest == "") {
+        alert("CKCUEST must be filled out");
+        return false;
+      }
+      var bolt = document.getElementById("bolt").value;
+      if (bolt === "") {
+        alert("Bolt score must be filled out");
+        return false;
+      };
+      combineName(DRSForm.firstName.value, DRSForm.lastName.value);
+      getData();
+      document.getElementById("form-holder").style.visibility = "hidden";
+      document.getElementById("results").style.visibility = "visible";
+    }
+    /**
+     * Takes in the amount entered by the user. Compares the entered amount with each significant range.
+     * If it is within the corresponding range sets the grade,score,accommodations, and comments. Returns the 
+     * object.
+     * @return                                object Object with all the info regarding the grading system for this excercise 
+     */
+    function planks(amount) {
+      var plank;
+
+      if (amount >= 45) {
+        plank = {
+          score: 100,
+          comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently."
+        };
+      }
+      else if (amount >= 30 && amount <= 44) {
+        plank = {
+          score: 75,
+          comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently."
+        };
+      }
+      else if (amount >= 21 && amount <= 29) {
+        plank = {
+          score: 50,
+          comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently."
+        };
+      }
+      else if (amount >= 10 && amount <= 20) {
+        plank = {
+          score: 25,
+          comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently."
+        };
+      }
+      else {
+        plank = {
+          score: 0,
+          comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently."
+        };
+      }
+      return plank;
+    }
+
+    function plankAvg(plankScore, rightPlankScore, leftPlankScore) {
+      var avg = (plankScore + rightPlankScore + leftPlankScore) / 3;
+      var plank;
+
+      if (avg >= 80) {
+        plank = {
+          grade: "Excellent",
+          accommodations: "Continue your current training/fitness regimen."
+        };
+      }
+      else if (avg >= 61 && avg <= 79) {
+        plank = {
+          grade: "Average",
+          accommodations: "Be cautious with work that places moderate to high demand on the core. Keep legs below 90 deg if you have hip or back pain.",
+        }
+      }
+      else {
+        plank = {
+          grade: "Not Optimal, Recommend PT consult",
+          accommodations: "Be cautious with work that places moderate to high demand on the core. Keep legs below <60 deg if you have hip or back pain."
+        }
+      }
+
+      return plank;
+    }
+
+    /**
+     * Takes in the amount entered by the user. Compares the entered amount with each significant range.
+     * If it is within the corresponding range sets the grade,score,accommodations, and comments. Returns the 
+     * object.
+     * @return                                                                                                                                                                                                                                                                object Object with all the info regarding the grading system for this excercise 
+     */
+    function singleLegReleves(amount) {
+      var singleLegReleves;
+
+      if (amount >= 35) {
+        singleLegReleves = {
+          score: 100,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (amount >= 25 && amount <= 34) {
+        singleLegReleves = {
+          score: 80,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (amount >= 16 && amount <= 24) {
+        singleLegReleves = {
+          score: 60,
+          Comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (amount >= 11 && amount <= 15) {
+        singleLegReleves = {
+          score: 40,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (amount >= 6 && amount <= 10) {
+        singleLegReleves = {
+          score: 20,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else {
+        singleLegReleves = {
+          score: 0,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      return singleLegReleves;
+    }
+
+
+    /**
+     * Takes in the amount entered by the user. Compares the entered amount with each significant range.
+     * If it is within the corresponding range sets the grade,score,accommodations, and comments. Returns the 
+     * object.
+     * @return                                object Object with all the info regarding the grading system for this excercise 
+     */
+    function singleLegBridges(amount) {
+      var singleLegBridges;
+
+      if (amount > 30) {
+        singleLegBridges = {
+          score: 100,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (amount >= 25 && amount <= 30) {
+        singleLegBridges = {
+          score: 75,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (amount >= 20 && amount <= 24) {
+        singleLegBridges = {
+          score: 50,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (amount >= 10 && amount <= 19) {
+        singleLegBridges = {
+          score: 25,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else {
+        singleLegBridges = {
+          score: 0,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      return singleLegBridges;
+    }
+    /**
+     * Takes in the amount entered by the user for both hop tests along with the users sex. 
+     * Calculates the average of the 2 tests and uses that and the sex to compare with each significant range. 
+     * If it is within the corresponding range sets the grade,score,accommodations, and comments. 
+     * Returns the object.
+     * 
+     * @return                                                                                                                                                                                                                                                                object Object with all the info regarding the grading system for this excercise 
+     */
+    function hopTest(amount1, amount2, sex) {
+      var hopTest;
+      var avgAmount = (Number(amount1) + Number(amount2)) / 2;
+
+      if (sex == "Male" && avgAmount > 202) {
+        hopTest = {
+          amount: avgAmount,
+          score: 100,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (sex == "Male" && avgAmount >= 182 && avgAmount <= 202) {
+        hopTest = {
+          amount: avgAmount,
+          score: 50,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (sex == "Male" && avgAmount < 182) {
+        hopTest = {
+          amount: avgAmount,
+          score: 0,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (sex == "Female" && avgAmount > 159) {
+        hopTest = {
+          amount: avgAmount,
+          score: 100,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (sex == "Female" && avgAmount >= 139 && avgAmount <= 159) {
+        hopTest = {
+          amount: avgAmount,
+          score: 50,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (sex == "Female" && avgAmount < 139) {
+        hopTest = {
+          amount: avgAmount,
+          score: 0,
+          comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      return hopTest;
+    }
+
+    function legAvg(rightReleveScore, leftReleveScore, rightBridgeScore, leftBridgeScore, rightHopScore, leftHopScore) {
+      var avg = (rightReleveScore + leftReleveScore + rightBridgeScore + leftBridgeScore + rightHopScore + leftHopScore) / 6;
+      var legs;
+
+      if (avg >= 80) {
+        legs = {
+          grade: "Excellent",
+          accommodations: "Continue your current training/fitness regimen."
+                  comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else if (avg >= 61 && avg <= 79) {
+        legs = {
+          grade: "Average",
+          accommodations: "Be cautious with large jumps (saut de chat)."
+                  comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      else {
+        legs = {
+          grade: "Not optimal. Recommend PT consult",
+          accommodations: "Be cautious with all jumps and pirouettes"
+                  comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career."
+        };
+      }
+      return legs;
+    }
+    /**
+     * Takes in the amount entered by the user. Compares the entered amount with each significant range.
+     * If it is within the corresponding range sets the grade,score,accommodations, and comments. Returns the 
+     * object.
+     * @return                                                                                                                                                                                                                                                                object Object with all the info regarding the grading system for this excercise 
+     */
+    function passeReleveBalance(amount) {
+      var passeReleveBalance;
+
+      if (amount >= 10) {
+        passeReleveBalance = {
+          score: 100,
+          comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance."
+        };
+      }
+      else if (amount >= 6 && amount <= 9) {
+        passeReleveBalance = {
+          score: 50,
+          comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance."
+        };
+      }
+      else {
+        passeReleveBalance = {
+          score: 0,
+          comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance."
+        };
+      }
+      return passeReleveBalance;
+    }
+    /**
+     * Takes in the amount entered by the user. Compares the entered amount with each significant range.
+     * If it is within the corresponding range sets the grade,score,accommodations, and comments. Returns the 
+     * object.
+     * @return                                                                                                                                                                                                                                                                object Object with all the info regarding the grading system for this excercise 
+     */
+    function passeFlatFootBalance(amount) {
+      var passeFlatFootBalance;
+
+      if (amount > 60) {
+        passeFlatFootBalance = {
+          score: 100,
+          comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance."
+        };
+      }
+      else if (amount >= 30 && amount <= 60) {
+        passeFlatFootBalance = {
+          score: 50, accommodations: "No single leg pirouttes",
+          comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance."
+        };
+      }
+      else {
+        passeFlatFootBalance = {
+          score: 0,
+          comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance."
+        };
+      }
+      return passeFlatFootBalance;
+    }
+
+    function passeAvg(rightReleve, leftReleve, rightFlatFoot, leftFlatFoot) {
+      var avg = (rightReleve + leftReleve + rightFlatFoot + leftFlatFoot) / 4;
+      var passe;
+
+      if (avg >= 80) {
+        passe = {
+          grade: "Excellent",
+          accommodations: "Continue your current training/fitness regimen."
+        };
+      }
+      else if (avg >= 61 && avg <= 79) {
+        passe = {
+          grade: "Average",
+          accommodations: "Be cautious with pirouttes and single leg activities, especially jumps."
+        };
+      }
+      else {
+        passe = {
+          grade: "Not optimal. Recommend PT consult",
+          accommodations: "Be cautious with pirouttes and single leg activities, especially jumps. Recommend consultation with DRP physical therapists for follow up."
+        };
+      }
+      return passe;
+    }
+
+    function ckcuestFunc(amount) {
+      var ckcuest;
+
+      if (amount >= 25) {
+        ckcuest = {
+          grade: "Excellent",
+          score: 100,
+          accommodations: "Continue your current training/fitness regimen.",
+          comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance."
+        };
+      }
+      else if (amount >= 20 && amount <= 24) {
+        ckcuest = {
+          grade: "Good",
+          score: 75,
+          accommodations: "Be cautious with activities that require lifting or supporting your body weight with your arms (floor work, partnering, sommersault etc). Your strength needs to improve in order to do these movements safely.",
+          comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance."
+        };
+      }
+      else if (amount >= 11 && amount <= 15) {
+        ckcuest = {
+          grade: "Not optimal, Recommend PT consult",
+          score: 25,
+          accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.",
+          comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance."
+        };
+      }
+      else {
+        ckcuest = {
+          grade: "Not optimal, Recommend PT consult",
+          score: 0,
+          accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.",
+          comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance."
+        };
+      }
+      return ckcuest;
+    }
+    /**
+     * Takes in the amount entered by the user. Compares the entered amount with each significant range.
+     * If it is within the corresponding range sets the grade,score,accommodations, and comments. Returns the 
+     * object.
+     * @return                                                                                                                                                                                                                                                                object Object with all the info regarding the grading system for this excercise 
+     */
+    function bolts(amount) {
+      var bolt;
+
+      if (amount >= 40) {
+        bolt = {
+          grade: "Excellent",
+          score: 100,
+          accommodations: "Good cardiovascular endurance",
+          comments: "The breath hold time (BOLT) test is used to determine relative breathing volume during rest and breathlessness during physical exercise. A lower score means your breathing volume is low and you are likely to develop breathlessness when you perform a physical exercise. Athletes should aim for a BOLT score of 40 seconds or more. Knowing your comfortable BOLT measurement and how to improve this through the correct breathing exercises will significantly improve oxygen delivery to muscles and organs. This will directly correlate to improved athletic performance and general well-being."
+        };
+      }
+      else if (amount >= 20 && amount <= 39) {
+        bolt = {
+          grade: "Average",
+          score: 50,
+          accommodations: "Average Cardiovascular endurance",
+          comments: "The breath hold time (BOLT) test is used to determine relative breathing volume during rest and breathlessness during physical exercise. A lower score means your breathing volume is low and you are likely to develop breathlessness when you perform a physical exercise. Athletes should aim for a BOLT score of 40 seconds or more. Knowing your comfortable BOLT measurement and how to improve this through the correct breathing exercises will significantly improve oxygen delivery to muscles and organs. This will directly correlate to improved athletic performance and general well-being."
+        };
+      }
+      else {
+        bolt = {
+          grade: "Not optimal. Recommend PT consult",
+          score: 0,
+          accommodations: "Poor Cardiovascular endurance",
+          comments: "The breath hold time (BOLT) test is used to determine relative breathing volume during rest and breathlessness during physical exercise. A lower score means your breathing volume is low and you are likely to develop breathlessness when you perform a physical exercise. Athletes should aim for a BOLT score of 40 seconds or more. Knowing your comfortable BOLT measurement and how to improve this through the correct breathing exercises will significantly improve oxygen delivery to muscles and organs. This will directly correlate to improved athletic performance and general well-being."
+        };
+      }
+      return bolt;
+    }
+
+
+  </script>
+  <!--Results table-->
+  <table id="resultsTable" class="one row">
+    <tbody>
+    </tbody>
+    <thead>
+      <tr>
+        <th>Test</th>
+        <th>Measure</th>
+        <th>Score</th>
+        <th>Accommodations</th>
+        <th>Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Plank</td>
+        <td>Core Strength</td>
+        <td><span id="plankScore"></span></td>
+        <td rowspan="3"><span id="plankAccommodations"></span></td>
+        <td rowspan="3"><span id="plankComments"></span></td>
+      </tr>
+      <tr>
+        <td>Side Plank with Abduction(Right)</td>
+        <td rowspan="2">Hip &amp; Core Strength</td>
+        <td><span id="rightSidePlankScore"></span></td>
+      </tr>
+      <tr>
+        <td>Side Plank with Abduction(Left)</td>
+        <td><span id="leftSidePlankScore"></span></td>
+      </tr>
+      <tr>
+        <td>Single Leg Releves(Right)</td>
+        <td rowspan="2">Calf Strength</td>
+        <td><span id="rightSingleLegRelevesScore"></span></td>
+        <td rowspan="6"><span id="rightSingleLegRelevesAccommodations"></span></td>
+        <td rowspan="6"><span id="rightSingleLegRelevesComments"></span></td>
+      </tr>
+      <tr>
+        <td>Single Leg Releves(Left)</td>
+        <td><span id="leftSingleLegRelevesScore"></span></td>
+      </tr>
+      <tr>
+        <td>Single Leg Bridges(Right)</td>
+        <td rowspan="2">Hamstring &amp; Gluteal Strength</td>
+        <td><span id="rightSingleLegBridgesScore"></span></td>
+      </tr>
+      <tr>
+        <td>Single Leg Bridges(Left)</td>
+        <td><span id="leftSingleLegBridgesScore"></span></td>
+      </tr>
+      <tr>
+        <td>Hop Test(Right)</td>
+        <td rowspan="2">Quadriceps &amp; Gluteal Function</td>
+        <td><span id="rightHopTestScore"></span></td>
+      </tr>
+      <tr>
+        <td>Hop Test(Left)</td>
+        <td><span id="leftHopTestScore"></span></td>
+      </tr>
+      <tr>
+        <td>Passe Releve Balance(Right)</td>
+        <td rowspan="4">Balance &amp; Priopriception</td>
+        <td><span id="rightPasseReleveBalanceScore"></span></td>
+        <td rowspan="4"><span id="rightPasseReleveBalanceAccommodations"></span></td>
+        <td rowspan="4"><span id="rightPasseReleveBalanceComments"></span></td>
+      </tr>
+      <tr>
+        <td>Passe Releve Balance(Left)</td>
+        <td><span id="leftPasseReleveBalanceScore"></span></td>
+      </tr>
+      <tr>
+        <td>Passe Flat Foot Balance - Eyes Closed (Right)</td>
+        <td><span id="rightFlatFootBalanceScore"></span></td>
+      </tr>
+      <tr>
+        <td>Passe Flat Foot Balance - Eyes Closed (Left)</td>
+        <td><span id="leftFlatFootBalanceScore"></span></td>
+      </tr>
+      <tr>
+        <td>CKCUEST</td>
+        <td>Shoulder Strength and Stability</td>
+        <td><span id="ckcuestScore"></span></td>
+        <td><span id="ckcuestAccommodations"></span></td>
+        <td><span id="ckcuestComments"></span></td>
+      </tr>
+      <tr>
+        <td>BOLT Test</td>
+        <td>Cardiovascular Fitness</td>
+        <td><span id="boltScore"></span></td>
+        <td><span id="boltAccommodations"></span></td>
+        <td><span id="boltComments"></span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <br><br><br><br><br><br>
+  <h3 style="color:red" class="dynamic-heading" data-uniqid="1636826419516" data-selector="h1,h2,h3,h4,h5,h6,p">Please
+    Print or Screenshot this document to not lose this information</h3>
+</div>
