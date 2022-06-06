@@ -808,7 +808,7 @@ function create_pdf() {
         },
 
         images: {
-            logo2: 'https://s3.us-east-1.amazonaws.com/contents.newzenler.com/9238/library/5fca8b87470cb_1607109511_official-drp-logo-dark-blue.png',
+            logo2: 'https://drs-form-image-hosting.s3.amazonaws.com/Logo2.png',
             getReady: 'https://drs-form-image-hosting.s3.amazonaws.com/getReady.png',
             logo: 'https://drs-form-image-hosting.s3.amazonaws.com/logo.png'
 
