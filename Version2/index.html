@@ -56,40 +56,50 @@
             <label for="company"> Please enter your Organization / Company / Affiliation</label><br>
             <input type="text" id="company" name="company"><br><br>
             <label for="RSingleLegReleves"> Enter Right Single Leg Releves</label><br>
-            <input type="number" id="rightSingleLegReleves" name="RsingleLegReleves"><br><br>
+            <input type="number" id="rightSingleLegReleves" name="RsingleLegReleves"
+                onchange="validatetRightSingleLegReleves()" min="0"><br><br>
             <label for="LSingleLegReleves"> Enter Left Single Leg Releves</label><br>
-            <input type="number" id="leftSingleLegReleves" name="LsingleLegReleves"><br><br>
+            <input type="number" id="leftSingleLegReleves" name="LsingleLegReleves"
+                onchange="validateLeftSingleLegReleves()" min="0"><br><br>
             <label for="plank"> Enter plank time (s)</label><br>
-            <input type="number" id="plank" name="plank"><br><br>
+            <input type="number" id="plank" name="plank" min="0" onchange="validatePlank()"><br><br>
             <label for="RSidePlank"> Enter Right Side Plank with Abduction (s)</label><br>
-            <input type="number" id="rightSidePlank" name="RSidePlank"><br><br>
+            <input type="number" id="rightSidePlank" name="RSidePlank" min="0"
+                onchange="validateRightSidePlank()"><br><br>
             <label for="LSidePlank"> Enter Left Side Plank with Abduction (s)</label><br>
-            <input type="number" id="leftSidePlank" name="LSidePlank"><br><br>
+            <input type="number" id="leftSidePlank" name="LSidePlank" min="0"
+                onchange="validateLeftSidePlank()"><br><br>
             <label for="RSingleLegBridges"> Enter Right Single Leg Bridges </label><br>
-            <input type="number" id="rightSingleLegBridges" name="RSingleLegBridges"><br><br>
+            <input type="number" id="rightSingleLegBridges" name="RSingleLegBridges" min="0"
+                onchange="validateRightSingleLegBridges()"><br><br>
             <label for="LSingleLegBridges"> Enter Left Single Leg Bridges </label><br>
-            <input type="number" id="leftSingleLegBridges" name="LSingleLegBridges"><br><br>
+            <input type="number" id="leftSingleLegBridges" name="LSingleLegBridges" min="0"
+                onchange="validateLeftSingleLegBridges()"><br><br>
             <label for="RHopTest1"> Enter Right Side Hop Test Trial 1 (cm)</label><br>
-            <input type="number" id="rightHopTest1" name="RHopTest1"><br><br>
+            <input type="number" id="rightHopTest1" name="RHopTest1" min="0" onchange="validateRightHopTest1()"><br><br>
             <label for="LHopTest1"> Enter Left Side Hop Test Trial 1 (cm)</label><br>
-            <input type="number" id="leftHopTest1" name="LHopTest1"><br><br>
+            <input type="number" id="leftHopTest1" name="LHopTest1" min="0" onchange="validateLeftHopTest1()"><br><br>
             <label for="RHopTest2"> Enter Right Side Hop Test Trial 2 (cm)</label><br>
-            <input type="number" id="rightHopTest2" name="RHopTest2"><br><br>
+            <input type="number" id="rightHopTest2" name="RHopTest2" min="0" onchange="validateRightHopTest2()"><br><br>
             <label for="LHopTest2"> Enter Left Side Hop Test Trial 2 (cm)</label><br>
-            <input type="number" id="leftHopTest2" name="LHopTest2"><br><br>
+            <input type="number" id="leftHopTest2" name="LHopTest2" min="0" onchange="validateLeftHopTest2()"><br><br>
             <label for="RPasseReleveBalance"> Enter Right Passe Releve Balance time (s)</label><br>
-            <input type="number" id="rightPasseReleveBalance" name="RPasseReleveBalance"><br><br>
+            <input type="number" id="rightPasseReleveBalance" name="RPasseReleveBalance" min="0"
+                onchange="validateRightPasseReleveBalance()"><br><br>
             <label for="LPasseReleveBalance"> Enter Left Passe Relevé Balance time (s)</label><br>
-            <input type="number" id="leftPasseReleveBalance" name="LPasseReleveBalance"><br><br>
+            <input type="number" id="leftPasseReleveBalance" name="LPasseReleveBalance" min="0"
+                onchange="validateLeftPasseReleveBalance()"><br><br>
             <label for="RPasseFlatFootBalance"> Enter Right Passe Flat Foot Balance time with eyes closed
                 (s)</label><br>
-            <input type="number" id="rightPasseFlatFootBalance" name="RPasseFlatFootBalance"><br><br>
+            <input type="number" id="rightPasseFlatFootBalance" name="RPasseFlatFootBalance" min="0"
+                onchange="validateRightPasseFlatFootBalance()"><br><br>
             <label for="LPasseFlatFootBalance"> Enter Left Passe Flat Foot Balance time with eyes closed (s)</label><br>
-            <input type="number" id="leftPasseFlatFootBalance" name="LPasseFlatFootBalance"><br><br>
+            <input type="number" id="leftPasseFlatFootBalance" name="LPasseFlatFootBalance" min="0"
+                onchange="validateLeftPasseFlatFootBalance()"><br><br>
             <label for="ckcuest">Enter CKCUEST</label><br>
-            <input type="number" id="ckcuest"><br><br>
+            <input type="number" id="ckcuest" min="0" onchange="validateCkcuest()"><br><br>
             <label for="bolt"> Enter your BOLT test score </label><br>
-            <input type="number" id="bolt" name="bolt"><br><br>
+            <input type="number" id="bolt" name="bolt" min="0" onchange="validateBolt()"><br><br>
             <label for="workingLeg">Please select your preferred "working" leg</label><br>
 
             <select name="workingLeg" id="workingLeg">
@@ -124,7 +134,8 @@
                 to your data being used anonymously for research and teaching purposes</label><br><br>
             <a href="javascript:alert('learn more');">Learn More</a><br>
             <br>
-            <button type="button" onclick="pdfMake.createPdf(create_pdf()).print();">Submit</button>
+            <!--<button type="button" onclick="pdfMake.createPdf(create_pdf()).print();">Submit</button> -->
+            <button type="button" onclick="validateForm()">Submit</button>
         </form>
     </div>
 </body>
