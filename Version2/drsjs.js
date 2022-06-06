@@ -447,7 +447,6 @@ function validateBolt() {
  * If the all input filds are true, it will create pdf, otherwise it will alert the user. 
  */
 function validateForm() {
-
     var dateInput = document.getElementById("testingdate");
     console.log(dateInput.toString());
     if (!dateInput.value) {
