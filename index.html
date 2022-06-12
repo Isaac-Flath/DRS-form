@@ -1,143 +1,160 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html class="no-js" lang="">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="drsform.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&amp;display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="drsjs.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.js"
-        integrity="sha512-iKv9YWIwhexI0fRGos8mMuFFHhUCbpHTHFPrdByZc6C3QqMRuFN+3fdIbq6EDClHh+hYSAOf10T9VrBDPF92jA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/vfs_fonts.js"
-        integrity="sha512-cktKDgjEiIkPVHYbn8bh/FEyYxmt4JDJJjOCu5/FQAkW4bc911XtKYValiyzBiJigjVEvrIAyQFEbRJZyDA1wQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wild Rydes</title>
+
+  <link rel="stylesheet" href="css/font.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="js/vendor/modernizr.js"></script>
 </head>
+<body class="page-home">
 
-<body>
-    <!--Start of DRS Form -->
+  <header class="site-header">
+    <h1 class="title">Wild Rydes</h1>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="unicorns.html">Meet the Unicorns</a></li>
+        <li><a href="investors.html">Investors &amp; Board of Directors</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="apply.html">Apply</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="btn-menu"><span>Menu</span></button>
+    <a class="home-button" href="/register.html">Giddy Up!</a>
+  </header>
 
-    <div id="form-holder" style="position: relative;">
-        <p style="font-size: 460%; z-index: 99999999;" class="dynamic-text"><strong>Dance Ready Score</strong></p>
-        <form id="DRSForm">
-            <label for="TestAdmin">Test Administrator (If Applicable)</label><br>
-            <input type="text" id="testadministrator" name="TestAdmin"><br><br>
-
-            <label for="TestDate">Test Date</label><br>
-            <input type="date" id="testingdate" name="TestDate"><br><br>
-
-            <label for="email">Please enter your email address</label><br>
-            <input type="email" id="email" name="email" onchange="validateEmail()"><br><br>
-            <label for="FName">Please enter your first name</label><br>
-            <input type="text" id="firstName" name="FName" onchange="validateFirstName()"><br><br>
-            <label for="LName">Please enter your last name</label><br>
-            <input type="text" id="lastName" name="LName" onchange="validateLastName()"><br><br>
-            <label for="ethnicity"> Please select your ethnicity </label><br>
-            <select name="ethnicity" id="ethnicity" onchange="ethnicityOther()">
-                <option value="White"> White </option>
-                <option value="Black or African American"> Black or African American </option>
-                <option value="American Indian and Alaska Native"> American Indian and Alaska Native </option>
-                <option value="Asian"> Asian </option>
-                <option value="Hispanic"> Hispanic</option>
-                <option value="Other">Other</option>
-            </select>
-            <br><br><input type="text" id="ethnicityOtherText" style="display: none">
-            <br><br>
-            <label for="sex"> Please select your assigned sex at birth</label><br>
-            <select name="sex" id="sex">
-                <option value="Male"> Male </option>
-                <option value="Female"> Female </option>
-            </select><br><br>
-            <label for="company"> Please enter your Organization / Company / Affiliation</label><br>
-            <input type="text" id="company" name="company"><br><br>
-            <label for="RSingleLegReleves"> Enter Right Single Leg Releves</label><br>
-            <input type="number" id="rightSingleLegReleves" name="RsingleLegReleves"
-                onchange="validatetRightSingleLegReleves()" min="0"><br><br>
-            <label for="LSingleLegReleves"> Enter Left Single Leg Releves</label><br>
-            <input type="number" id="leftSingleLegReleves" name="LsingleLegReleves"
-                onchange="validateLeftSingleLegReleves()" min="0"><br><br>
-            <label for="plank"> Enter plank time (s)</label><br>
-            <input type="number" id="plank" name="plank" min="0" onchange="validatePlank()"><br><br>
-            <label for="RSidePlank"> Enter Right Side Plank with Abduction (s)</label><br>
-            <input type="number" id="rightSidePlank" name="RSidePlank" min="0"
-                onchange="validateRightSidePlank()"><br><br>
-            <label for="LSidePlank"> Enter Left Side Plank with Abduction (s)</label><br>
-            <input type="number" id="leftSidePlank" name="LSidePlank" min="0"
-                onchange="validateLeftSidePlank()"><br><br>
-            <label for="RSingleLegBridges"> Enter Right Single Leg Bridges </label><br>
-            <input type="number" id="rightSingleLegBridges" name="RSingleLegBridges" min="0"
-                onchange="validateRightSingleLegBridges()"><br><br>
-            <label for="LSingleLegBridges"> Enter Left Single Leg Bridges </label><br>
-            <input type="number" id="leftSingleLegBridges" name="LSingleLegBridges" min="0"
-                onchange="validateLeftSingleLegBridges()"><br><br>
-            <label for="RHopTest1"> Enter Right Side Hop Test Trial 1 (cm)</label><br>
-            <input type="number" id="rightHopTest1" name="RHopTest1" min="0" onchange="validateRightHopTest1()"><br><br>
-            <label for="LHopTest1"> Enter Left Side Hop Test Trial 1 (cm)</label><br>
-            <input type="number" id="leftHopTest1" name="LHopTest1" min="0" onchange="validateLeftHopTest1()"><br><br>
-            <label for="RHopTest2"> Enter Right Side Hop Test Trial 2 (cm)</label><br>
-            <input type="number" id="rightHopTest2" name="RHopTest2" min="0" onchange="validateRightHopTest2()"><br><br>
-            <label for="LHopTest2"> Enter Left Side Hop Test Trial 2 (cm)</label><br>
-            <input type="number" id="leftHopTest2" name="LHopTest2" min="0" onchange="validateLeftHopTest2()"><br><br>
-            <label for="RPasseReleveBalance"> Enter Right Passe Releve Balance time (s)</label><br>
-            <input type="number" id="rightPasseReleveBalance" name="RPasseReleveBalance" min="0"
-                onchange="validateRightPasseReleveBalance()"><br><br>
-            <label for="LPasseReleveBalance"> Enter Left Passe Relevé Balance time (s)</label><br>
-            <input type="number" id="leftPasseReleveBalance" name="LPasseReleveBalance" min="0"
-                onchange="validateLeftPasseReleveBalance()"><br><br>
-            <label for="RPasseFlatFootBalance"> Enter Right Passe Flat Foot Balance time with eyes closed
-                (s)</label><br>
-            <input type="number" id="rightPasseFlatFootBalance" name="RPasseFlatFootBalance" min="0"
-                onchange="validateRightPasseFlatFootBalance()"><br><br>
-            <label for="LPasseFlatFootBalance"> Enter Left Passe Flat Foot Balance time with eyes closed (s)</label><br>
-            <input type="number" id="leftPasseFlatFootBalance" name="LPasseFlatFootBalance" min="0"
-                onchange="validateLeftPasseFlatFootBalance()"><br><br>
-            <label for="ckcuest">Enter CKCUEST</label><br>
-            <input type="number" id="ckcuest" min="0" onchange="validateCkcuest()"><br><br>
-            <label for="bolt"> Enter your BOLT test score </label><br>
-            <input type="number" id="bolt" name="bolt" min="0" onchange="validateBolt()"><br><br>
-            <label for="workingLeg">Please select your preferred "working" leg</label><br>
-
-            <select name="workingLeg" id="workingLeg">
-                <option value="right"> Right </option>
-                <option value="left"> Left </option>
-                <option value="Both"> Both </option>
-            </select><br><br>
-            <label for="standingLeg">Please select your preferred "standing" leg</label><br>
-            <select name="standingLeg" id="standingLeg">
-                <option value="right"> Right </option>
-                <option value="left"> Left </option>
-                <option value="Both"> Both </option>
-            </select><br><br>
-            <label for="threeMonthInjury">Within the last 3 months have you ever had an injury to your hip, knee, foot
-                or ankle,<br> that caused you to stop dancing for more than 1 week? If so, which side?</label><br><br>
-            <select name="threeMonthInjury" id="threeMonthInjury">
-                <option value="N/A"> N/A </option>
-                <option value="right"> Right </option>
-                <option value="left"> Left </option>
-                <option value="Both"> Both </option>
-            </select><br><br>
-            <label for="fiveYearInjury">Within the last 5 years have you had an injury to your hip, knee, foot or ankle
-                that caused <br>you to stop dancing for more than 1 week (do not include injuries within the last 3
-                months)? If so, which side? </label><br><br>
-            <select name="fiveYearInjury" id="fiveYearInjury">
-                <option value="N/A"> N/A </option>
-                <option value="right"> Right </option>
-                <option value="left"> Left </option>
-                <option value="Both"> Both </option>
-            </select><br><br>
-            <label for="consent"><input type="checkbox" id="consent" name="consent">Please check the box if you consent
-                to your data being used anonymously for research and teaching purposes</label><br><br>
-            <a href="javascript:alert('learn more');">Learn More</a><br>
-            <br>
-            <!--<button type="button" onclick="pdfMake.createPdf(create_pdf()).print();">Submit</button> -->
-            <button type="button" onclick="validateForm()">Submit</button>
-        </form>
+  <section class="home-about">
+    <div class="row column large-9 xlarge-6 xxlarge-4">
+      <h2 class="section-title">How Does This Work?</h2>
+      <p class="content">
+        In today’s fast paced world, you’ve got places you need to be but not enough time in your jam packed schedule. Wouldn’t it be nice if there were a transportation service that changed the way you get around daily? Introducing Wild Rydes, an innovative transportation service that helps people get to their destination faster and hassle-free. Getting started is as easy as tapping a button in our app.
+      </p>
     </div>
-</body>
 
+    <div class="row medium-up-2 large-up-4">
+      <div class="column">
+        <div class="home-about-block">
+          <h3 class="title icon-download">Download The App</h3>
+          <p class="content">Head over to the app store and download the Wild Rydes app. You’re just a few taps away from getting your ryde.</p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="home-about-block">
+          <h3 class="title icon-unicorn">Request A Unicorn</h3>
+          <p class="content">We can get you there. Simply request a ryde on the app and we'll connect you with a unicorn immediately.</p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="home-about-block">
+          <h3 class="title icon-price">Pick A Price</h3>
+          <p class="content">Pick the valuation you're willing to pay and your ryde is set up. The only surge is the acceleration you get when taking off.</p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="home-about-block">
+          <h3 class="title icon-success">Ride Off To Success!</h3>
+          <p class="content">After matching with your unicorn and agreeing to its terms, you’ll be all set. Your unicorn will arrive shortly to pick you up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-story">
+    <div class="row column large-9 xlarge-6 xxlarge-4">
+      <h2 class="section-title">Our Story</h2>
+      <p class="content">
+        Wild Rydes was started by a former hedge fund analyst and a software developer. The two long-time friends happened upon the Wild Rydes idea after attending a silent yoga retreat in Nevada. After gazing upon the majestic herds of unicorns prancing across a surreal Nevada sunset, they witnessed firsthand the poverty and unemployment endemic to that once proud race. Whether it was modern society’s reliance on science over magic or not, we’ll never know the cause of their Ozymandian downfall and fade to obscurity. Moved by empathy, romance, and free enterprise, they saw an opportunity to marry society’s demand for faster, more flexible transportation to underutilized beasts of labor through an on-demand market making transportation app. Using the founders’ respective expertise in animal husbandry and software engineering, Wild Rydes was formed and has since raised untold amounts of venture capital. Today, Wild Rydes has thousands of unicorns in its network fulfilling hundreds of rydes each day.
+      </p>
+    </div>
+  </section>
+
+  <section class="home-sign-up">
+    <div class="row column">
+      <img class="icon-w" src="images/wr-home-W.png">
+
+      <form onsubmit="javascript:void(0);">
+        <input type="email" placeholder="Enter your email address">
+        <button type="button">Submit</button>
+      </form>
+
+      <h2 class="section-title">Sign Up</h2>
+
+      <p class="content">Wild Rydes is coming soon! Enter your email to enter the limited private beta</p>
+
+      <div class="apps">
+        <a class="app-icon" href=""><img src="images/wr-home-apple.png"></a>
+        <a class="app-icon" href=""><img src="images/wr-home-google.png"></a>
+        <a class="app-icon" href=""><img src="images/wr-home-blackberry.png"></a>
+        <a class="app-icon" href=""><img src="images/wr-home-Xiaomi.png"></a>
+      </div>
+
+      <div class="social">
+        <a class="icon-fb" href="">Facebook</a>
+        <a class="icon-tw" href="">Twitter</a>
+        <a class="icon-ig" href="">Instagram</a>
+        <a class="icon-wc" href="">Wechat</a>
+        <a class="icon-wb" href="">Weibo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-quote">
+    <div class="row column medium-8 xxlarge-6">
+      <div class="quote-wrap">
+        <div class="quote">
+          “I was almost late to my ultimate frisbee tournament in DOLORES park. BUt Wild Rydes Got me there from the marina in under five minutes.”
+        </div>
+        <div class="quoter">- Satisfied Wild Rydes User</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kraken-callout">
+    <div class="row">
+      <div class="columns medium-6 xxlarge-4 xxlarge-offset-2">
+        <img src="images/wr-home-kraken.png">
+      </div>
+
+      <div class="columns medium-6 xlarge-5 xxlarge-4">
+        <h4 class="title">Coming Soon</h4>
+        <p class="content">
+          Kraken 3xplorer and Dragon Flyght. We’re looking to provide you a full service package from air, land, and to sea.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="row column">
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="unicorns.html">Meet the Unicorns</a></li>
+          <li><a href="investors.html">Investors & Board of Directors</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="apply.html">Apply</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="row column">
+      <div class="footer-legal">
+        &copy;WildRydes Inc<br>
+        All Rights Reserved
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor.js"></script>
+
+  <script src="js/main.js"></script>
+</body>
 </html>
