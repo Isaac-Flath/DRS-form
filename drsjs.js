@@ -619,8 +619,87 @@ function validateForm() {
         return false;
     }
 
+    submitMessage();
+
     pdfMake.createPdf(create_pdf()).print();
 
+}
+/*
+submitMessage is async function which grap values of all elements from the DRSform 
+and fetch it into AWS API gateway by POST method. 
+if POST succeed Return:
+                    statusCode: 201,
+                    body: '',
+                    headers: {
+                    'Access-Control-Allow-Origin' : '*'
+otherwise:                     
+                    statusCode: 400,
+                    body: 'Bad Request',
+                    headers: {
+                    'Access-Control-Allow-Origin' : '*'
+*/
+
+async function submitMessage() {
+    var admin = document.getElementById("testadministrator").value.toString();
+    if (admin.length === 0) {
+        admin = "not applicable";
+        console.log(admin);
+    }
+    var dateInput = document.getElementById("testingdate").value.toString();
+    var email = document.getElementById("email").value;
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var company = document.getElementById("company").value;
+    var rightSingleLegReleves = document.getElementById("rightSingleLegReleves").value;
+    var leftSingleLegReleves = document.getElementById("leftSingleLegReleves").value;
+    var plank = document.getElementById("plank").value;
+    var rightSidePlank = document.getElementById("rightSidePlank").value;
+    var leftSidePlank = document.getElementById("leftSidePlank").value;
+    var rightSingleLegBridges = document.getElementById("rightSingleLegBridges").value;
+    var leftSingleLegBridges = document.getElementById("leftSingleLegBridges").value;
+    var rightHopTest1 = document.getElementById("rightHopTest1").value;
+    var leftHopTest1 = document.getElementById("leftHopTest1").value;
+    var rightHopTest2 = document.getElementById("rightHopTest2").value;
+    var leftHopTest2 = document.getElementById("leftHopTest2").value;
+    var rightPasseReleveBalance = document.getElementById("rightPasseReleveBalance").value;
+    var leftPasseReleveBalance = document.getElementById("leftPasseReleveBalance").value;
+    var rightPasseFlatFootBalance = document.getElementById("rightPasseFlatFootBalance").value;
+    var leftPasseFlatFootBalance = document.getElementById("leftPasseFlatFootBalance").value;
+    var ckcuest = document.getElementById("ckcuest").value;
+    var bolt = document.getElementById("bolt").value;
+    fetch('https://kuj8xxyl3g.execute-api.us-east-1.amazonaws.com/prod/drsform', {
+        method: 'POST',
+        body: JSON.stringify({
+            "admin": admin,
+            "dateInput": dateInput,
+            "email": email,
+            "firstName": firstName,
+            "lastName": lastName,
+            "company": company,
+            "rightSingleLegReleves": rightSingleLegReleves,
+            "leftSingleLegReleves": leftSingleLegReleves,
+            "plank": plank,
+            "rightSidePlank": rightSidePlank,
+            "leftSidePlank": leftSidePlank,
+            "rightSingleLegBridges": rightSingleLegBridges,
+            "leftSingleLegBridges": leftSingleLegBridges,
+            "rightHopTest1": rightHopTest1,
+            "leftHopTest1": leftHopTest1,
+            "rightHopTest2": rightHopTest2,
+            "leftHopTest2": leftHopTest2,
+            "rightPasseReleveBalance": rightPasseReleveBalance,
+            "leftPasseReleveBalance": leftPasseReleveBalance,
+            "rightPasseFlatFootBalance": rightPasseFlatFootBalance,
+            "leftPasseFlatFootBalance": leftPasseFlatFootBalance,
+            "ckcuest": ckcuest,
+            "bolt": bolt
+        })
+    })
+        .then(response => response.json())
+        .then((response) => {
+            console.log(response);
+            // Add new message to message list
+        });
 }
 
 
