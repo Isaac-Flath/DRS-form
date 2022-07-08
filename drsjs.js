@@ -22,6 +22,8 @@ function getData() {
     var leftSingleLegBridges = get_singleLegBridges_vals(DRSForm.leftSingleLegBridges.value);
 
     var sex = DRSForm.sex.value
+    var age = DRSForm.age.value
+    var htodVal = DRSForm.htod.value
     var rightHopTest = get_hopTest_vals(DRSForm.rightHopTest1.value, DRSForm.rightHopTest2.value, sex);
     var leftHopTest = get_hopTest_vals(DRSForm.leftHopTest1.value, DRSForm.leftHopTest2.value, sex);
 
@@ -33,8 +35,9 @@ function getData() {
     var passeExtra = get_passeAvg_vals(rightPasseReleveBalance.score, leftPasseReleveBalance.score, rightPasseFlatFootBalance.score, leftPasseFlatFootBalance.score);
     var ckcuestVar = get_ckcuestFunc_vals(DRSForm.ckcuest.value);
     var bolt = get_bolts_vals(DRSForm.bolt.value);
-
-
+    var sitAndReachTest = get_sitAndReach_vals(DRSForm.sitAndReachTest.value, sex, age);
+    var htod = get_htod_vals(htodVal);
+    var htof = get_htof_vals(DRSForm.htof.value, htodVal);
 
     var DRSRight = (Number(rightSingleLegReleves.score) + Number(rightSidePlank.score) + Number(rightSingleLegBridges.score) + Number(rightHopTest.score) + Number(rightPasseReleveBalance.score) + Number(rightPasseFlatFootBalance.score)) / 6;
     var DRSLeft = (Number(leftSingleLegReleves.score) + Number(leftSidePlank.score + leftSingleLegBridges.score) + Number(leftHopTest.score) + Number(leftPasseReleveBalance.score) + Number(leftPasseFlatFootBalance.score)) / 6;
@@ -46,6 +49,7 @@ function getData() {
     var ethnicity = document.getElementById("ethnicity").value;
     var sex = document.getElementById("sex").value;
     var company = document.getElementById("company").value;
+    var age = document.getElementById("age").value;
     var workingLeg = document.getElementById("workingLeg").value;
     var standingLeg = document.getElementById("standingLeg").value;
     var threeMonthInjury = document.getElementById("threeMonthInjury").value;
@@ -67,6 +71,7 @@ function getData() {
         rightSingleLegBridges: rightSingleLegBridges,
         leftSingleLegBridges: leftSingleLegBridges,
         sex: sex,
+        age: age,
         rightHopTest: rightHopTest,
         leftHopTest: leftHopTest,
         legExtras: legExtras,
@@ -77,6 +82,9 @@ function getData() {
         passeExtra: passeExtra,
         ckcuestVar: ckcuestVar,
         bolt: bolt,
+        sitAndReachTest: sitAndReachTest,
+        htod: htod,
+        htof: htof,
         DRSRight: DRSRight,
         DRSLeft: DRSLeft,
         DRSTotal: DRSTotal,
@@ -228,6 +236,326 @@ function get_bolts_vals(amount) {
     return value_ranges(amount, definition)
 
 
+}
+
+function get_sitAndReach_vals(amount, sex, age) {
+
+    var definition_male_0_5 = {
+        g1: { min: 30, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 26, max: 29, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 23, max: 25, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 17, max: 22, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 16, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_6_9 = {
+        g1: { min: 30, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 26, max: 29, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 23, max: 25, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 17, max: 22, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 16, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_10_12 = {
+        g1: { min: 30, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 26, max: 29, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 22, max: 25, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 14, max: 21, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 13, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_13 = {
+        g1: { min: 31, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 25, max: 30, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 22, max: 24, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 14, max: 21, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 13, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_14 = {
+        g1: { min: 34, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 29, max: 33, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 24, max: 28, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 14, max: 23, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 13, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_15 = {
+        g1: { min: 35, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 31, max: 34, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 25, max: 30, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 14, max: 24, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 13, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_16 = {
+        g1: { min: 37, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 31, max: 36, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 26, max: 30, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 15, max: 25, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 14, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_17 = {
+        g1: { min: 41, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 35, max: 40, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 29, max: 34, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 16, max: 28, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 15, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_0_5 = {
+        g1: { min: 31, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 28, max: 30, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 24, max: 27, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 19, max: 23, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 18, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_6 = {
+        g1: { min: 32, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 28, max: 31, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 24, max: 27, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 19, max: 23, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 18, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_7 = {
+        g1: { min: 32, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 28, max: 31, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 24, max: 27, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 18, max: 23, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 17, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_8_9 = {
+        g1: { min: 32, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 29, max: 31, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 24, max: 28, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 18, max: 23, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 17, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_10 = {
+        g1: { min: 34, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 29, max: 31, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 25, max: 28, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 17, max: 24, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 16, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_11 = {
+        g1: { min: 33, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 30, max: 32, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 25, max: 29, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 17, max: 24, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 16, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_12 = {
+        g1: { min: 35, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 31, max: 34, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 26, max: 30, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 17, max: 25, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 16, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_13 = {
+        g1: { min: 37, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 32, max: 36, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 27, max: 31, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 18, max: 26, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 17, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_14 = {
+        g1: { min: 39, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 34, max: 38, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 29, max: 33, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 19, max: 28, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 18, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_15 = {
+        g1: { min: 39, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 37, max: 41, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 32, max: 36, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 20, max: 31, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 19, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_16_17 = {
+        g1: { min: 39, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 37, max: 40, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 32, max: 36, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 20, max: 31, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 19, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_18_25 = {
+        g1: { min: 22, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 19, max: 20, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 17, max: 18, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 14, max: 16, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 13, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_26_35 = {
+        g1: { min: 21, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 17, max: 20, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 15, max: 16, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 13, max: 14, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 12, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_36_45 = {
+        g1: { min: 21, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 20, max: 17, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 15, max: 16, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 13, max: 14, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 11, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_46_55 = {
+        g1: { min: 19, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 15, max: 18, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 13, max: 14, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 10, max: 12, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 9, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_56_64 = {
+        g1: { min: 17, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 13, max: 16, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 11, max: 12, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 9, max: 10, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 8, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_male_65_more = {
+        g1: { min: 17, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 13, max: 16, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 10, max: 12, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 8, max: 9, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 7, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_18_25 = {
+        g1: { min: 24, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 21, max: 23, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 19, max: 20, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 17, max: 18, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 16, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_26_35 = {
+        g1: { min: 23, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 20, max: 22, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 19, max: 19, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 16, max: 18, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 16, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_36_45 = {
+        g1: { min: 22, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 19, max: 21, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 17, max: 18, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 15, max: 16, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 14, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_46_55 = {
+        g1: { min: 21, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 18, max: 20, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 16, max: 17, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 14, max: 15, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 13, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_56_64 = {
+        g1: { min: 20, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 17, max: 19, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 15, max: 16, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 13, max: 14, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 12, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    var definition_female_65_more = {
+        g1: { min: 20, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g2: { min: 17, max: 19, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g3: { min: 15, max: 16, score: 50, grade: "Good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g4: { min: 13, max: 14, score: 25, grade: "Fair", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
+        g5: { min: 0, max: 12, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
+    };
+
+    if (sex == 'Male' && age >= 0 && age <= 5) { return value_ranges(amount, definition_male_0_5) }
+    else if (sex == 'Male' && age >= 6 && age <= 9) { return value_ranges(amount, definition_male_6_9) }
+    else if (sex == 'Male' && age >= 10 && age <= 12) { return value_ranges(amount, definition_male_10_12) }
+    else if (sex == 'Male' && age == 13) { return value_ranges(amount, definition_male_13) }
+    else if (sex == 'Male' && age == 14) { return value_ranges(amount, definition_male_14) }
+    else if (sex == 'Male' && age == 15) { return value_ranges(amount, definition_male_15) }
+    else if (sex == 'Male' && age == 16) { return value_ranges(amount, definition_male_16) }
+    else if (sex == 'Male' && age == 17) { return value_ranges(amount, definition_male_17) }
+    else if (sex == 'Male' && age >= 18 && age <= 25) { return value_ranges(amount, definition_male_18_25) }
+    else if (sex == 'Male' && age >= 26 && age <= 35) { return value_ranges(amount, definition_male_26_35) }
+    else if (sex == 'Male' && age >= 36 && age <= 45) { return value_ranges(amount, definition_male_36_45) }
+    else if (sex == 'Male' && age >= 46 && age <= 55) { return value_ranges(amount, definition_male_46_55) }
+    else if (sex == 'Male' && age >= 56 && age <= 64) { return value_ranges(amount, definition_male_56_64) }
+    else if (sex == 'Male' && age >= 65) { return value_ranges(amount, definition_male_65_more) }
+
+    else if (sex == 'Female' && age >= 0 && age <= 5) { return value_ranges(amount, definition_female_0_5) }
+    else if (sex == 'Female' && age == 6) { return value_ranges(amount, definition_female_6) }
+    else if (sex == 'Female' && age == 7) { return value_ranges(amount, definition_female_7) }
+    else if (sex == 'Female' && age >= 8 && age <= 9) { return value_ranges(amount, definition_female_8_9) }
+    else if (sex == 'Female' && age == 10) { return value_ranges(amount, definition_female_10) }
+    else if (sex == 'Female' && age == 11) { return value_ranges(amount, definition_female_11) }
+    else if (sex == 'Female' && age == 12) { return value_ranges(amount, definition_female_12) }
+    else if (sex == 'Female' && age == 13) { return value_ranges(amount, definition_female_13) }
+    else if (sex == 'Female' && age == 14) { return value_ranges(amount, definition_female_14) }
+    else if (sex == 'Female' && age == 15) { return value_ranges(amount, definition_female_15) }
+    else if (sex == 'Female' && age >= 16 && age <= 17) { return value_ranges(amount, definition_female_16_17) }
+    else if (sex == 'Female' && age >= 18 && age <= 25) { return value_ranges(amount, definition_female_18_25) }
+    else if (sex == 'Female' && age >= 26 && age <= 35) { return value_ranges(amount, definition_female_26_35) }
+    else if (sex == 'Female' && age >= 36 && age <= 45) { return value_ranges(amount, definition_female_36_45) }
+    else if (sex == 'Female' && age >= 46 && age <= 55) { return value_ranges(amount, definition_female_46_55) }
+    else if (sex == 'Female' && age >= 56 && age <= 64) { return value_ranges(amount, definition_female_56_64) }
+    else if (sex == 'Female' && age >= 65) { return value_ranges(amount, definition_female_65_more) }
+}
+
+function get_htod_vals(amount) {
+
+    var definition = {
+        g1: { min: 60, max: Infinity, score: 100, grade: "Excellent", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." },
+        g2: { min: 50, max: 59, score: 75, grade: "Good", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." },
+        g3: { min: 45, max: 49, score: 50, grade: "Average", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." },
+        g4: { min: 40, max: 45, score: 25, grade: "Poor", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." },
+        g5: { min: 0, max: 40, score: 0, grade: "Very Poor", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+    }
+
+    return value_ranges(amount, definition)
+
+}
+
+function get_htof_vals(htofAmount, htodAmount) {
+
+    var difference = htofAmount - htodAmount;
+    var g1 = { score: 100, grade: "Excellent", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+    var g2 = { score: 75, grade: "Good", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+    var g3 = { score: 50, grade: "Fair", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+    var g4 = { score: 25, grade: "Poor", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+    var g5 = { score: 0, grade: "Very Poor", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+
+    if (htofAmount === htodAmount) {
+        return g2;
+    } else if (htofAmount < htodAmount) {
+        return g3;
+    } else if (difference >= 1 && difference <= 4) {
+        return g3
+    } else if (difference >= 5 && difference <= 9) {
+        return g4;
+    } else if (difference >= 10) {
+        return g5;
+    }
 }
 
 /**
@@ -442,6 +770,35 @@ function validateBolt() {
     return (false);
 }
 
+function validateSitAndReach() {
+    var sitAndReach = DRSForm.sitAndReachTest.value;
+    if (sitAndReach >= 0) {
+        return (true);
+    }
+
+    alert("Invalid number, Sit and Reach test score must be positive number!");
+    return (false);
+}
+function validateHTOF() {
+    var HTOF = DRSForm.htof.value;
+    if (HTOF >= 0) {
+        return (true);
+    }
+
+    alert("Invalid number, Hip Turnout - Floor test score must be positive number!");
+    return (false);
+}
+
+function validateHTOD() {
+    var HTOD = DRSForm.htod.value;
+    if (HTOD >= 0) {
+        return (true);
+    }
+
+    alert("Invalid number, Hip Turnout - Disc test score must be positive number!");
+    return (false);
+}
+
 /**
  * This function checks weather input value is correct for all input fields. 
  * If the all input filds are true, it will create pdf, otherwise it will alert the user. 
@@ -618,7 +975,31 @@ function validateForm() {
     if (!validateBolt()) {
         return false;
     }
+    var sitAndReach = document.getElementById("sitAndReachTest").value;
+    if (sitAndReach === "") {
+        alert("Sit and Reach test score must be filled out");
+        return false;
+    };
+    if (!validateSitAndReach()) {
+        return false;
+    }
+    var HTOF = document.getElementById("htof").value;
+    if (HTOF === "") {
+        alert("Hip Turnout - Floor (HTOF) test score must be filled out");
+        return false;
+    };
+    if (!validateHTOF()) {
+        return false;
+    }
 
+    var HTOD = document.getElementById("htod").value;
+    if (HTOD === "") {
+        alert("Hip Turnout - Disc (HTOD) test score must be filled out");
+        return false;
+    };
+    if (!validateHTOD()) {
+        return false;
+    }
     submitMessage();
 
     pdfMake.createPdf(create_pdf()).print();
@@ -646,6 +1027,12 @@ async function submitMessage() {
         console.log(admin);
     }
     var dateInput = document.getElementById("testingdate").value.toString();
+    var ethnicityStr = document.getElementById("ethnicity").value.toString();
+    var sexStr = document.getElementById("sex").value.toString();
+    var workingLegStr = document.getElementById("workingLeg").value.toString();
+    var standingLegStr = document.getElementById("standingLeg").value.toString();
+    var threeMonthInjuryStr = document.getElementById("threeMonthInjury").value.toString();
+    var fiveYearInjuryStr = document.getElementById("fiveYearInjury").value.toString();
     var email = document.getElementById("email").value;
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
@@ -667,6 +1054,9 @@ async function submitMessage() {
     var leftPasseFlatFootBalance = document.getElementById("leftPasseFlatFootBalance").value;
     var ckcuest = document.getElementById("ckcuest").value;
     var bolt = document.getElementById("bolt").value;
+    var sitAndReach = document.getElementById("sitAndReachTest").value;
+    var HTOF = document.getElementById("htof").value;
+    var HTOD = document.getElementById("htod").value;
     fetch('https://kuj8xxyl3g.execute-api.us-east-1.amazonaws.com/prod/drsform', {
         method: 'POST',
         body: JSON.stringify({
@@ -675,6 +1065,8 @@ async function submitMessage() {
             "email": email,
             "firstName": firstName,
             "lastName": lastName,
+            "ethnicity": ethnicityStr,
+            "sex": sexStr,
             "company": company,
             "rightSingleLegReleves": rightSingleLegReleves,
             "leftSingleLegReleves": leftSingleLegReleves,
@@ -692,7 +1084,15 @@ async function submitMessage() {
             "rightPasseFlatFootBalance": rightPasseFlatFootBalance,
             "leftPasseFlatFootBalance": leftPasseFlatFootBalance,
             "ckcuest": ckcuest,
-            "bolt": bolt
+            "bolt": bolt,
+            "sitAndReach": sitAndReach,
+            "HTOF": HTOF,
+            "HTOD": HTOD,
+            "workingLeg": workingLegStr,
+            "standingLeg": standingLegStr,
+            "threeMonthInjury": threeMonthInjuryStr,
+            "fiveYearInjury": fiveYearInjuryStr
+
         })
     })
         .then(response => response.json())
@@ -701,7 +1101,6 @@ async function submitMessage() {
             // Add new message to message list
         });
 }
-
 
 function create_pdf() {
 
@@ -761,21 +1160,27 @@ function create_pdf() {
                 image: 'getReady', width: 500, alignment: 'center'
             },
 
-            { text: '\\n\\nPatient Instructions\\n\\n', style: 'header', alignment: 'center' },
-            { text: 'Read all information on this document\\n\\n', alignment: 'center', bold: true },
-            { text: 'Ask your provider about any questions or concerns\\n\\n', alignment: 'center', bold: true },
-            { text: 'Pay special attention to all recommendations\\n\\n\\n\\n', alignment: 'center', bold: true },
+            { text: 'Patient Instructions', style: 'header', alignment: 'center' },
+            { text: '\n' },
+            //{ text: 'Patient Instructions', style: 'header', alignment: 'center' },
+            { text: 'Read all information on this document', alignment: 'center', bold: true },
+            { text: 'Ask your provider about any questions or concerns', alignment: 'center', bold: true },
+            { text: 'Pay special attention to all recommendations', alignment: 'center', bold: true },
 
-            { text: '\\n\\nRecommendations\\n\\n', style: 'header' },
+            { text: 'Recommendations', style: 'header' },
+            { text: '\n' },
             {
                 ul: [d.plankExtra.accommodations,
                 d.passeExtra.accommodations,
                 d.ckcuestVar.accommodations,
-                d.bolt.accommodations], pageBreak: 'after'
+                d.bolt.accommodations], //pageBreak: 'after'
 
             }
 
-            , { text: 'Test Results:\\n\\n', style: 'header', alignment: 'center' }
+            //, { text: 'Test Results:', style: 'header', alignment: 'center' }
+            , { text: '\n' }
+            , { text: 'Test Results:', style: 'header', alignment: 'left' }
+            , { text: '\n' }
             , {
                 style: 'headerTable',
                 color: 'blue',
@@ -784,15 +1189,20 @@ function create_pdf() {
                     alignment: 'center',
                     widths: [175, 175, 175],
                     body: [
-                        ['Dance Ready Score = ' + d.DRSTotal, 'Left Side Score = ' + d.DRSLeft, 'Right Side Score = ' + d.DRSRight]
+                        //['Dance Ready Score = ' + d.DRSTotal, 'Left Side Score = ' + d.DRSLeft, 'Right Side Score = ' + d.DRSRight]
+                        ['Dance Ready Score = ' + d.DRSTotal],
+                        ['Left Side Score = ' + d.DRSLeft],
+                        ['Right Side Score = ' + d.DRSRight]
                     ]
                 },
-                layout: 'noBorders'
+                layout: 'noBorders',
+                pageBreak: 'after'
             },
 
             {
                 style: 'resultTable',
                 table: {
+
                     alignment: 'center',
                     headerRows: 1,
                     // dontBreakRows: true,
@@ -829,6 +1239,14 @@ function create_pdf() {
 
                         [{ text: "CKCUEST" }, { text: "Shoulder Strength and Stability	" }, d.ckcuestVar.score, { text: d.ckcuestVar.comments }],
                         [{ text: "BOLT Test" }, { text: "Cardiovascular Fitness	" }, d.bolt.score, { text: d.bolt.comments }],
+                        [{ text: "Sit and Reach" }, { text: "Flexibility " }, d.sitAndReachTest.score, { text: d.sitAndReachTest.comments }],
+                        //[{ text: "Hip Turnout - disc (HTOD)" }, { text: "Range of Motion " }, d.htod.score, { text: d.htod.comments }],
+                        [{ text: "Hip Turnout - Disc (HTOD)" }, { text: "Range of Motion" }, d.htod.score,
+                        //{ style: 'headerTable', color: 'black', layout: 'noBorders', table: { body: [['L', 'R'], [d.leftPasseReleveBalance.score, d.rightPasseReleveBalance.score]] } },
+                        { rowSpan: 2, text: d.htod.comments }],
+                        [{ text: "Hip Turnout - Floor (HTOF)" }, { text: "Range of Motion " }, d.htof.score],
+
+
                     ]
 
                 }
@@ -840,9 +1258,12 @@ function create_pdf() {
                         image: 'logo2',
                         width: 100
                     },
+
+
                     {
                         width: 'auto',
-                        text: '\\nPrepared by Dr. Sheyi Ojofeitimi, PT, DPT, OCS, CFMT and Dr. Danelle Dickson, PT, DPT, OCS\\n\\nDance Ready Project: www.danceready.org', alignment: 'left', fontSize: 10, color: 'grey', link: 'www.danceready.org'
+                        text: ' \n Prepared by Dr. Sheyi Ojofeitimi, PT, DPT, OCS, CFMT and Dr. Danelle Dickson, PT, DPT, OCS Dance Ready Project: www.danceready.org', alignment: 'left', fontSize: 10, color: 'grey', link: 'www.danceready.org'
+
                     },
 
 
@@ -867,7 +1288,7 @@ function create_pdf() {
 
         styles: {
             resultTable: {
-                margin: [0, 5, 0, 15],
+                margin: [0, 20, 0, 15],
                 fontSize: 10
             }, headerTable: {
                 margin: [0, 5, 0, 15],
@@ -901,3 +1322,6 @@ function create_pdf() {
 
 }
     // pdfMake.createPdf(dd).open();
+
+
+
