@@ -53,6 +53,10 @@
                 <option value="Male"> Male </option>
                 <option value="Female"> Female </option>
             </select><br><br>
+
+            <label for="age"> Please enter your age</label><br>
+            <input type="number" id="age" name="age" min="0"><br><br>
+
             <label for="company"> Please enter your Organization / Company / Affiliation</label><br>
             <input type="text" id="company" name="company"><br><br>
             <label for="RSingleLegReleves"> Enter Right Single Leg Releves</label><br>
@@ -100,6 +104,17 @@
             <input type="number" id="ckcuest" min="0" onchange="validateCkcuest()"><br><br>
             <label for="bolt"> Enter your BOLT test score </label><br>
             <input type="number" id="bolt" name="bolt" min="0" onchange="validateBolt()"><br><br>
+
+
+            <label for="sitAndReachTest"> Enter your Sit and Reach test score </label><br>
+            <input type="number" id="sitAndReachTest" min="0" onchange="validateSitAndReach()"><br><br>
+
+            <label for="htof"> Enter your Hip Turnout - Floor (HTOF) test score </label><br>
+            <input type="number" id="htof" min="0" onchange="validateHTOF()"><br><br>
+
+            <label for="htod"> Enter your Hip Turnout - Disc (HTOD) test score </label><br>
+            <input type="number" id="htod" min="0" onchange="validateHTOD()"><br><br>
+
             <label for="workingLeg">Please select your preferred "working" leg</label><br>
 
             <select name="workingLeg" id="workingLeg">
@@ -132,9 +147,19 @@
             </select><br><br>
             <label for="consent"><input type="checkbox" id="consent" name="consent">Please check the box if you consent
                 to your data being used anonymously for research and teaching purposes</label><br><br>
-            <a href="javascript:alert('learn more');">Learn More</a><br>
+
+            <!--If the learn more button click the pop-up window will open with the prompt.
+                    If the user clicked ok it wiill open dance ready website in the new tab-->
+            <script type="text/javascript">function disp_alert() {
+                    if (confirm("The Dance Ready Project is dedicated to furthering the Health and Wellness of Dancers via education, tools and research. Please check the box if you consent to your data being used anonymously for research and teaching purposes. Please click OK for more info on us."))
+                        window.open('https://www.danceready.org/', '_blank');
+                }
+            </script>
+
+            <input type="button" onclick="disp_alert()" value="Learn More" />
             <br>
-            <!--<button type="button" onclick="pdfMake.createPdf(create_pdf()).print();">Submit</button> -->
+            <br>
+            <!--<button type="button" onclick="pdfMake.createPdf(create_pdf()).print();">Submit</button>-->
             <button type="button" onclick="validateForm()">Submit</button>
         </form>
     </div>
