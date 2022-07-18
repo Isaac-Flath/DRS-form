@@ -27,16 +27,14 @@
         <form id="DRSForm">
             <label for="TestAdmin">Test Administrator (If Applicable)</label><br>
             <input type="text" id="testadministrator" name="TestAdmin"><br><br>
-
             <label for="TestDate">Test Date</label><br>
             <input type="date" id="testingdate" name="TestDate"><br><br>
-
             <label for="email">Please enter your email address</label><br>
             <input type="email" id="email" name="email" onchange="validateEmail()"><br><br>
             <label for="FName">Please enter your first name</label><br>
-            <input type="text" id="firstName" name="FName" onchange="validateFirstName()"><br><br>
+            <input type="text" id="firstName" name="FName"><br><br>
             <label for="LName">Please enter your last name</label><br>
-            <input type="text" id="lastName" name="LName" onchange="validateLastName()"><br><br>
+            <input type="text" id="lastName" name="LName"><br><br>
             <label for="ethnicity"> Please select your ethnicity </label><br>
             <select name="ethnicity" id="ethnicity" onchange="ethnicityOther()">
                 <option value="White"> White </option>
@@ -53,10 +51,8 @@
                 <option value="Male"> Male </option>
                 <option value="Female"> Female </option>
             </select><br><br>
-
             <label for="age"> Please enter your age</label><br>
             <input type="number" id="age" name="age" min="0"><br><br>
-
             <label for="company"> Please enter your Organization / Company / Affiliation</label><br>
             <input type="text" id="company" name="company"><br><br>
             <label for="RSingleLegReleves"> Enter Right Single Leg Releves</label><br>
@@ -87,6 +83,11 @@
             <input type="number" id="rightHopTest2" name="RHopTest2" min="0" onchange="validateRightHopTest2()"><br><br>
             <label for="LHopTest2"> Enter Left Side Hop Test Trial 2 (cm)</label><br>
             <input type="number" id="leftHopTest2" name="LHopTest2" min="0" onchange="validateLeftHopTest2()"><br><br>
+            <label for="RightWallSit"> Enter Right Side Wall Sit Test Score</label><br>
+            <input type="number" id="rightWallSit" name="RightWallSit" min="0"
+                onchange="validateRightWallSit()"><br><br>
+            <label for="LeftWallSit"> Enter Left Side Wall Sit Test Score</label><br>
+            <input type="number" id="leftWallSit" name="LeftWallSit" min="0" onchange="validateLeftWallSit()"><br><br>
             <label for="RPasseReleveBalance"> Enter Right Passe Releve Balance time (s)</label><br>
             <input type="number" id="rightPasseReleveBalance" name="RPasseReleveBalance" min="0"
                 onchange="validateRightPasseReleveBalance()"><br><br>
@@ -102,18 +103,26 @@
                 onchange="validateLeftPasseFlatFootBalance()"><br><br>
             <label for="ckcuest">Enter CKCUEST</label><br>
             <input type="number" id="ckcuest" min="0" onchange="validateCkcuest()"><br><br>
+            <!--
             <label for="bolt"> Enter your BOLT test score </label><br>
             <input type="number" id="bolt" name="bolt" min="0" onchange="validateBolt()"><br><br>
-
+            -->
 
             <label for="sitAndReachTest"> Enter your Sit and Reach test score </label><br>
             <input type="number" id="sitAndReachTest" min="0" onchange="validateSitAndReach()"><br><br>
 
-            <label for="htof"> Enter your Hip Turnout - Floor (HTOF) test score </label><br>
-            <input type="number" id="htof" min="0" onchange="validateHTOF()"><br><br>
 
-            <label for="htod"> Enter your Hip Turnout - Disc (HTOD) test score </label><br>
-            <input type="number" id="htod" min="0" onchange="validateHTOD()"><br><br>
+            <label for="Rhtof"> Enter your Right Hip Turnout - Floor (HTOF) test score </label><br>
+            <input type="number" id="rightHtof" name="Rhtof" min="0" onchange="validateRHTOF()"><br><br>
+
+            <label for="Lhtof"> Enter your Left Hip Turnout - Floor (HTOF) test score </label><br>
+            <input type="number" id="leftHtof" name="Lhtof" min="0" onchange="validateLHTOF()"><br><br>
+
+            <label for="Rhtod"> Enter your Right Hip Turnout - Disc (HTOD) test score </label><br>
+            <input type="number" id="rightHtod" min="0" name="Rhtod" onchange="validateRHTOD()"><br><br>
+
+            <label for="Lhtod"> Enter your Left Hip Turnout - Disc (HTOD) test score </label><br>
+            <input type="number" id="leftHtod" min="0" name="Lhtod" onchange="validateLHTOD()"><br><br>
 
             <label for="workingLeg">Please select your preferred "working" leg</label><br>
 
