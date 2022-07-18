@@ -23,10 +23,12 @@ function getData() {
 
     var sex = DRSForm.sex.value
     var age = DRSForm.age.value
-    var htodVal = DRSForm.htod.value
+    var righthtodVal = DRSForm.rightHtod.value
+    var lefthtodVal = DRSForm.leftHtod.value
     var rightHopTest = get_hopTest_vals(DRSForm.rightHopTest1.value, DRSForm.rightHopTest2.value, sex);
     var leftHopTest = get_hopTest_vals(DRSForm.leftHopTest1.value, DRSForm.leftHopTest2.value, sex);
-
+    var rightWallSitTest = get_wallSittTest_vals(DRSForm.rightWallSit.value);
+    var leftWallSitTest = get_wallSittTest_vals(DRSForm.leftWallSit.value);
     var legExtras = get_legAvg_vals(rightSingleLegReleves.score, leftSingleLegReleves.score, rightSingleLegBridges.score, leftSingleLegBridges.score, rightHopTest.score, leftHopTest.score);
     var rightPasseReleveBalance = get_passeReleveBalance_vals(DRSForm.rightPasseReleveBalance.value);
     var leftPasseReleveBalance = get_passeReleveBalance_vals(DRSForm.leftPasseReleveBalance.value);
@@ -34,14 +36,16 @@ function getData() {
     var leftPasseFlatFootBalance = get_passeFlatFootBalance_vals(DRSForm.leftPasseFlatFootBalance.value);
     var passeExtra = get_passeAvg_vals(rightPasseReleveBalance.score, leftPasseReleveBalance.score, rightPasseFlatFootBalance.score, leftPasseFlatFootBalance.score);
     var ckcuestVar = get_ckcuestFunc_vals(DRSForm.ckcuest.value);
-    var bolt = get_bolts_vals(DRSForm.bolt.value);
+    //var bolt = get_bolts_vals(DRSForm.bolt.value);
     var sitAndReachTest = get_sitAndReach_vals(DRSForm.sitAndReachTest.value, sex, age);
-    var htod = get_htod_vals(htodVal);
-    var htof = get_htof_vals(DRSForm.htof.value, htodVal);
+    var rightHtod = get_htod_vals(righthtodVal);
+    var leftHtod = get_htod_vals(lefthtodVal);
+    var rightHtof = get_htof_vals(DRSForm.rightHtof.value, righthtodVal);
+    var leftHtof = get_htof_vals(DRSForm.rightHtof.value, lefthtodVal);
 
-    var DRSRight = (Number(rightSingleLegReleves.score) + Number(rightSidePlank.score) + Number(rightSingleLegBridges.score) + Number(rightHopTest.score) + Number(rightPasseReleveBalance.score) + Number(rightPasseFlatFootBalance.score)) / 6;
-    var DRSLeft = (Number(leftSingleLegReleves.score) + Number(leftSidePlank.score + leftSingleLegBridges.score) + Number(leftHopTest.score) + Number(leftPasseReleveBalance.score) + Number(leftPasseFlatFootBalance.score)) / 6;
-    var DRSTotal = (Number(DRSLeft) + Number(DRSRight) + Number(plank.score) + Number(bolt.score)) / 4;
+    var DRSRight = (Number(rightSingleLegReleves.score) + Number(rightSidePlank.score) + Number(rightSingleLegBridges.score) + Number(rightHopTest.score) + Number(rightPasseFlatFootBalance.score) + Number(rightHtod.score) + Number(rightHtof.score) + Number(rightWallSitTest.score)) / 8;
+    var DRSLeft = (Number(leftSingleLegReleves.score) + Number(leftSidePlank.score) + Number(leftSingleLegBridges.score) + Number(leftHopTest.score) + Number(leftPasseFlatFootBalance.score) + Number(leftHtod.score) + Number(leftHtof.score) + Number(leftWallSitTest.score)) / 8;
+    var DRSTotal = (Number(DRSLeft) + Number(DRSRight) + Number(plank.score) + Number(sitAndReachTest.score) + Number(ckcuestVar.score)) / 5;
 
     var email = document.getElementById("email").value;
     var firstName = document.getElementById("firstName").value;
@@ -74,6 +78,8 @@ function getData() {
         age: age,
         rightHopTest: rightHopTest,
         leftHopTest: leftHopTest,
+        rightWallSitTest: rightWallSitTest,
+        leftWallSitTest: leftWallSitTest,
         legExtras: legExtras,
         rightPasseReleveBalance: rightPasseReleveBalance,
         leftPasseReleveBalance: leftPasseReleveBalance,
@@ -81,10 +87,12 @@ function getData() {
         leftPasseFlatFootBalance: leftPasseFlatFootBalance,
         passeExtra: passeExtra,
         ckcuestVar: ckcuestVar,
-        bolt: bolt,
+        //bolt: bolt,
         sitAndReachTest: sitAndReachTest,
-        htod: htod,
-        htof: htof,
+        rightHtod: rightHtod,
+        leftHtod: leftHtod,
+        rightHtof: rightHtof,
+        leftHtof: leftHtof,
         DRSRight: DRSRight,
         DRSLeft: DRSLeft,
         DRSTotal: DRSTotal,
@@ -176,6 +184,20 @@ function get_hopTest_vals(amount1, amount2, sex) {
     else if (sex == 'Female') { return value_ranges(avgAmount, definition_female) }
 }
 
+function get_wallSittTest_vals(amount) {
+
+    var definition = {
+        g1: { min: 60, max: Infinity, score: 100, grade: "Excellent", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." },
+        g2: { min: 50, max: 59, score: 75, grade: "Good", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." },
+        g3: { min: 45, max: 50, score: 50, grade: "Average", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." },
+        g4: { min: 35, max: 40, score: 25, grade: "Poor", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." },
+        g5: { min: 0, max: 35, score: 0, grade: "Very Poor", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." }
+    };
+
+    return value_ranges(amount, definition)
+
+}
+
 function get_legAvg_vals(rightReleveScore, leftReleveScore, rightBridgeScore, leftBridgeScore, rightHopScore, leftHopScore) {
     var avg = (rightReleveScore + leftReleveScore + rightBridgeScore + leftBridgeScore + rightHopScore + leftHopScore) / 6;
     var definition = {
@@ -198,9 +220,13 @@ function get_passeReleveBalance_vals(amount) {
 }
 function get_passeFlatFootBalance_vals(amount) {
     var definition = {
-        g1: { min: 61, max: Infinity, score: 100, comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
-        g2: { min: 30, max: 60, score: 50, accommodations: "No single leg pirouttes", comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
-        g3: { min: 0, max: 29, score: 0, comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." }
+        g1: { min: 70, max: Infinity, grade: "Excellent", score: 100, comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
+        g2: { min: 60, max: 69, score: 80, grade: "Good", comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
+        g3: { min: 50, max: 59, score: 60, grade: "Above Average", comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
+        g4: { min: 40, max: 49, score: 40, grade: "Average", comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
+        g5: { min: 30, max: 39, score: 20, grade: "Poor", comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
+        g6: { min: 0, max: 29, score: 0, grade: "Very Poor", comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." }
+
     }
     return value_ranges(amount, definition)
 
@@ -218,15 +244,17 @@ function get_passeAvg_vals(rightReleve, leftReleve, rightFlatFoot, leftFlatFoot)
 function get_ckcuestFunc_vals(amount) {
     var definition = {
         g1: { min: 25, max: Infinity, grade: "Excellent", score: 100, accommodations: "Continue your current training/fitness regimen.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
-        g2: { min: 20, max: 24, grade: "Good", score: 75, accommodations: "Be cautious with activities that require lifting or supporting your body weight with your arms (floor work, partnering, sommersault etc). Your strength needs to improve in order to do these movements safely.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
-        g3: { min: 11, max: 19, grade: "Not optimal, Recommend PT consult", score: 25, accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
-        g4: { min: 0, max: 10, grade: "Not optimal, Recommend PT consult", score: 0, accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." }
+        g2: { min: 20, max: 24, grade: "Good", score: 80, accommodations: "Be cautious with activities that require lifting or supporting your body weight with your arms (floor work, partnering, sommersault etc). Your strength needs to improve in order to do these movements safely.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g3: { min: 15, max: 19, grade: "Above Average", score: 60, accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g4: { min: 10, max: 14, grade: "Average", score: 40, accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g5: { min: 5, max: 9, grade: "Poor", score: 20, accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g4: { min: 0, max: 4, grade: "Very Poor", score: 0, accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
     }
     return value_ranges(amount, definition)
 
 
 }
-
+/*
 function get_bolts_vals(amount) {
     var definition = {
         g1: { min: 40, max: Infinity, grade: "Excellent", score: 100, accommodations: "Good cardiovascular endurance", comments: "The breath hold time (BOLT) test is used to determine relative breathing volume during rest and breathlessness during physical exercise. A lower score means your breathing volume is low and you are likely to develop breathlessness when you perform a physical exercise. Athletes should aim for a BOLT score of 40 seconds or more. Knowing your comfortable BOLT measurement and how to improve this through the correct breathing exercises will significantly improve oxygen delivery to muscles and organs. This will directly correlate to improved athletic performance and general well-being." },
@@ -237,7 +265,7 @@ function get_bolts_vals(amount) {
 
 
 }
-
+*/
 function get_sitAndReach_vals(amount, sex, age) {
 
     var definition_male_0_5 = {
@@ -539,11 +567,11 @@ function get_htod_vals(amount) {
 function get_htof_vals(htofAmount, htodAmount) {
 
     var difference = htofAmount - htodAmount;
-    var g1 = { score: 100, grade: "Excellent", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
-    var g2 = { score: 75, grade: "Good", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
-    var g3 = { score: 50, grade: "Fair", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
-    var g4 = { score: 25, grade: "Poor", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
-    var g5 = { score: 0, grade: "Very Poor", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+    var g1 = { score: 100, grade: "Excellent", comments: "Full and symmetrical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+    var g2 = { score: 75, grade: "Good", comments: "Full and symmetrical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+    var g3 = { score: 50, grade: "Fair", comments: "Full and symmetrical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+    var g4 = { score: 25, grade: "Poor", comments: "Full and symmetrical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
+    var g5 = { score: 0, grade: "Very Poor", comments: "Full and symmetrical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
 
     if (htofAmount === htodAmount) {
         return g2;
@@ -710,6 +738,26 @@ function validateLeftHopTest2() {
     return (false);
 }
 
+function validateRightWallSit() {
+    var rightWallSit = DRSForm.rightWallSit.value;
+    if (rightWallSit >= 0) {
+        return (true);
+    }
+
+    alert("Invalid number, Right Side Wall Sit Test must be positive!");
+    return (false);
+}
+
+function validateLeftWallSit() {
+    var leftWallSit = DRSForm.leftWallSit.value;
+    if (leftWallSit >= 0) {
+        return (true);
+    }
+
+    alert("Invalid number, Left Side Wall Sit Test must be positive!");
+    return (false);
+}
+
 function validateRightPasseReleveBalance() {
     var rightPasseReleveBalance = DRSForm.rightPasseReleveBalance.value;
     if (rightPasseReleveBalance >= 0) {
@@ -759,7 +807,7 @@ function validateCkcuest() {
     alert("Invalid number, CKCUEST must be positive number!");
     return (false);
 }
-
+/*
 function validateBolt() {
     var bolt = DRSForm.bolt.value;
     if (bolt >= 0) {
@@ -769,7 +817,7 @@ function validateBolt() {
     alert("Invalid number, BOLT test score must be positive number!");
     return (false);
 }
-
+*/
 function validateSitAndReach() {
     var sitAndReach = DRSForm.sitAndReachTest.value;
     if (sitAndReach >= 0) {
@@ -779,23 +827,45 @@ function validateSitAndReach() {
     alert("Invalid number, Sit and Reach test score must be positive number!");
     return (false);
 }
-function validateHTOF() {
-    var HTOF = DRSForm.htof.value;
-    if (HTOF >= 0) {
+
+
+function validateRHTOF() {
+    var RHTOF = DRSForm.rightHtof.value;
+    if (RHTOF >= 0) {
         return (true);
     }
 
-    alert("Invalid number, Hip Turnout - Floor test score must be positive number!");
+    alert("Invalid number, Right Hip Turnout - Floor test score must be positive number!");
     return (false);
 }
 
-function validateHTOD() {
-    var HTOD = DRSForm.htod.value;
-    if (HTOD >= 0) {
+function validateLHTOF() {
+    var LHTOF = DRSForm.leftHtof.value;
+    if (LHTOF >= 0) {
         return (true);
     }
 
-    alert("Invalid number, Hip Turnout - Disc test score must be positive number!");
+    alert("Invalid number, Left Hip Turnout - Floor test score must be positive number!");
+    return (false);
+}
+
+function validateRHTOD() {
+    var RHTOD = DRSForm.rightHtod.value;
+    if (RHTOD >= 0) {
+        return (true);
+    }
+
+    alert("Invalid number, Right Hip Turnout - Disc test score must be positive number!");
+    return (false);
+}
+
+function validateLHTOD() {
+    var LHTOD = DRSForm.leftHtod.value;
+    if (LHTOD >= 0) {
+        return (true);
+    }
+
+    alert("Invalid number, Left Hip Turnout - Disc test score must be positive number!");
     return (false);
 }
 
@@ -806,7 +876,6 @@ function validateHTOD() {
 function validateForm() {
 
     var dateInput = document.getElementById("testingdate");
-    console.log(dateInput.toString());
     if (!dateInput.value) {
         alert("Date must be filled out");
         return false;
@@ -823,17 +892,13 @@ function validateForm() {
         alert("First name must be filled out");
         return false;
     };
-    if (!validateFirstName()) {
-        return false;
-    }
+
     var lastName = document.getElementById("lastName").value;
     if (lastName === "") {
         alert("Last name must be filled out");
         return false;
     };
-    if (!validateLastName()) {
-        return false;
-    }
+
     var company = document.getElementById("company").value;
     if (company === "") {
         alert("Company must be filled out");
@@ -927,6 +992,24 @@ function validateForm() {
     if (!validateLeftHopTest2()) {
         return false;
     }
+
+    var rightWallSit = document.getElementById("rightWallSit").value;
+    if (rightWallSit === "") {
+        alert("Right Side Wall Sit test must be filled out");
+        return false;
+    };
+    if (!validateRightWallSit()) {
+        return false;
+    }
+
+    var leftWallSit = document.getElementById("leftWallSit").value;
+    if (leftWallSit === "") {
+        alert("Left Side Wall Sit test must be filled out");
+        return false;
+    };
+    if (!validateLeftWallSit()) {
+        return false;
+    }
     var rightPasseReleveBalance = document.getElementById("rightPasseReleveBalance").value;
     if (rightPasseReleveBalance === "") {
         alert("Right passe releve balance must be filled out");
@@ -967,6 +1050,7 @@ function validateForm() {
     if (!validateCkcuest) {
         return false;
     }
+    /*
     var bolt = document.getElementById("bolt").value;
     if (bolt === "") {
         alert("Bolt score must be filled out");
@@ -975,6 +1059,7 @@ function validateForm() {
     if (!validateBolt()) {
         return false;
     }
+    */
     var sitAndReach = document.getElementById("sitAndReachTest").value;
     if (sitAndReach === "") {
         alert("Sit and Reach test score must be filled out");
@@ -983,21 +1068,41 @@ function validateForm() {
     if (!validateSitAndReach()) {
         return false;
     }
-    var HTOF = document.getElementById("htof").value;
-    if (HTOF === "") {
-        alert("Hip Turnout - Floor (HTOF) test score must be filled out");
+
+
+    var RHTOF = document.getElementById("rightHtof").value;
+    if (RHTOF === "") {
+        alert("Right Hip Turnout - Floor (HTOF) test score must be filled out");
         return false;
     };
-    if (!validateHTOF()) {
+    if (!validateRHTOF()) {
         return false;
     }
 
-    var HTOD = document.getElementById("htod").value;
-    if (HTOD === "") {
-        alert("Hip Turnout - Disc (HTOD) test score must be filled out");
+    var LHTOF = document.getElementById("leftHtof").value;
+    if (LHTOF === "") {
+        alert("Left Hip Turnout - Floor (HTOF) test score must be filled out");
         return false;
     };
-    if (!validateHTOD()) {
+    if (!validateLHTOF()) {
+        return false;
+    }
+
+    var RHTOD = document.getElementById("rightHtod").value;
+    if (RHTOD === "") {
+        alert("Right Hip Turnout - Disc (HTOD) test score must be filled out");
+        return false;
+    };
+    if (!validateRHTOD()) {
+        return false;
+    }
+
+    var LHTOD = document.getElementById("leftHtod").value;
+    if (LHTOD === "") {
+        alert("Left Hip Turnout - Disc (HTOD) test score must be filled out");
+        return false;
+    };
+    if (!validateLHTOD()) {
         return false;
     }
     submitMessage();
@@ -1027,15 +1132,12 @@ async function submitMessage() {
         console.log(admin);
     }
     var dateInput = document.getElementById("testingdate").value.toString();
-    var ethnicityStr = document.getElementById("ethnicity").value.toString();
-    var sexStr = document.getElementById("sex").value.toString();
-    var workingLegStr = document.getElementById("workingLeg").value.toString();
-    var standingLegStr = document.getElementById("standingLeg").value.toString();
-    var threeMonthInjuryStr = document.getElementById("threeMonthInjury").value.toString();
-    var fiveYearInjuryStr = document.getElementById("fiveYearInjury").value.toString();
     var email = document.getElementById("email").value;
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
+    var ethnicityStr = document.getElementById("ethnicity").value.toString();
+    var sexStr = document.getElementById("sex").value.toString();
+    var age = document.getElementById("age").value.toString();
     var company = document.getElementById("company").value;
     var rightSingleLegReleves = document.getElementById("rightSingleLegReleves").value;
     var leftSingleLegReleves = document.getElementById("leftSingleLegReleves").value;
@@ -1048,15 +1150,23 @@ async function submitMessage() {
     var leftHopTest1 = document.getElementById("leftHopTest1").value;
     var rightHopTest2 = document.getElementById("rightHopTest2").value;
     var leftHopTest2 = document.getElementById("leftHopTest2").value;
+    var rightWallSit = document.getElementById("rightWallSit").value;
+    var leftWallSit = document.getElementById("leftWallSit").value;
     var rightPasseReleveBalance = document.getElementById("rightPasseReleveBalance").value;
     var leftPasseReleveBalance = document.getElementById("leftPasseReleveBalance").value;
     var rightPasseFlatFootBalance = document.getElementById("rightPasseFlatFootBalance").value;
     var leftPasseFlatFootBalance = document.getElementById("leftPasseFlatFootBalance").value;
     var ckcuest = document.getElementById("ckcuest").value;
-    var bolt = document.getElementById("bolt").value;
+    //var bolt = document.getElementById("bolt").value;
     var sitAndReach = document.getElementById("sitAndReachTest").value;
-    var HTOF = document.getElementById("htof").value;
-    var HTOD = document.getElementById("htod").value;
+    var RHTOF = document.getElementById("rightHtof").value;
+    var LHTOF = document.getElementById("leftHtof").value;
+    var RHTOD = document.getElementById("rightHtod").value;
+    var LHTOD = document.getElementById("leftHtod").value;
+    var workingLegStr = document.getElementById("workingLeg").value.toString();
+    var standingLegStr = document.getElementById("standingLeg").value.toString();
+    var threeMonthInjuryStr = document.getElementById("threeMonthInjury").value.toString();
+    var fiveYearInjuryStr = document.getElementById("fiveYearInjury").value.toString();
     fetch('https://kuj8xxyl3g.execute-api.us-east-1.amazonaws.com/prod/drsform', {
         method: 'POST',
         body: JSON.stringify({
@@ -1067,6 +1177,7 @@ async function submitMessage() {
             "lastName": lastName,
             "ethnicity": ethnicityStr,
             "sex": sexStr,
+            "age": age,
             "company": company,
             "rightSingleLegReleves": rightSingleLegReleves,
             "leftSingleLegReleves": leftSingleLegReleves,
@@ -1079,15 +1190,19 @@ async function submitMessage() {
             "leftHopTest1": leftHopTest1,
             "rightHopTest2": rightHopTest2,
             "leftHopTest2": leftHopTest2,
+            "rightWallSit": rightWallSit,
+            "leftWallSit": leftWallSit,
             "rightPasseReleveBalance": rightPasseReleveBalance,
             "leftPasseReleveBalance": leftPasseReleveBalance,
             "rightPasseFlatFootBalance": rightPasseFlatFootBalance,
             "leftPasseFlatFootBalance": leftPasseFlatFootBalance,
             "ckcuest": ckcuest,
-            "bolt": bolt,
+            // "bolt": bolt,
             "sitAndReach": sitAndReach,
-            "HTOF": HTOF,
-            "HTOD": HTOD,
+            "RHTOF": RHTOF,
+            "LHTOF": LHTOF,
+            "RHTOD": RHTOD,
+            "LHTOD": LHTOD,
             "workingLeg": workingLegStr,
             "standingLeg": standingLegStr,
             "threeMonthInjury": threeMonthInjuryStr,
@@ -1173,7 +1288,8 @@ function create_pdf() {
                 ul: [d.plankExtra.accommodations,
                 d.passeExtra.accommodations,
                 d.ckcuestVar.accommodations,
-                d.bolt.accommodations], //pageBreak: 'after'
+                    //.accommodations
+                ],
 
             }
 
@@ -1214,7 +1330,8 @@ function create_pdf() {
 
                         [{ text: "Single Leg Releves" }, { text: "Calf Strength	" },
                         { style: 'headerTable', color: 'black', layout: 'noBorders', table: { body: [['L', 'R'], [d.leftSingleLegReleves.score, d.rightSingleLegReleves.score]] } },
-                        { rowSpan: 3, text: d.rightSingleLegBridges.comments }],
+                        // { rowSpan: 3, text: d.rightSingleLegBridges.comments }],
+                        { rowSpan: 4, text: d.leftWallSitTest.comments }],
 
 
 
@@ -1225,11 +1342,17 @@ function create_pdf() {
                         [{ text: "Hop Test" }, { text: "Quadriceps & Gluteal Function	" },
                         { style: 'headerTable', color: 'black', layout: 'noBorders', table: { body: [['L', 'R'], [d.leftHopTest.score, d.rightHopTest.score]] } }],
 
+                        //[{ text: "Hop Test" }, { text: "Quadriceps & Gluteal Function	" },
+                        //{ style: 'headerTable', color: 'black', layout: 'noBorders', table: { body: [['L', 'R'], [d.leftHopTest.score, d.rightHopTest.score]] } }],
+
+                        [{ text: "Wall Sit" }, { text: "Lower Body Muscular Endurance	" },
+                        { style: 'headerTable', color: 'black', layout: 'noBorders', table: { body: [['L', 'R'], [d.leftWallSitTest.score, d.rightWallSitTest.score]] } }],
 
 
-                        [{ text: "Passe Releve Balance" }, { text: "Balance & Priopriception	" },
-                        { style: 'headerTable', color: 'black', layout: 'noBorders', table: { body: [['L', 'R'], [d.leftPasseReleveBalance.score, d.rightPasseReleveBalance.score]] } },
-                        { rowSpan: 2, text: d.rightSingleLegBridges.comments }],
+
+                        [{ text: "Passe Releve Balance" }, { text: "Balance & Priopriception	" },// [d.leftPasseReleveBalance.score, d.rightPasseReleveBalance.score]
+                        { style: 'headerTable', color: 'black', layout: 'noBorders', table: { body: [['L', 'R'],] } },
+                        { rowSpan: 2, text: d.rightPasseFlatFootBalance.comments }],
 
 
                         [{ text: "Passe Flat Foot Balance - Eyes Closed" }, { text: "Balance & Priopriception	" },
@@ -1238,13 +1361,15 @@ function create_pdf() {
 
 
                         [{ text: "CKCUEST" }, { text: "Shoulder Strength and Stability	" }, d.ckcuestVar.score, { text: d.ckcuestVar.comments }],
-                        [{ text: "BOLT Test" }, { text: "Cardiovascular Fitness	" }, d.bolt.score, { text: d.bolt.comments }],
+                        //[{ text: "BOLT Test" }, { text: "Cardiovascular Fitness	" }, d.bolt.score, { text: d.bolt.comments }],
                         [{ text: "Sit and Reach" }, { text: "Flexibility " }, d.sitAndReachTest.score, { text: d.sitAndReachTest.comments }],
                         //[{ text: "Hip Turnout - disc (HTOD)" }, { text: "Range of Motion " }, d.htod.score, { text: d.htod.comments }],
-                        [{ text: "Hip Turnout - Disc (HTOD)" }, { text: "Range of Motion" }, d.htod.score,
-                        //{ style: 'headerTable', color: 'black', layout: 'noBorders', table: { body: [['L', 'R'], [d.leftPasseReleveBalance.score, d.rightPasseReleveBalance.score]] } },
-                        { rowSpan: 2, text: d.htod.comments }],
-                        [{ text: "Hip Turnout - Floor (HTOF)" }, { text: "Range of Motion " }, d.htof.score],
+                        [{ text: "Hip Turnout - Disc (HTOD)" }, { text: "Range of Motion	" },
+                        { style: 'headerTable', color: 'black', layout: 'noBorders', table: { body: [['L', 'R'], [d.leftHtod.score, d.rightHtod.score]] } },
+                        { rowSpan: 2, text: d.leftHtod.comments }],
+                        [{ text: "Hip Turnout - Floor (HTOF)" }, { text: "Range of Motion	" },
+                        { style: 'headerTable', color: 'black', layout: 'noBorders', table: { body: [['L', 'R'], [d.leftHtof.score, d.rightHtof.score]] } }],
+
 
 
                     ]
