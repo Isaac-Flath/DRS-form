@@ -6,7 +6,7 @@
      * in the corresponding html element for the results table.
      */
 function getData() {
-    var plank = get_plank_vals(DRSForm.plank.value);
+    var plank = get_front_plank_vals(DRSForm.plank.value);
     var rightSidePlank = get_plank_vals(DRSForm.rightSidePlank.value);
     var leftSidePlank = get_plank_vals(DRSForm.leftSidePlank.value);
     var plankExtra = get_plank_avg_vals(plank.score, rightSidePlank.score, leftSidePlank.score);
@@ -125,6 +125,17 @@ function value_ranges(amount, groups) {
     return out
 }
 
+function get_front_plank_vals(amount) {
+    var definition = {
+        g1: { min: 240, max: Infinity, grade: "Excellent", score: 100, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore maintaining adequate strength and control in this area critcial to a healthy dance career." },
+        g2: { min: 120, max: 239, grade: "Good", score: 80, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore maintaining adequate strength and control in this area critcial to a healthy dance career." },
+        g3: { min: 60, max: 119, score: 60, grade: "Above average", comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore maintaining adequate strength and control in this area critcial to a healthy dance career." },
+        g4: { min: 30, max: 59, score: 40, grade: "Average", comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore maintaining adequate strength and control in this area critcial to a healthy dance career." },
+        g5: { min: 15, max: 29, score: 20, grade: "Poor", comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore maintaining adequate strength and control in this area critcial to a healthy dance career." },
+        g6: { min: 0, max: 14, score: 0, grade: "Very Poor", comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore maintaining adequate strength and control in this area critcial to a healthy dance career." }
+    }
+    return value_ranges(amount, definition)
+}
 
 function get_plank_vals(amount) {
     var definition = {
@@ -241,14 +252,21 @@ function get_passeAvg_vals(rightReleve, leftReleve, rightFlatFoot, leftFlatFoot)
     return value_ranges(avg, definition)
 
 }
+
+/**
+ *  Accommodations for the future use. 
+ *  accommodations: "Continue your current training/fitness regimen.",
+ *  accommodations: "Be cautious with activities that require lifting or supporting your body weight with your arms (floor work, partnering, sommersault etc). Your strength needs to improve in order to do these movements safely.",
+ *  accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.",
+ */
 function get_ckcuestFunc_vals(amount) {
     var definition = {
-        g1: { min: 25, max: Infinity, grade: "Excellent", score: 100, accommodations: "Continue your current training/fitness regimen.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
-        g2: { min: 20, max: 24, grade: "Good", score: 80, accommodations: "Be cautious with activities that require lifting or supporting your body weight with your arms (floor work, partnering, sommersault etc). Your strength needs to improve in order to do these movements safely.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
-        g3: { min: 15, max: 19, grade: "Above Average", score: 60, accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
-        g4: { min: 10, max: 14, grade: "Average", score: 40, accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
-        g5: { min: 5, max: 9, grade: "Poor", score: 20, accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
-        g4: { min: 0, max: 4, grade: "Very Poor", score: 0, accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.", comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g1: { min: 25, max: Infinity, grade: "Excellent", score: 100, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g2: { min: 20, max: 24, grade: "Good", score: 80, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g3: { min: 15, max: 19, grade: "Above Average", score: 60, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g4: { min: 10, max: 14, grade: "Average", score: 40, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g5: { min: 5, max: 9, grade: "Poor", score: 20, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g4: { min: 0, max: 4, grade: "Very Poor", score: 0, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
     }
     return value_ranges(amount, definition)
 
@@ -1167,6 +1185,7 @@ async function submitMessage() {
     var standingLegStr = document.getElementById("standingLeg").value.toString();
     var threeMonthInjuryStr = document.getElementById("threeMonthInjury").value.toString();
     var fiveYearInjuryStr = document.getElementById("fiveYearInjury").value.toString();
+    var d = getData()
     fetch('https://kuj8xxyl3g.execute-api.us-east-1.amazonaws.com/prod/drsform', {
         method: 'POST',
         body: JSON.stringify({
@@ -1207,6 +1226,7 @@ async function submitMessage() {
             "standingLeg": standingLegStr,
             "threeMonthInjury": threeMonthInjuryStr,
             "fiveYearInjury": fiveYearInjuryStr
+
 
         })
     })
