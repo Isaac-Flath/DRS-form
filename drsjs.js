@@ -43,9 +43,38 @@ function getData() {
     var rightHtof = get_htof_vals(DRSForm.rightHtof.value, righthtodVal);
     var leftHtof = get_htof_vals(DRSForm.rightHtof.value, lefthtodVal);
 
+    function DRSTotalScore() {
+
+        var DRSRightWithHOP = (Number(rightSingleLegReleves.score) + Number(rightSidePlank.score) + Number(rightSingleLegBridges.score) + Number(rightHopTest.score) + Number(rightPasseFlatFootBalance.score) + Number(rightHtod.score) + Number(rightHtof.score) + Number(rightWallSitTest.score)) / 8;
+        var DRSLeftWithHOP = (Number(leftSingleLegReleves.score) + Number(leftSidePlank.score) + Number(leftSingleLegBridges.score) + Number(leftHopTest.score) + Number(leftPasseFlatFootBalance.score) + Number(leftHtod.score) + Number(leftHtof.score) + Number(leftWallSitTest.score)) / 8;
+        var DRSTotalWithHOP = (Number(DRSLeftWithHOP) + Number(DRSRightWithHOP) + Number(plank.score) + Number(sitAndReachTest.score) + Number(ckcuestVar.score)) / 5;
+
+        var DRSRightWithoutHOP = (Number(rightSingleLegReleves.score) + Number(rightSidePlank.score) + Number(rightSingleLegBridges.score) + Number(rightPasseFlatFootBalance.score) + Number(rightHtod.score) + Number(rightHtof.score) + Number(rightWallSitTest.score)) / 7;
+        var DRSLeftWithoutHOP = (Number(leftSingleLegReleves.score) + Number(leftSidePlank.score) + Number(leftSingleLegBridges.score) + Number(leftPasseFlatFootBalance.score) + Number(leftHtod.score) + Number(leftHtof.score) + Number(leftWallSitTest.score)) / 7;
+        var DRSTotalWithoutHOP = (Number(DRSLeftWithoutHOP) + Number(DRSRightWithoutHOP) + Number(plank.score) + Number(sitAndReachTest.score) + Number(ckcuestVar.score)) / 5;
+
+        let scoreWithHOPTest = { DRSRight: DRSRightWithHOP, DRSLeft: DRSLeftWithHOP, DRSTotal: DRSTotalWithHOP }
+        let scoreWithoutHOPTest = { DRSRight: DRSRightWithoutHOP, DRSLeft: DRSLeftWithoutHOP, DRSTotal: DRSTotalWithoutHOP }
+
+        function setHopTest() {
+            rightHopTest.score = "N/A";
+            leftHopTest.score = "N/A";
+        }
+
+        var checkBox = document.getElementById("isHOPTestPreformed");
+        if (checkBox.checked == true) {
+            return scoreWithHOPTest;
+        } else {
+            setHopTest();
+            return scoreWithoutHOPTest
+        }
+    }
+
+    /*
     var DRSRight = (Number(rightSingleLegReleves.score) + Number(rightSidePlank.score) + Number(rightSingleLegBridges.score) + Number(rightHopTest.score) + Number(rightPasseFlatFootBalance.score) + Number(rightHtod.score) + Number(rightHtof.score) + Number(rightWallSitTest.score)) / 8;
     var DRSLeft = (Number(leftSingleLegReleves.score) + Number(leftSidePlank.score) + Number(leftSingleLegBridges.score) + Number(leftHopTest.score) + Number(leftPasseFlatFootBalance.score) + Number(leftHtod.score) + Number(leftHtof.score) + Number(leftWallSitTest.score)) / 8;
     var DRSTotal = (Number(DRSLeft) + Number(DRSRight) + Number(plank.score) + Number(sitAndReachTest.score) + Number(ckcuestVar.score)) / 5;
+    */
 
     var email = document.getElementById("email").value;
     var firstName = document.getElementById("firstName").value;
@@ -59,9 +88,14 @@ function getData() {
     var threeMonthInjury = document.getElementById("threeMonthInjury").value;
     var fiveYearInjury = document.getElementById("fiveYearInjury").value;
     var consent = document.getElementById("consent").checked;
-    DRSRight = DRSRight.toFixed(2);
-    DRSLeft = DRSLeft.toFixed(2);
-    DRSTotal = DRSTotal.toFixed(2);
+
+
+    var DRSRight = DRSTotalScore().DRSRight.toFixed(2);
+    var DRSLeft = DRSTotalScore().DRSLeft.toFixed(2);
+    var DRSTotal = DRSTotalScore().DRSTotal.toFixed(2);
+
+
+
 
     obj = {
         plank: plank,
@@ -604,6 +638,19 @@ function get_htof_vals(htofAmount, htodAmount) {
     }
 }
 
+function renderHOPTest() {
+    // Get the checkbox
+    var checkBox = document.getElementById("isHOPTestPreformed");
+    // Get the output text
+    var text = document.getElementById("hopTest");
+
+    // If the checkbox is checked, display the output text
+    if (checkBox.checked == true) {
+        text.style.display = "block";
+    } else {
+        text.style.display = "none";
+    }
+}
 /**
     * Validates the email address follows the proper format for an email address. Prints an alert if not correct
     * 
@@ -922,170 +969,6 @@ function validateForm() {
         alert("Company must be filled out");
         return false;
     };
-    if (!validatetRightSingleLegReleves()) {
-        return false;
-    }
-    var rightSingleLegReleves = document.getElementById("rightSingleLegReleves").value;
-    if (rightSingleLegReleves === "") {
-        alert("Right single leg releves must be filled out");
-        return false;
-    };
-    var leftSingleLegReleves = document.getElementById("leftSingleLegReleves").value;
-    if (leftSingleLegReleves === "") {
-        alert("Left single leg releves must be filled out");
-        return false;
-    };
-    if (!validateLeftSingleLegReleves()) {
-        return false;
-    }
-    var plank = document.getElementById("plank").value;
-    if (plank === "") {
-        alert("Plank must be filled out");
-        return false;
-    };
-    if (!validatePlank()) {
-        return false;
-    }
-    var rightSidePlank = document.getElementById("rightSidePlank").value;
-    if (rightSidePlank === "") {
-        alert("Right side plank must be filled out");
-        return false;
-    };
-    if (!validateRightSidePlank()) {
-        return false;
-    }
-    var leftSidePlank = document.getElementById("leftSidePlank").value;
-    if (leftSidePlank === "") {
-        alert("Left side plank must be filled out");
-        return false;
-    };
-    if (!validateLeftSidePlank()) {
-        return false;
-    }
-    var rightSingleLegBridges = document.getElementById("rightSingleLegBridges").value;
-    if (rightSingleLegBridges === "") {
-        alert("Right single leg bridges must be filled out");
-        return false;
-    };
-    if (!validateRightSingleLegBridges()) {
-        return false;
-    }
-    var leftSingleLegBridges = document.getElementById("leftSingleLegBridges").value;
-    if (leftSingleLegBridges === "") {
-        alert("Left single leg bridges must be filled out");
-        return false;
-    };
-    if (!validateLeftSingleLegBridges()) {
-        return false;
-    }
-    var rightHopTest1 = document.getElementById("rightHopTest1").value;
-    if (rightHopTest1 === "") {
-        alert("Right hop test 1 must be filled out");
-        return false;
-    };
-    if (!validateRightHopTest1()) {
-        return false;
-    }
-    var leftHopTest1 = document.getElementById("leftHopTest1").value;
-    if (leftHopTest1 === "") {
-        alert("Left hop test 1 must be filled out");
-        return false;
-    };
-    if (!validateLeftHopTest1()) {
-        return false;
-    }
-    var rightHopTest2 = document.getElementById("rightHopTest2").value;
-    if (rightHopTest2 === "") {
-        alert("Right hop test 2 must be filled out");
-        return false;
-    };
-    if (!validateRightHopTest2()) {
-        return false;
-    }
-    var leftHopTest2 = document.getElementById("leftHopTest2").value;
-    if (leftHopTest2 === "") {
-        alert("Left hop test 2 must be filled out");
-        return false;
-    };
-    if (!validateLeftHopTest2()) {
-        return false;
-    }
-
-    var rightWallSit = document.getElementById("rightWallSit").value;
-    if (rightWallSit === "") {
-        alert("Right Side Wall Sit test must be filled out");
-        return false;
-    };
-    if (!validateRightWallSit()) {
-        return false;
-    }
-
-    var leftWallSit = document.getElementById("leftWallSit").value;
-    if (leftWallSit === "") {
-        alert("Left Side Wall Sit test must be filled out");
-        return false;
-    };
-    if (!validateLeftWallSit()) {
-        return false;
-    }
-    var rightPasseReleveBalance = document.getElementById("rightPasseReleveBalance").value;
-    if (rightPasseReleveBalance === "") {
-        alert("Right passe releve balance must be filled out");
-        return false;
-    };
-    if (!validateRightPasseReleveBalance()) {
-        return false;
-    }
-    var leftPasseReleveBalance = document.getElementById("leftPasseReleveBalance").value;
-    if (leftPasseReleveBalance === "") {
-        alert("Left passe releve balance must be filled out");
-        return false;
-    };
-    if (!validateLeftPasseReleveBalance()) {
-        return false;
-    }
-    var rightPasseFlatFootBalance = document.getElementById("rightPasseFlatFootBalance").value;
-    if (rightPasseFlatFootBalance === "") {
-        alert("Right passe flat foot balance must be filled out");
-        return false;
-    };
-    if (!validateRightPasseFlatFootBalance()) {
-        return false;
-    }
-    var leftPasseFlatFootBalance = document.getElementById("leftPasseFlatFootBalance").value;
-    if (leftPasseFlatFootBalance === "") {
-        alert("Left passe flat foot balance must be filled out");
-        return false;
-    };
-    if (!validateLeftPasseFlatFootBalance()) {
-        return false;
-    }
-    var ckcuest = document.getElementById("ckcuest").value;
-    if (ckcuest == "") {
-        alert("CKCUEST must be filled out");
-        return false;
-    };
-    if (!validateCkcuest) {
-        return false;
-    }
-    /*
-    var bolt = document.getElementById("bolt").value;
-    if (bolt === "") {
-        alert("Bolt score must be filled out");
-        return false;
-    };
-    if (!validateBolt()) {
-        return false;
-    }
-    */
-    var sitAndReach = document.getElementById("sitAndReachTest").value;
-    if (sitAndReach === "") {
-        alert("Sit and Reach test score must be filled out");
-        return false;
-    };
-    if (!validateSitAndReach()) {
-        return false;
-    }
 
 
     var RHTOF = document.getElementById("rightHtof").value;
@@ -1123,6 +1006,173 @@ function validateForm() {
     if (!validateLHTOD()) {
         return false;
     }
+
+    if (!validatetRightSingleLegReleves()) {
+        return false;
+    }
+    var rightSingleLegReleves = document.getElementById("rightSingleLegReleves").value;
+    if (rightSingleLegReleves === "") {
+        alert("Right single leg releves must be filled out");
+        return false;
+    };
+    var leftSingleLegReleves = document.getElementById("leftSingleLegReleves").value;
+    if (leftSingleLegReleves === "") {
+        alert("Left single leg releves must be filled out");
+        return false;
+    };
+    if (!validateLeftSingleLegReleves()) {
+        return false;
+    }
+
+    var rightPasseFlatFootBalance = document.getElementById("rightPasseFlatFootBalance").value;
+    if (rightPasseFlatFootBalance === "") {
+        alert("Right passe flat foot balance must be filled out");
+        return false;
+    };
+    if (!validateRightPasseFlatFootBalance()) {
+        return false;
+    }
+
+    var leftPasseFlatFootBalance = document.getElementById("leftPasseFlatFootBalance").value;
+    if (leftPasseFlatFootBalance === "") {
+        alert("Left passe flat foot balance must be filled out");
+        return false;
+    };
+    if (!validateLeftPasseFlatFootBalance()) {
+        return false;
+    }
+
+    var ckcuest = document.getElementById("ckcuest").value;
+    if (ckcuest == "") {
+        alert("CKCUEST must be filled out");
+        return false;
+    };
+    if (!validateCkcuest) {
+        return false;
+    }
+
+    var rightSidePlank = document.getElementById("rightSidePlank").value;
+    if (rightSidePlank === "") {
+        alert("Right side plank must be filled out");
+        return false;
+    };
+    if (!validateRightSidePlank()) {
+        return false;
+    }
+    var leftSidePlank = document.getElementById("leftSidePlank").value;
+    if (leftSidePlank === "") {
+        alert("Left side plank must be filled out");
+        return false;
+    };
+    if (!validateLeftSidePlank()) {
+        return false;
+    }
+
+    var sitAndReach = document.getElementById("sitAndReachTest").value;
+    if (sitAndReach === "") {
+        alert("Sit and Reach test score must be filled out");
+        return false;
+    };
+    if (!validateSitAndReach()) {
+        return false;
+    }
+
+    var rightPasseReleveBalance = document.getElementById("rightPasseReleveBalance").value;
+    if (rightPasseReleveBalance === "") {
+        alert("Right passe releve balance must be filled out");
+        return false;
+    };
+    if (!validateRightPasseReleveBalance()) {
+        return false;
+    }
+    var leftPasseReleveBalance = document.getElementById("leftPasseReleveBalance").value;
+    if (leftPasseReleveBalance === "") {
+        alert("Left passe releve balance must be filled out");
+        return false;
+    };
+    if (!validateLeftPasseReleveBalance()) {
+        return false;
+    }
+
+    var plank = document.getElementById("plank").value;
+    if (plank === "") {
+        alert("Plank must be filled out");
+        return false;
+    };
+    if (!validatePlank()) {
+        return false;
+    }
+
+    var rightSingleLegBridges = document.getElementById("rightSingleLegBridges").value;
+    if (rightSingleLegBridges === "") {
+        alert("Right single leg bridges must be filled out");
+        return false;
+    };
+    if (!validateRightSingleLegBridges()) {
+        return false;
+    }
+    var leftSingleLegBridges = document.getElementById("leftSingleLegBridges").value;
+    if (leftSingleLegBridges === "") {
+        alert("Left single leg bridges must be filled out");
+        return false;
+    };
+    if (!validateLeftSingleLegBridges()) {
+        return false;
+    }
+
+    var rightWallSit = document.getElementById("rightWallSit").value;
+    if (rightWallSit === "") {
+        alert("Right Side Wall Sit test must be filled out");
+        return false;
+    };
+    if (!validateRightWallSit()) {
+        return false;
+    }
+
+    var leftWallSit = document.getElementById("leftWallSit").value;
+    if (leftWallSit === "") {
+        alert("Left Side Wall Sit test must be filled out");
+        return false;
+    };
+    if (!validateLeftWallSit()) {
+        return false;
+    }
+
+    var checkBox = document.getElementById("isHOPTestPreformed");
+    var rightHopTest1 = document.getElementById("rightHopTest1").value;
+    if (rightHopTest1 === "" && checkBox.checked === true) {
+        alert("Right hop test 1 must be filled out");
+        return false;
+    };
+    if (!validateRightHopTest1()) {
+        return false;
+    }
+    var leftHopTest1 = document.getElementById("leftHopTest1").value;
+    if (leftHopTest1 === "" && checkBox.checked === true) {
+        alert("Left hop test 1 must be filled out");
+        return false;
+    };
+    if (!validateLeftHopTest1()) {
+        return false;
+    }
+    var rightHopTest2 = document.getElementById("rightHopTest2").value;
+    if (rightHopTest2 === "" && checkBox.checked === true) {
+        alert("Right hop test 2 must be filled out");
+        return false;
+    };
+    if (!validateRightHopTest2()) {
+        return false;
+    }
+    var leftHopTest2 = document.getElementById("leftHopTest2").value;
+    if (leftHopTest2 === "" && checkBox.checked === true) {
+        alert("Left hop test 2 must be filled out");
+        return false;
+    };
+    if (!validateLeftHopTest2()) {
+        return false;
+    }
+
+
     submitMessage();
 
     pdfMake.createPdf(create_pdf()).print();
@@ -1164,10 +1214,22 @@ async function submitMessage() {
     var leftSidePlank = document.getElementById("leftSidePlank").value;
     var rightSingleLegBridges = document.getElementById("rightSingleLegBridges").value;
     var leftSingleLegBridges = document.getElementById("leftSingleLegBridges").value;
+
+    var checkBox = document.getElementById("isHOPTestPreformed");
     var rightHopTest1 = document.getElementById("rightHopTest1").value;
     var leftHopTest1 = document.getElementById("leftHopTest1").value;
     var rightHopTest2 = document.getElementById("rightHopTest2").value;
     var leftHopTest2 = document.getElementById("leftHopTest2").value;
+
+    if (checkBox.checked !== true) {
+
+        var rightHopTest1 = "not applicable";
+        var leftHopTest1 = "not applicable";
+        var rightHopTest2 = "not applicable";
+        var leftHopTest2 = "not applicable";
+
+    }
+
     var rightWallSit = document.getElementById("rightWallSit").value;
     var leftWallSit = document.getElementById("leftWallSit").value;
     var rightPasseReleveBalance = document.getElementById("rightPasseReleveBalance").value;
