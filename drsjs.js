@@ -23,6 +23,7 @@ function getData() {
 
     var sex = DRSForm.sex.value
     var age = DRSForm.age.value
+    var legLength = DRSForm.legLength.value
     var righthtodVal = DRSForm.rightHtod.value
     var lefthtodVal = DRSForm.leftHtod.value
     var rightHopTest = get_hopTest_vals(DRSForm.rightHopTest1.value, DRSForm.rightHopTest2.value, sex);
@@ -110,6 +111,7 @@ function getData() {
         leftSingleLegBridges: leftSingleLegBridges,
         sex: sex,
         age: age,
+        legLength: legLength,
         rightHopTest: rightHopTest,
         leftHopTest: leftHopTest,
         rightWallSitTest: rightWallSitTest,
@@ -160,6 +162,7 @@ function value_ranges(amount, groups) {
 }
 
 function get_front_plank_vals(amount) {
+    var roundToCeil = Math.ceil(amount);
     var definition = {
         g1: { min: 240, max: Infinity, grade: "Excellent", score: 100, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore maintaining adequate strength and control in this area critcial to a healthy dance career." },
         g2: { min: 120, max: 239, grade: "Good", score: 80, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore maintaining adequate strength and control in this area critcial to a healthy dance career." },
@@ -168,10 +171,11 @@ function get_front_plank_vals(amount) {
         g5: { min: 15, max: 29, score: 20, grade: "Poor", comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore maintaining adequate strength and control in this area critcial to a healthy dance career." },
         g6: { min: 0, max: 14, score: 0, grade: "Very Poor", comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore maintaining adequate strength and control in this area critcial to a healthy dance career." }
     }
-    return value_ranges(amount, definition)
+    return value_ranges(roundToCeil, definition)
 }
 
 function get_plank_vals(amount) {
+    var roundToCeil = Math.ceil(amount);
     var definition = {
         g1: { min: 45, max: Infinity, score: 100, comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently." },
         g2: { min: 30, max: 44, score: 75, comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently." },
@@ -179,7 +183,7 @@ function get_plank_vals(amount) {
         g4: { min: 10, max: 20, score: 25, comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently." },
         g5: { min: 0, max: 9, score: 0, comments: "Calf, hamstring, gluteal, quadriceps strength and coordination are critical to all jumps,floor, and foot work. Strengthening these muscle groups will improve your ability to perform these movements efficiently." },
     }
-    return value_ranges(amount, definition)
+    return value_ranges(roundToCeil, definition)
 }
 function get_plank_avg_vals(amount1, amount2, amount3) {
     var definition = {
@@ -190,6 +194,7 @@ function get_plank_avg_vals(amount1, amount2, amount3) {
     return value_ranges((amount1, amount2, amount3) / 3, definition)
 }
 function get_singleLegReleves_vals(amount) {
+    var roundToCeil = Math.ceil(amount);
     var definition = {
         g1: { min: 35, max: Infinity, score: 100, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career." },
         g2: { min: 25, max: 34, score: 80, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career." },
@@ -198,10 +203,11 @@ function get_singleLegReleves_vals(amount) {
         g5: { min: 6, max: 10, score: 20, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career." },
         g6: { min: 0, max: 5, score: 0, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career." },
     }
-    return value_ranges(amount, definition)
+    return value_ranges(roundToCeil, definition)
 
 }
 function get_singleLegBridges_vals(amount) {
+    var roundToCeil = Math.ceil(amount);
     var definition = {
         g1: { min: 31, max: Infinity, score: 100, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career." },
         g2: { min: 25, max: 30, score: 75, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career." },
@@ -209,11 +215,14 @@ function get_singleLegBridges_vals(amount) {
         g4: { min: 10, max: 19, score: 25, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career." },
         g5: { min: 0, max: 9, score: 0, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career." }
     }
-    return value_ranges(amount, definition)
+    //console.log(roundToCeil);
+    return value_ranges(roundToCeil, definition)
 }
 
 function get_hopTest_vals(amount1, amount2, sex) {
-    var avgAmount = (Number(amount1) + Number(amount2)) / 2;
+    var roundToCeil1 = Math.ceil(amount1);
+    var roundToCeil2 = Math.ceil(amount2);
+    var avgAmount = (Number(roundToCeil1) + Number(roundToCeil2)) / 2;
     var definition_male = {
         g1: { min: 203, max: Infinity, score: 100, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career." },
         g2: { min: 182, max: 202, score: 50, comments: "The abdominal core and hip muscles are major sources of stability for dance movements. Weakness in these areas may cause problems in the back, knee, foot/ankle and shoulder. Therefore, maintaining adequate strength and control in this area are critcial to a healthy dance career." },
@@ -230,16 +239,16 @@ function get_hopTest_vals(amount1, amount2, sex) {
 }
 
 function get_wallSittTest_vals(amount) {
-
+    var roundToCeil = Math.ceil(amount);
     var definition = {
         g1: { min: 60, max: Infinity, score: 100, grade: "Excellent", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." },
         g2: { min: 50, max: 59, score: 75, grade: "Good", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." },
-        g3: { min: 45, max: 50, score: 50, grade: "Average", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." },
-        g4: { min: 35, max: 40, score: 25, grade: "Poor", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." },
+        g3: { min: 40, max: 50, score: 50, grade: "Average", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." },
+        g4: { min: 36, max: 40, score: 25, grade: "Poor", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." },
         g5: { min: 0, max: 35, score: 0, grade: "Very Poor", comments: "Calf, hamstring,  gluteal, and quadriceps strength and coordination are critical to all jumps, floor, and foot work. Strengthening these muscle grourps will improve your ability to perform these movements efficiently." }
     };
 
-    return value_ranges(amount, definition)
+    return value_ranges(roundToCeil, definition)
 
 }
 
@@ -254,16 +263,18 @@ function get_legAvg_vals(rightReleveScore, leftReleveScore, rightBridgeScore, le
 }
 
 function get_passeReleveBalance_vals(amount) {
+    var roundToCeil = Math.ceil(amount);
     var definition = {
         g1: { min: 10, max: Infinity, score: 100, comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
         g2: { min: 6, max: 9, score: 50, comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
         g3: { min: 0, max: 5, score: 0, comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." }
 
     }
-    return value_ranges(amount, definition)
+    return value_ranges(roundToCeil, definition)
 
 }
 function get_passeFlatFootBalance_vals(amount) {
+    var roundToCeil = Math.ceil(amount);
     var definition = {
         g1: { min: 70, max: Infinity, grade: "Excellent", score: 100, comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
         g2: { min: 60, max: 69, score: 80, grade: "Good", comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." },
@@ -273,7 +284,7 @@ function get_passeFlatFootBalance_vals(amount) {
         g6: { min: 0, max: 29, score: 0, grade: "Very Poor", comments: "Good balance is necessary for performing most dance movements. Maintaining and improving good balance will allow a solid foundation to build your dance technique and performance." }
 
     }
-    return value_ranges(amount, definition)
+    return value_ranges(roundToCeil, definition)
 
 }
 function get_passeAvg_vals(rightReleve, leftReleve, rightFlatFoot, leftFlatFoot) {
@@ -294,6 +305,7 @@ function get_passeAvg_vals(rightReleve, leftReleve, rightFlatFoot, leftFlatFoot)
  *  accommodations: "Be cautious with all shoulder, neck and arm activities. Recommend consulting with DRP physical therapists to improve the condition of your shoulder girdle and reduce the risk of injury.",
  */
 function get_ckcuestFunc_vals(amount) {
+    var roundToCeil = Math.ceil(amount);
     var definition = {
         g1: { min: 25, max: Infinity, grade: "Excellent", score: 100, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
         g2: { min: 20, max: 24, grade: "Good", score: 80, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
@@ -302,7 +314,7 @@ function get_ckcuestFunc_vals(amount) {
         g5: { min: 5, max: 9, grade: "Poor", score: 20, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
         g4: { min: 0, max: 4, grade: "Very Poor", score: 0, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
     }
-    return value_ranges(amount, definition)
+    return value_ranges(roundToCeil, definition)
 
 
 }
@@ -319,7 +331,7 @@ function get_bolts_vals(amount) {
 }
 */
 function get_sitAndReach_vals(amount, sex, age) {
-
+    var roundToCeil = Math.ceil(amount);
     var definition_male_0_5 = {
         g1: { min: 30, max: Infinity, score: 100, grade: "Excellent", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
         g2: { min: 26, max: 29, score: 75, grade: "Very good", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." },
@@ -568,42 +580,42 @@ function get_sitAndReach_vals(amount, sex, age) {
         g5: { min: 0, max: 12, score: 0, grade: "Poor", comments: "Adequate extensibility of the hamstring musculature is also essential for the dancer's mobility.  Tight hamstrings can cause pelvis, back and knee problems." }
     };
 
-    if (sex == 'Male' && age >= 0 && age <= 5) { return value_ranges(amount, definition_male_0_5) }
-    else if (sex == 'Male' && age >= 6 && age <= 9) { return value_ranges(amount, definition_male_6_9) }
-    else if (sex == 'Male' && age >= 10 && age <= 12) { return value_ranges(amount, definition_male_10_12) }
-    else if (sex == 'Male' && age == 13) { return value_ranges(amount, definition_male_13) }
-    else if (sex == 'Male' && age == 14) { return value_ranges(amount, definition_male_14) }
-    else if (sex == 'Male' && age == 15) { return value_ranges(amount, definition_male_15) }
-    else if (sex == 'Male' && age == 16) { return value_ranges(amount, definition_male_16) }
-    else if (sex == 'Male' && age == 17) { return value_ranges(amount, definition_male_17) }
-    else if (sex == 'Male' && age >= 18 && age <= 25) { return value_ranges(amount, definition_male_18_25) }
-    else if (sex == 'Male' && age >= 26 && age <= 35) { return value_ranges(amount, definition_male_26_35) }
-    else if (sex == 'Male' && age >= 36 && age <= 45) { return value_ranges(amount, definition_male_36_45) }
-    else if (sex == 'Male' && age >= 46 && age <= 55) { return value_ranges(amount, definition_male_46_55) }
-    else if (sex == 'Male' && age >= 56 && age <= 64) { return value_ranges(amount, definition_male_56_64) }
-    else if (sex == 'Male' && age >= 65) { return value_ranges(amount, definition_male_65_more) }
+    if (sex == 'Male' && age >= 0 && age <= 5) { return value_ranges(roundToCeil, definition_male_0_5) }
+    else if (sex == 'Male' && age >= 6 && age <= 9) { return value_ranges(roundToCeil, definition_male_6_9) }
+    else if (sex == 'Male' && age >= 10 && age <= 12) { return value_ranges(roundToCeil, definition_male_10_12) }
+    else if (sex == 'Male' && age == 13) { return value_ranges(roundToCeil, definition_male_13) }
+    else if (sex == 'Male' && age == 14) { return value_ranges(roundToCeil, definition_male_14) }
+    else if (sex == 'Male' && age == 15) { return value_ranges(roundToCeil, definition_male_15) }
+    else if (sex == 'Male' && age == 16) { return value_ranges(roundToCeil, definition_male_16) }
+    else if (sex == 'Male' && age == 17) { return value_ranges(roundToCeil, definition_male_17) }
+    else if (sex == 'Male' && age >= 18 && age <= 25) { return value_ranges(roundToCeil, definition_male_18_25) }
+    else if (sex == 'Male' && age >= 26 && age <= 35) { return value_ranges(roundToCeil, definition_male_26_35) }
+    else if (sex == 'Male' && age >= 36 && age <= 45) { return value_ranges(roundToCeil, definition_male_36_45) }
+    else if (sex == 'Male' && age >= 46 && age <= 55) { return value_ranges(roundToCeil, definition_male_46_55) }
+    else if (sex == 'Male' && age >= 56 && age <= 64) { return value_ranges(roundToCeil, definition_male_56_64) }
+    else if (sex == 'Male' && age >= 65) { return value_ranges(roundToCeil, definition_male_65_more) }
 
-    else if (sex == 'Female' && age >= 0 && age <= 5) { return value_ranges(amount, definition_female_0_5) }
-    else if (sex == 'Female' && age == 6) { return value_ranges(amount, definition_female_6) }
-    else if (sex == 'Female' && age == 7) { return value_ranges(amount, definition_female_7) }
-    else if (sex == 'Female' && age >= 8 && age <= 9) { return value_ranges(amount, definition_female_8_9) }
-    else if (sex == 'Female' && age == 10) { return value_ranges(amount, definition_female_10) }
-    else if (sex == 'Female' && age == 11) { return value_ranges(amount, definition_female_11) }
-    else if (sex == 'Female' && age == 12) { return value_ranges(amount, definition_female_12) }
-    else if (sex == 'Female' && age == 13) { return value_ranges(amount, definition_female_13) }
-    else if (sex == 'Female' && age == 14) { return value_ranges(amount, definition_female_14) }
-    else if (sex == 'Female' && age == 15) { return value_ranges(amount, definition_female_15) }
-    else if (sex == 'Female' && age >= 16 && age <= 17) { return value_ranges(amount, definition_female_16_17) }
-    else if (sex == 'Female' && age >= 18 && age <= 25) { return value_ranges(amount, definition_female_18_25) }
-    else if (sex == 'Female' && age >= 26 && age <= 35) { return value_ranges(amount, definition_female_26_35) }
-    else if (sex == 'Female' && age >= 36 && age <= 45) { return value_ranges(amount, definition_female_36_45) }
-    else if (sex == 'Female' && age >= 46 && age <= 55) { return value_ranges(amount, definition_female_46_55) }
-    else if (sex == 'Female' && age >= 56 && age <= 64) { return value_ranges(amount, definition_female_56_64) }
-    else if (sex == 'Female' && age >= 65) { return value_ranges(amount, definition_female_65_more) }
+    else if (sex == 'Female' && age >= 0 && age <= 5) { return value_ranges(roundToCeil, definition_female_0_5) }
+    else if (sex == 'Female' && age == 6) { return value_ranges(roundToCeil, definition_female_6) }
+    else if (sex == 'Female' && age == 7) { return value_ranges(roundToCeil, definition_female_7) }
+    else if (sex == 'Female' && age >= 8 && age <= 9) { return value_ranges(roundToCeil, definition_female_8_9) }
+    else if (sex == 'Female' && age == 10) { return value_ranges(roundToCeil, definition_female_10) }
+    else if (sex == 'Female' && age == 11) { return value_ranges(roundToCeil, definition_female_11) }
+    else if (sex == 'Female' && age == 12) { return value_ranges(roundToCeil, definition_female_12) }
+    else if (sex == 'Female' && age == 13) { return value_ranges(roundToCeil, definition_female_13) }
+    else if (sex == 'Female' && age == 14) { return value_ranges(roundToCeil, definition_female_14) }
+    else if (sex == 'Female' && age == 15) { return value_ranges(roundToCeil, definition_female_15) }
+    else if (sex == 'Female' && age >= 16 && age <= 17) { return value_ranges(roundToCeil, definition_female_16_17) }
+    else if (sex == 'Female' && age >= 18 && age <= 25) { return value_ranges(roundToCeil, definition_female_18_25) }
+    else if (sex == 'Female' && age >= 26 && age <= 35) { return value_ranges(roundToCeil, definition_female_26_35) }
+    else if (sex == 'Female' && age >= 36 && age <= 45) { return value_ranges(roundToCeil, definition_female_36_45) }
+    else if (sex == 'Female' && age >= 46 && age <= 55) { return value_ranges(roundToCeil, definition_female_46_55) }
+    else if (sex == 'Female' && age >= 56 && age <= 64) { return value_ranges(roundToCeil, definition_female_56_64) }
+    else if (sex == 'Female' && age >= 65) { return value_ranges(roundToCeil, definition_female_65_more) }
 }
 
 function get_htod_vals(amount) {
-
+    var roundToCeil = Math.ceil(amount);
     var definition = {
         g1: { min: 60, max: Infinity, score: 100, grade: "Excellent", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." },
         g2: { min: 50, max: 59, score: 75, grade: "Good", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." },
@@ -612,22 +624,23 @@ function get_htod_vals(amount) {
         g5: { min: 0, max: 40, score: 0, grade: "Very Poor", comments: "Full and symmertical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
     }
 
-    return value_ranges(amount, definition)
+    return value_ranges(roundToCeil, definition)
 
 }
 
 function get_htof_vals(htofAmount, htodAmount) {
-
-    var difference = htofAmount - htodAmount;
+    var roundToCeilHTOF = Math.ceil(htofAmount);
+    var roundToCeilHTOD = Math.ceil(htodAmount);
+    var difference = roundToCeilHTOF - roundToCeilHTOD;
     var g1 = { score: 100, grade: "Excellent", comments: "Full and symmetrical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
     var g2 = { score: 75, grade: "Good", comments: "Full and symmetrical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
     var g3 = { score: 50, grade: "Fair", comments: "Full and symmetrical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
     var g4 = { score: 25, grade: "Poor", comments: "Full and symmetrical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
     var g5 = { score: 0, grade: "Very Poor", comments: "Full and symmetrical hip range of motion is important for overall joint health. Limited and excess hip range of motion can increase the risk of injury, decrease stability, and affect performance." }
 
-    if (htofAmount === htodAmount) {
+    if (roundToCeilHTOF === roundToCeilHTOD) {
         return g2;
-    } else if (htofAmount < htodAmount) {
+    } else if (roundToCeilHTOF < roundToCeilHTOD) {
         return g3;
     } else if (difference >= 1 && difference <= 4) {
         return g3
@@ -1206,6 +1219,7 @@ async function submitMessage() {
     var ethnicityStr = document.getElementById("ethnicity").value.toString();
     var sexStr = document.getElementById("sex").value.toString();
     var age = document.getElementById("age").value.toString();
+    var legLength = document.getElementById("legLength").value.toString();
     var company = document.getElementById("company").value;
     var rightSingleLegReleves = document.getElementById("rightSingleLegReleves").value;
     var leftSingleLegReleves = document.getElementById("leftSingleLegReleves").value;
@@ -1259,6 +1273,7 @@ async function submitMessage() {
             "ethnicity": ethnicityStr,
             "sex": sexStr,
             "age": age,
+            "legLength": legLength,
             "company": company,
             "rightSingleLegReleves": rightSingleLegReleves,
             "leftSingleLegReleves": leftSingleLegReleves,
