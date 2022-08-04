@@ -312,7 +312,7 @@ function get_ckcuestFunc_vals(amount) {
         g3: { min: 15, max: 19, grade: "Above Average", score: 60, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
         g4: { min: 10, max: 14, grade: "Average", score: 40, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
         g5: { min: 5, max: 9, grade: "Poor", score: 20, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
-        g4: { min: 0, max: 4, grade: "Very Poor", score: 0, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
+        g6: { min: 0, max: 4, grade: "Very Poor", score: 0, comments: "Rotator cuff, shoulder strength, stability and endurance are critical for efficient port de bras partnering, and floorwork involving the arms. Improving these will lower your risk of injury, improve function and enhance performance." },
     }
     return value_ranges(roundToCeil, definition)
 
