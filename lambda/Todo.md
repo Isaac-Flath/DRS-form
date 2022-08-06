@@ -13,7 +13,7 @@
   + (On hold) - Authenticate DRS email address to send from official email instead of Farukh’s
 ## DRS_Form_PDF_Gen: Receives `obj` format json and generates PDF, stores in S3, and calls SendEmailToUser
 + Tasks (Isaac)
-  + Rename lambda function
+  + ~~Rename lambda function~~
   + Call DRS_Form Email
 ## DRS_Form_Batch_Upload:  
 + Triggers on CSV file upload
