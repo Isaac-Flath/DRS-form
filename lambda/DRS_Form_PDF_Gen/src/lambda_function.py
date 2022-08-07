@@ -7,6 +7,8 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from io import BytesIO
 import boto3
+import time
+import json
 
 def lambda_handler(event, context):
     obj = event
@@ -293,7 +295,17 @@ def lambda_handler(event, context):
     s3 = boto3.resource('s3')
     
     generation_ts = datetime.now()
-    s3.Object('drs-pdf-storage', f"{obj['firstName']}{obj['lastName']}_{generation_ts:%Y%m%dT%H%M%S}.pdf").put(Body=pdf_value)
-#     time.sleep(0.5)
-#     Call_Email_lambda(obj['EmailAddress'],generation_ts)
-    return 'Complete'
+    fname = f"{obj['firstName']}{obj['lastName']}_{generation_ts:%Y%m%dT%H%M%S}.pdf"
+    s3.Object('drs-pdf-storage', fname).put(Body=pdf_value)
+    time.sleep(0.5)
+
+    client = boto3.client('lambda')
+    input_params = {'to_email':obj['email'],'key':fname}
+    response = client.invoke(FunctionName='arn:aws:lambda:us-east-1:691574466696:function:DRS_Form_Email',
+            InvocationType='RequestResponse',
+            #InvocationType='Event',
+            Payload=json.dumps(input_params)
+            )
+    response_child = json.load(response['Payload'])
+
+    return ('Complete',response_child)
