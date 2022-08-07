@@ -15,12 +15,12 @@
 ## DRS_Form_PDF_Gen: Receives `obj` format json and generates PDF, stores in S3, and calls SendEmailToUser
 + Tasks (Isaac)
   + ~~Rename lambda function~~
-  + ~~Call DRS_Form Email~~
+  + Call DRS_Form Email
 ## DRS_Form_Batch_Upload:  
 + Triggers on CSV file upload
 + For each row, call
   + DRS_Form_PreProcessing
   + DRS_Form_Write_DB
   + DRS-Form_PDF_Gen
-+ Tasks:
++ Tasks (Isaac):
   + On hold pending completion of other lambda functions
