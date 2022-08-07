@@ -10,10 +10,10 @@ A dependency can be added into the `package` directory using `npm install nodema
 
 ```bash
 cd package
-zip -r ../sendEmailToDeploy.zip .
+zip -r ../Deploy.zip .
 
 cd ..
-zip -g my-sendEmailToDeploy.zip index.js
+zip -g Deploy.zip lambda_function.js
 ```
 
 ### Deploy
