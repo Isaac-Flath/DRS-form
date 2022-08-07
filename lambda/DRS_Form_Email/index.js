@@ -1,6 +1,3 @@
-//name of s3: drs-pdf-storage
-// key of s3 file : IsaacTest_lambda.pdf
-
 var aws = require('aws-sdk');
 var nodemailer = require('nodemailer');
 
@@ -24,17 +21,17 @@ function getS3File(bucket, key) {
 
 exports.handler = function (event, context, callback) {
 
-    getS3File('drs-pdf-storage', 'IsaacTest_lambda.pdf')
+    getS3File('drs-pdf-storage', event.key)
         .then(function (fileData) {
             var mailOptions = {
                 from: 'farukh022198@gmail.com',
-                subject: 'This is an email sent from a Lambda function!',
-                html: `<p>You got a contact message from: <b>${event.emailAddress}</b></p>`,
-                to: 'farukh022198@gmail.com',
+                subject: 'Dance Ready Score',
+                html: `<p>Your Dance Ready Score report is ready and attached!</p>`,
+                to: event.to_email,
                 // bcc: Any BCC address you want here in an array,
                 attachments: [
                     {
-                        filename: "An Attachment.pdf",
+                        filename: event.key,
                         content: fileData.Body
                     }
                 ]
@@ -61,6 +58,6 @@ exports.handler = function (event, context, callback) {
         .catch(function (error) {
             console.log(error);
             console.log('Error getting attachment from S3');
-            callback(err);
+            //callback(err);
         });
 };
