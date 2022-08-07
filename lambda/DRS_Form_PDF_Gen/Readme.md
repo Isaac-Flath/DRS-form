@@ -10,14 +10,14 @@ A dependency can be added into the `package` directory using `pip install --targ
 
 ```bash
 cd package
-zip -r ../my-deployment-package.zip .
+zip -r ../Deploy.zip .
 
 cd ..
-zip -g my-deployment-package.zip lambda_function.py
+zip -g Deploy.zip lambda_function.py
 ```
 
 ### Deploy
 
-Upload `my-deployment-package.zip` deployment package to Lambda function in console
+Upload `Deploy.zip` deployment package to Lambda function in console
 
 ## Function Information

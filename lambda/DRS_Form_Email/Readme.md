@@ -13,11 +13,11 @@ cd package
 zip -r ../Deploy.zip .
 
 cd ..
-zip -g Deploy.zip lambda_function.js
+zip -g Deploy.zip index.js
 ```
 
 ### Deploy
 
-Upload `sendEmailToDeploy.zip` deployment package to Lambda function in console
+Upload `Deploy.zip` deployment package to Lambda function in console
 
 ## Function Information
