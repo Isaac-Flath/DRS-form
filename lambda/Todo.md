@@ -9,12 +9,13 @@
   + Copy write DB logic from DRS_Form_To_DRS_Backend_Table
 ## DRS_Form_Email: Receives S3 key and “to” email address and emails pdf
 + Tasks (Farukh):
-  + Modify to use `event` argument so Key and “to” are not hard coded
+  + ~~Modify to use `event` argument so Key and “to” are not hard coded~~
   + (On hold) - Authenticate DRS email address to send from official email instead of Farukh’s
+  + (On Hold) - Send to just "to" email or send to DRS as well?
 ## DRS_Form_PDF_Gen: Receives `obj` format json and generates PDF, stores in S3, and calls SendEmailToUser
 + Tasks (Isaac)
-  + Rename lambda function
-  + Call DRS_Form Email
+  + ~~Rename lambda function~~
+  + ~~Call DRS_Form Email~~
 ## DRS_Form_Batch_Upload:  
 + Triggers on CSV file upload
 + For each row, call
