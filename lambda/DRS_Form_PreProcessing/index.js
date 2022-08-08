@@ -1,51 +1,70 @@
 // Loads in the AWS SDK
 const AWS = require('aws-sdk');
+var lambda = new AWS.Lambda({ region: 'us-east-1' });
 
+exports.handler = (event, context, callback) => {
 
-exports.handler = async (event, context, callback) => {
-
-
-    if (
-        event.admin && event.dateInput && event.email && event.firstName &&
-        event.lastName && event.ethnicity && event.sex && event.age && event.legLength && event.company && event.rightSingleLegReleves &&
-        event.leftSingleLegReleves && event.plank && event.rightSidePlank &&
-        event.leftSidePlank && event.rightSingleLegBridges && event.leftSingleLegBridges &&
-        event.rightHopTest1 && event.leftHopTest1 && event.rightHopTest2 &&
-        event.leftHopTest2 && event.rightWallSit && event.leftWallSit && event.rightPasseReleveBalance && event.leftPasseReleveBalance &&
-        event.rightPasseFlatFootBalance && event.leftPasseFlatFootBalance && event.ckcuest &&
-        event.sitAndReach && event.RHTOF && event.LHTOF && event.RHTOD && event.LHTOD && event.workingLeg &&
-        event.standingLeg && event.threeMonthInjury && event.fiveYearInjury
-    ) {
-
-        var obj = getData(event);
-        callback(null, {
-            statusCode: 201,
-
-            DRSTotal: obj.DRSTotal,
-
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            }
-        });
-
-        return obj;
-    } else {
-        callback(null, {
-            statusCode: 400,
-            body: 'Bad Request',
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            }
-        });
-    }
-
+    var rawObj = getData(event);
+    var obj = JSON.stringify(rawObj);
+    var params = {
+        FunctionName: 'DRS_Form_PDF_Gen', // the lambda function we are going to invoke
+        InvocationType: 'RequestResponse',//'RequestResponse',
+        LogType: 'Tail',
+        Payload: obj
+    };
+    lambda.invoke(params, function (err, data) {
+        console.log("invoking lambda-test");
+        if (err) {
+            console.log(err, err.stack);
+        } else {
+            console.log('function triggered');
+        }
+    });
+    /*
+        if (
+            event.admin && event.dateInput && event.email && event.firstName &&
+            event.lastName && event.ethnicity && event.sex && event.age && event.legLength && event.company && event.rightSingleLegReleves &&
+            event.leftSingleLegReleves && event.plank && event.rightSidePlank &&
+            event.leftSidePlank && event.rightSingleLegBridges && event.leftSingleLegBridges &&
+            event.rightHopTest1 && event.leftHopTest1 && event.rightHopTest2 &&
+            event.leftHopTest2 && event.rightWallSit && event.leftWallSit && event.rightPasseReleveBalance && event.leftPasseReleveBalance &&
+            event.rightPasseFlatFootBalance && event.leftPasseFlatFootBalance && event.ckcuest &&
+            event.sitAndReach && event.RHTOF && event.LHTOF && event.RHTOD && event.LHTOD && event.workingLeg &&
+            event.standingLeg && event.threeMonthInjury && event.fiveYearInjury
+        ) {
+            
+    
+      
+            callback(null, {
+                statusCode: 201,
+                
+                DRSTotal: obj.DRSTotal,
+                
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                }
+            });
+             
+            
+            return obj; 
+           
+        } else {
+            callback(null, {
+                statusCode: 400,
+                body: 'Bad Request',
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                }
+            });
+        }
+     */
 
     // Function getData
 
     function getData(event) {
 
         var testadministrator = event.admin;
-        var testingdate = event.date;
+        var testingdate = event.dateInput;
         var email = event.email;
         var firstName = event.firstName;
         var lastName = event.lastName;
@@ -54,10 +73,10 @@ exports.handler = async (event, context, callback) => {
         var age = parseFloat(event.age);
         var legLength = parseFloat(event.legLength);
         var company = event.company;
-        var workingLeg = event.workingLeg.value;
-        var standingLeg = event.standingLeg.value;
-        var threeMonthInjury = event.threeMonthInjury.value;
-        var fiveYearInjury = event.fiveYearInjury.value;
+        var workingLeg = event.workingLeg;
+        var standingLeg = event.standingLeg;
+        var threeMonthInjury = event.threeMonthInjury;
+        var fiveYearInjury = event.fiveYearInjury;
         //var consent = event.consent.checked;
 
         var righthtodVal = parseFloat(event.RHTOD);
@@ -160,18 +179,18 @@ exports.handler = async (event, context, callback) => {
             DRSLeft: DRSLeft,
             DRSTotal: DRSTotal
         }
-
-        console.log(
-            obj.firstName + '\n' +
-            obj.lastName + '\n' +
-            obj.rightHopTest.score + '\n' +
-            obj.leftSingleLegBridges.comments + '\n' +
-            obj.DRSLeft + '\n' +
-            obj.DRSRight + '\n' +
-            obj.DRSTotal
-
-        )
-
+        /*        
+                console.log(
+                    obj.firstName+'\n'+
+                    obj.lastName+'\n'+
+                    obj.rightHopTest.score+'\n'+
+                    obj.leftSingleLegBridges.comments+'\n'+
+                    obj.DRSLeft+'\n'+
+                    obj.DRSRight+'\n'+
+                    obj.DRSTotal
+                    
+                    )
+        */
         return obj
     }
 
