@@ -598,7 +598,7 @@ async function submitDRS_Form_Write_DB() {
     var threeMonthInjuryStr = document.getElementById("threeMonthInjury").value.toString();
     var fiveYearInjuryStr = document.getElementById("fiveYearInjury").value.toString();
     //var d = getData() https://6ju99e49cc.execute-api.us-east-1.amazonaws.com/prod
-    fetch('https://kuj8xxyl3g.execute-api.us-east-1.amazonaws.com/prod/drsform', {
+    fetch('https://7say0alryi.execute-api.us-east-1.amazonaws.com/prod', {
         method: 'POST',
         body: JSON.stringify({
             "admin": admin,
