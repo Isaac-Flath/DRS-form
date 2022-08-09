@@ -542,7 +542,7 @@ otherwise:
                     'Access-Control-Allow-Origin' : '*'
 */
 
-async function submitDRS_Form_Write_DB() {
+function getData() {
     var admin = document.getElementById("testadministrator").value.toString();
     if (admin.length === 0) {
         admin = "not applicable";
@@ -597,51 +597,56 @@ async function submitDRS_Form_Write_DB() {
     var standingLegStr = document.getElementById("standingLeg").value.toString();
     var threeMonthInjuryStr = document.getElementById("threeMonthInjury").value.toString();
     var fiveYearInjuryStr = document.getElementById("fiveYearInjury").value.toString();
+
+    var data = {
+        "admin": admin,
+        "dateInput": dateInput,
+        "email": email,
+        "firstName": firstName,
+        "lastName": lastName,
+        "ethnicity": ethnicityStr,
+        "sex": sexStr,
+        "age": age,
+        "legLength": legLength,
+        "company": company,
+        "rightSingleLegReleves": rightSingleLegReleves,
+        "leftSingleLegReleves": leftSingleLegReleves,
+        "plank": plank,
+        "rightSidePlank": rightSidePlank,
+        "leftSidePlank": leftSidePlank,
+        "rightSingleLegBridges": rightSingleLegBridges,
+        "leftSingleLegBridges": leftSingleLegBridges,
+        "rightHopTest1": rightHopTest1,
+        "leftHopTest1": leftHopTest1,
+        "rightHopTest2": rightHopTest2,
+        "leftHopTest2": leftHopTest2,
+        "rightWallSit": rightWallSit,
+        "leftWallSit": leftWallSit,
+        "rightPasseReleveBalance": rightPasseReleveBalance,
+        "leftPasseReleveBalance": leftPasseReleveBalance,
+        "rightPasseFlatFootBalance": rightPasseFlatFootBalance,
+        "leftPasseFlatFootBalance": leftPasseFlatFootBalance,
+        "ckcuest": ckcuest,
+        // "bolt": bolt,
+        "sitAndReach": sitAndReach,
+        "RHTOF": RHTOF,
+        "LHTOF": LHTOF,
+        "RHTOD": RHTOD,
+        "LHTOD": LHTOD,
+        "workingLeg": workingLegStr,
+        "standingLeg": standingLegStr,
+        "threeMonthInjury": threeMonthInjuryStr,
+        "fiveYearInjury": fiveYearInjuryStr
+    }
+    return data
+}
+
+async function submitDRS_Form_Write_DB() {
+    data = getData()
     //var d = getData() https://6ju99e49cc.execute-api.us-east-1.amazonaws.com/prod
     fetch('https://7say0alryi.execute-api.us-east-1.amazonaws.com/prod', {
         method: 'POST',
-        body: JSON.stringify({
-            "admin": admin,
-            "dateInput": dateInput,
-            "email": email,
-            "firstName": firstName,
-            "lastName": lastName,
-            "ethnicity": ethnicityStr,
-            "sex": sexStr,
-            "age": age,
-            "legLength": legLength,
-            "company": company,
-            "rightSingleLegReleves": rightSingleLegReleves,
-            "leftSingleLegReleves": leftSingleLegReleves,
-            "plank": plank,
-            "rightSidePlank": rightSidePlank,
-            "leftSidePlank": leftSidePlank,
-            "rightSingleLegBridges": rightSingleLegBridges,
-            "leftSingleLegBridges": leftSingleLegBridges,
-            "rightHopTest1": rightHopTest1,
-            "leftHopTest1": leftHopTest1,
-            "rightHopTest2": rightHopTest2,
-            "leftHopTest2": leftHopTest2,
-            "rightWallSit": rightWallSit,
-            "leftWallSit": leftWallSit,
-            "rightPasseReleveBalance": rightPasseReleveBalance,
-            "leftPasseReleveBalance": leftPasseReleveBalance,
-            "rightPasseFlatFootBalance": rightPasseFlatFootBalance,
-            "leftPasseFlatFootBalance": leftPasseFlatFootBalance,
-            "ckcuest": ckcuest,
-            // "bolt": bolt,
-            "sitAndReach": sitAndReach,
-            "RHTOF": RHTOF,
-            "LHTOF": LHTOF,
-            "RHTOD": RHTOD,
-            "LHTOD": LHTOD,
-            "workingLeg": workingLegStr,
-            "standingLeg": standingLegStr,
-            "threeMonthInjury": threeMonthInjuryStr,
-            "fiveYearInjury": fiveYearInjuryStr
-
-
-        })
+        body: JSON.stringify(data)
     })
         .then(response => response.json())
         .then((response) => {
@@ -653,105 +658,11 @@ async function submitDRS_Form_Write_DB() {
 }
 
 async function submitDRS_Form_PreProcessing() {
-    var admin = document.getElementById("testadministrator").value.toString();
-    if (admin.length === 0) {
-        admin = "not applicable";
-        console.log(admin);
-    }
-    var dateInput = document.getElementById("testingdate").value.toString();
-    var email = document.getElementById("email").value;
-    var firstName = document.getElementById("firstName").value;
-    var lastName = document.getElementById("lastName").value;
-    var ethnicityStr = document.getElementById("ethnicity").value.toString();
-    var sexStr = document.getElementById("sex").value.toString();
-    var age = document.getElementById("age").value.toString();
-    var legLength = document.getElementById("legLength").value.toString();
-    var company = document.getElementById("company").value;
-    var rightSingleLegReleves = document.getElementById("rightSingleLegReleves").value;
-    var leftSingleLegReleves = document.getElementById("leftSingleLegReleves").value;
-    var plank = document.getElementById("plank").value;
-    var rightSidePlank = document.getElementById("rightSidePlank").value;
-    var leftSidePlank = document.getElementById("leftSidePlank").value;
-    var rightSingleLegBridges = document.getElementById("rightSingleLegBridges").value;
-    var leftSingleLegBridges = document.getElementById("leftSingleLegBridges").value;
-
-    var checkBox = document.getElementById("isHOPTestPreformed");
-    var rightHopTest1 = document.getElementById("rightHopTest1").value;
-    var leftHopTest1 = document.getElementById("leftHopTest1").value;
-    var rightHopTest2 = document.getElementById("rightHopTest2").value;
-    var leftHopTest2 = document.getElementById("leftHopTest2").value;
-
-    if (checkBox.checked !== true) {
-
-        var rightHopTest1 = "not applicable";
-        var leftHopTest1 = "not applicable";
-        var rightHopTest2 = "not applicable";
-        var leftHopTest2 = "not applicable";
-
-    }
-
-    var rightWallSit = document.getElementById("rightWallSit").value;
-    var leftWallSit = document.getElementById("leftWallSit").value;
-    var rightPasseReleveBalance = document.getElementById("rightPasseReleveBalance").value;
-    var leftPasseReleveBalance = document.getElementById("leftPasseReleveBalance").value;
-    var rightPasseFlatFootBalance = document.getElementById("rightPasseFlatFootBalance").value;
-    var leftPasseFlatFootBalance = document.getElementById("leftPasseFlatFootBalance").value;
-    var ckcuest = document.getElementById("ckcuest").value;
-    //var bolt = document.getElementById("bolt").value;
-    var sitAndReach = document.getElementById("sitAndReachTest").value;
-    var RHTOF = document.getElementById("rightHtof").value;
-    var LHTOF = document.getElementById("leftHtof").value;
-    var RHTOD = document.getElementById("rightHtod").value;
-    var LHTOD = document.getElementById("leftHtod").value;
-    var workingLegStr = document.getElementById("workingLeg").value.toString();
-    var standingLegStr = document.getElementById("standingLeg").value.toString();
-    var threeMonthInjuryStr = document.getElementById("threeMonthInjury").value.toString();
-    var fiveYearInjuryStr = document.getElementById("fiveYearInjury").value.toString();
+    data = getData()
     //var d = getData() https://6ju99e49cc.execute-api.us-east-1.amazonaws.com/prod
     fetch('https://6ju99e49cc.execute-api.us-east-1.amazonaws.com/prod', {
         method: 'POST',
-        body: JSON.stringify({
-            "admin": admin,
-            "dateInput": dateInput,
-            "email": email,
-            "firstName": firstName,
-            "lastName": lastName,
-            "ethnicity": ethnicityStr,
-            "sex": sexStr,
-            "age": age,
-            "legLength": legLength,
-            "company": company,
-            "rightSingleLegReleves": rightSingleLegReleves,
-            "leftSingleLegReleves": leftSingleLegReleves,
-            "plank": plank,
-            "rightSidePlank": rightSidePlank,
-            "leftSidePlank": leftSidePlank,
-            "rightSingleLegBridges": rightSingleLegBridges,
-            "leftSingleLegBridges": leftSingleLegBridges,
-            "rightHopTest1": rightHopTest1,
-            "leftHopTest1": leftHopTest1,
-            "rightHopTest2": rightHopTest2,
-            "leftHopTest2": leftHopTest2,
-            "rightWallSit": rightWallSit,
-            "leftWallSit": leftWallSit,
-            "rightPasseReleveBalance": rightPasseReleveBalance,
-            "leftPasseReleveBalance": leftPasseReleveBalance,
-            "rightPasseFlatFootBalance": rightPasseFlatFootBalance,
-            "leftPasseFlatFootBalance": leftPasseFlatFootBalance,
-            "ckcuest": ckcuest,
-            // "bolt": bolt,
-            "sitAndReach": sitAndReach,
-            "RHTOF": RHTOF,
-            "LHTOF": LHTOF,
-            "RHTOD": RHTOD,
-            "LHTOD": LHTOD,
-            "workingLeg": workingLegStr,
-            "standingLeg": standingLegStr,
-            "threeMonthInjury": threeMonthInjuryStr,
-            "fiveYearInjury": fiveYearInjuryStr
-
-
-        })
+        body: JSON.stringify({data})
     })
         .then(response => response.json())
         .then((response) => {
